@@ -1,0 +1,1 @@
+# json_static_generator
