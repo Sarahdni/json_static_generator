@@ -22,6 +22,8 @@ from src.processors.economics import EconomicsProcessor
 from src.processors.building_dev import BuildingDevProcessor
 from src.processors.investment import InvestmentProcessor
 
+from src.utils.json_utils import DecimalEncoder
+
 logger = logging.getLogger(__name__)
 
 class MunicipalityGenerator:
@@ -242,35 +244,29 @@ class MunicipalityGenerator:
         return result
         
     def format_json(self, data: Dict[str, Any]) -> str:
-        """
-        Formatte les données en JSON selon les paramètres définis.
-        
-        Args:
-            data: Données à formatter.
-            
-        Returns:
-            str: Chaîne JSON formatée.
-        """
+        """Formatte les données en JSON selon les paramètres définis."""
         return json.dumps(
             data,
             indent=JSON_FORMAT.get('indent', 2),
             ensure_ascii=JSON_FORMAT.get('ensure_ascii', False),
-            sort_keys=JSON_FORMAT.get('sort_keys', False)
+            sort_keys=JSON_FORMAT.get('sort_keys', False),
+            cls=DecimalEncoder  # Ajouter cette ligne
         )
         
     def save_json(self, data: Dict[str, Any], output_path: str) -> bool:
-        """
-        Sauvegarde les données JSON dans un fichier.
-        
-        Args:
-            data: Données à sauvegarder.
-            output_path: Chemin du fichier de sortie.
-            
-        Returns:
-            bool: True si l'opération a réussi, False sinon.
-        """
+        """Sauvegarde les données JSON dans un fichier."""
         try:
-            json_string = self.format_json(data)
+            # Créer le répertoire parent s'il n'existe pas
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
+            
+            # Formater le JSON avec notre encodeur personnalisé
+            json_string = json.dumps(
+                data,
+                indent=JSON_FORMAT.get('indent', 2),
+                ensure_ascii=JSON_FORMAT.get('ensure_ascii', False),
+                sort_keys=JSON_FORMAT.get('sort_keys', False),
+                cls=DecimalEncoder
+            )
             
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(json_string)
