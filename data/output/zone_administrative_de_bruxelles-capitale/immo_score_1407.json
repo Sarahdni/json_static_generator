@@ -121,39 +121,39 @@
   },
   "demographics": {
     "population_overview": {
-      "total_population": 126581,
+      "total_population": 125065,
       "population_density": null,
       "population_trend": {
-        "one_year_growth": 0.0,
-        "five_year_growth": 0.0,
-        "forecast_growth": 0.0
+        "one_year_growth": 2.054721861816283,
+        "five_year_growth": 5.64528391140545,
+        "forecast_growth": 1.12905678228109
       }
     },
     "age_structure": {
       "median_age": null,
       "age_groups": {
         "under_18": {
-          "count": 5330.400000000001,
-          "percentage": 4.211058531691171,
-          "trend": "+0,0%"
+          "count": 5140.2,
+          "percentage": 4.110022788150162,
+          "trend": "+3,2%"
         },
         "18_to_35": {
-          "count": 31844.533333333336,
-          "percentage": 25.157435423431114,
-          "trend": "+0,0%"
+          "count": 31157.999999999993,
+          "percentage": 24.913445008595524,
+          "trend": "+1,1%"
         },
         "36_to_65": {
-          "count": 45208.56666666665,
-          "percentage": 35.71512838946339,
-          "trend": "+0,0%"
+          "count": 44504.40000000001,
+          "percentage": 35.58501579178828,
+          "trend": "-0,2%"
         },
         "over_65": {
-          "count": 9562.5,
-          "percentage": 7.55445129995813,
-          "trend": "+0,0%"
+          "count": 9329.400000000001,
+          "percentage": 7.459640986686924,
+          "trend": "-0,1%"
         }
       },
-      "dependency_ratio": 0.19328099713055027
+      "dependency_ratio": 0.19123897735202694
     },
     "household_composition": {
       "total_households": 0,
@@ -213,16 +213,16 @@
     "cultural_diversity": {
       "nationality_groups": {
         "belgian": {
-          "count": 82550,
-          "percentage": 65.21515867310261
+          "count": 81959,
+          "percentage": 65.53312277615639
         },
         "eu_non_belgian": {
           "count": 0,
           "percentage": 0.0
         },
         "non_eu": {
-          "count": 44031,
-          "percentage": 34.7848413268974
+          "count": 43106,
+          "percentage": 34.4668772238436
         }
       }
     }
@@ -290,12 +290,475 @@
   "geographical_context": {
     "mobility": {
       "vehicle_ownership": {
-        "average_vehicles_per_household": null,
+        "average_vehicles_per_household": 0,
         "households_with_no_vehicle_pct": 0.0,
         "households_with_multiple_vehicles_pct": 0.0
       },
       "vehicle_distribution": {
-        "by_sector": []
+        "by_sector": [
+          {
+            "sector_id": 99449,
+            "sector_name": "ABATTOIR",
+            "vehicles_per_household": 0.5,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99795,
+            "sector_name": "AGRAFE-NORBERT GILLE",
+            "vehicles_per_household": 0.53,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101105,
+            "sector_name": "ALBERT I- IMMEUBLES",
+            "vehicles_per_household": 0.33,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101113,
+            "sector_name": "ALBERT I- QUARTIER",
+            "vehicles_per_household": 0.38,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101259,
+            "sector_name": "ARBORETUM",
+            "vehicles_per_household": 0.66,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99077,
+            "sector_name": "ASTRID (PARC)",
+            "vehicles_per_household": 0.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101274,
+            "sector_name": "AUBADE",
+            "vehicles_per_household": 0.7,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99378,
+            "sector_name": "AURORE",
+            "vehicles_per_household": 0.53,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101253,
+            "sector_name": "BIESTEBROEK",
+            "vehicles_per_household": 0.48,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 118667,
+            "sector_name": "BIRMINGHAM",
+            "vehicles_per_household": 0.38,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99437,
+            "sector_name": "BIZET",
+            "vehicles_per_household": 0.54,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101290,
+            "sector_name": "BON AIR - CENTRE",
+            "vehicles_per_household": 0.73,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101295,
+            "sector_name": "BON AIR - CITE JARDIN",
+            "vehicles_per_household": 0.68,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101296,
+            "sector_name": "BON AIR - HABITATIONS DISP.",
+            "vehicles_per_household": 0.75,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101269,
+            "sector_name": "BROECK",
+            "vehicles_per_household": 0.71,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99470,
+            "sector_name": "BROGNIEZ-NORD",
+            "vehicles_per_household": 0.35,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101263,
+            "sector_name": "BROGNIEZ-SUD",
+            "vehicles_per_household": 0.29,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99863,
+            "sector_name": "BUFFON",
+            "vehicles_per_household": 0.81,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99433,
+            "sector_name": "CERIA - ZONE D'HABITAT",
+            "vehicles_per_household": 0.62,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101258,
+            "sector_name": "CERIA I",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101279,
+            "sector_name": "CHANTS D'OISEAUX",
+            "vehicles_per_household": 0.68,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99444,
+            "sector_name": "CHAUSSEE DE MONS - SAINT-LUC",
+            "vehicles_per_household": 0.49,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101284,
+            "sector_name": "CIMETIERE",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99453,
+            "sector_name": "CONSEIL-NORD",
+            "vehicles_per_household": 0.37,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101270,
+            "sector_name": "CONSEIL-SUD",
+            "vehicles_per_household": 0.33,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99843,
+            "sector_name": "CROCUS",
+            "vehicles_per_household": 0.7,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101138,
+            "sector_name": "DEUX GARES",
+            "vehicles_per_household": 0.79,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99448,
+            "sector_name": "DOCTEUR ROUX",
+            "vehicles_per_household": 0.63,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101120,
+            "sector_name": "GOUJONS",
+            "vehicles_per_household": 0.32,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101282,
+            "sector_name": "HOPITAL U.L.B.",
+            "vehicles_per_household": 0.05,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99780,
+            "sector_name": "JAKOB SMITS",
+            "vehicles_per_household": 0.71,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101261,
+            "sector_name": "KAT",
+            "vehicles_per_household": 0.75,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101237,
+            "sector_name": "KLEINMOLEN",
+            "vehicles_per_household": 0.43,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101252,
+            "sector_name": "LINDE-EST",
+            "vehicles_per_household": 0.53,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101248,
+            "sector_name": "LINDE-OUEST",
+            "vehicles_per_household": 0.67,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101286,
+            "sector_name": "MEERVELD",
+            "vehicles_per_household": 0.59,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101285,
+            "sector_name": "MEYLEMEERSCH",
+            "vehicles_per_household": 1.18,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101254,
+            "sector_name": "MINIMES",
+            "vehicles_per_household": 0.46,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101271,
+            "sector_name": "MOORTEBEEK",
+            "vehicles_per_household": 0.6,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99626,
+            "sector_name": "NELLIE MELBA",
+            "vehicles_per_household": 0.91,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101264,
+            "sector_name": "OSSEGEM",
+            "vehicles_per_household": 0.58,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101272,
+            "sector_name": "PETERBOS",
+            "vehicles_per_household": 0.38,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101278,
+            "sector_name": "PETITE ILE- RIVE DROITE",
+            "vehicles_per_household": 0.57,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101273,
+            "sector_name": "POESIE",
+            "vehicles_per_household": 0.79,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 118690,
+            "sector_name": "PORSELEIN",
+            "vehicles_per_household": 0.55,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101255,
+            "sector_name": "RAUTER-NORD",
+            "vehicles_per_household": 0.47,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101250,
+            "sector_name": "RAUTER-SUD",
+            "vehicles_per_household": 0.49,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101230,
+            "sector_name": "RESISTANCE",
+            "vehicles_per_household": 0.46,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101069,
+            "sector_name": "REVISION-NORD",
+            "vehicles_per_household": 0.41,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101060,
+            "sector_name": "REVISION-SUD",
+            "vehicles_per_household": 0.44,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101260,
+            "sector_name": "ROMAIN ROLLAND",
+            "vehicles_per_household": 0.71,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100712,
+            "sector_name": "ROSEE-EST",
+            "vehicles_per_household": 0.36,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101277,
+            "sector_name": "ROSEE-OUEST",
+            "vehicles_per_household": 0.39,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99389,
+            "sector_name": "ROUE",
+            "vehicles_per_household": 0.69,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99393,
+            "sector_name": "ROUE - CITE JARDIN",
+            "vehicles_per_household": 0.76,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99574,
+            "sector_name": "SCHERDEMAEL",
+            "vehicles_per_household": 0.77,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99585,
+            "sector_name": "SCHERDEMAEL-NORD",
+            "vehicles_per_household": 0.93,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99756,
+            "sector_name": "SCHEUT - DE SMET",
+            "vehicles_per_household": 0.56,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101276,
+            "sector_name": "SCHEUT-EST",
+            "vehicles_per_household": 0.64,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101267,
+            "sector_name": "SCHEUT-INTERNAT",
+            "vehicles_per_household": 0.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101266,
+            "sector_name": "SCHEUT-OUEST",
+            "vehicles_per_household": 0.71,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101275,
+            "sector_name": "SCHEUTKAPEL",
+            "vehicles_per_household": 0.5,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101265,
+            "sector_name": "SCHEUTVELD",
+            "vehicles_per_household": 1.12,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101268,
+            "sector_name": "SILLON",
+            "vehicles_per_household": 0.69,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101176,
+            "sector_name": "SOETKIN",
+            "vehicles_per_household": 1.03,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99500,
+            "sector_name": "STADE COMMUNAL - INDUSTRIE",
+            "vehicles_per_household": 0.7,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": -1,
+            "sector_name": "Secteur statistique inconnu",
+            "vehicles_per_household": 0.01,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99731,
+            "sector_name": "TREFLE",
+            "vehicles_per_household": 0.7,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101262,
+            "sector_name": "VAN BEETHOVEN",
+            "vehicles_per_household": 0.58,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101256,
+            "sector_name": "VEEWEYDE-NORD",
+            "vehicles_per_household": 0.56,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101251,
+            "sector_name": "VEEWEYDE-SUD",
+            "vehicles_per_household": 0.56,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99482,
+            "sector_name": "VENIZELOS",
+            "vehicles_per_household": 0.65,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99569,
+            "sector_name": "VIVES",
+            "vehicles_per_household": 0.57,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99381,
+            "sector_name": "WALCOURT",
+            "vehicles_per_household": 1.04,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101249,
+            "sector_name": "WAYEZ",
+            "vehicles_per_household": 0.35,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101289,
+            "sector_name": "ZONE RURALE",
+            "vehicles_per_household": 1.39,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101257,
+            "sector_name": "ZUEN - INDUSTRIE",
+            "vehicles_per_household": 0.67,
+            "comparison_to_average": null
+          }
+        ]
       }
     },
     "sectors": {
@@ -309,9 +772,9 @@
       "ownership_accessibility_score": 44.08691550692804
     },
     "rental_market_potential": {
-      "estimated_rental_yield": 0.045000000000000005,
-      "rental_demand_index": 0.5,
-      "rental_growth_potential": "Moderate"
+      "estimated_rental_yield": 0.04800000000000001,
+      "rental_demand_index": 0.7,
+      "rental_growth_potential": "Good"
     },
     "target_demographic_analysis": {
       "growing_segments": [
@@ -324,8 +787,8 @@
       "declining_segments": []
     },
     "market_dynamics": {
-      "supply_demand_balance": "Balanced",
-      "construction_vs_absorption_rate": 1.0,
+      "supply_demand_balance": "Undersupply",
+      "construction_vs_absorption_rate": 0.0,
       "market_cycle_position": "Mid-growth phase"
     },
     "risk_assessment": {
@@ -336,8 +799,8 @@
     },
     "comparative_ranking": {
       "value_for_money_rank": 41,
-      "growth_potential_rank": 51,
-      "overall_investment_score": 54.0
+      "growth_potential_rank": 36,
+      "overall_investment_score": 63.0
     }
   }
 }
