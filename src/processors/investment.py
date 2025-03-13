@@ -122,13 +122,11 @@ class InvestmentProcessor(BaseProcessor):
         if economic_data and 'unemployment' in economic_data:
             unemployment_rate = economic_data['unemployment'].get('overall_rate', 0)
             
-            # Ajout de vérification de valeur nulle
-            if unemployment_rate is not None:
-                # Ajustement basé sur le chômage (plus de chômage = rendement potentiellement plus bas)
-                if unemployment_rate > THRESHOLDS['high_unemployment']:
-                    estimated_rental_yield -= 0.005
-                elif unemployment_rate < THRESHOLDS['high_unemployment'] / 2:
-                    estimated_rental_yield += 0.003
+            # Ajustement basé sur le chômage (plus de chômage = rendement potentiellement plus bas)
+            if self.is_numeric_and_greater_than(unemployment_rate, THRESHOLDS['high_unemployment']):
+                estimated_rental_yield -= 0.005
+            elif self.is_numeric_and_less_than(unemployment_rate, THRESHOLDS['high_unemployment'] / 2):
+                estimated_rental_yield += 0.003
                 
         # Évaluer l'indice de demande locative
         rental_demand_index = 0.5  # Valeur par défaut
@@ -137,18 +135,16 @@ class InvestmentProcessor(BaseProcessor):
             population_trend = demographic_data['population_overview'].get('population_trend', {})
             five_year_growth = population_trend.get('five_year_growth', 0)
             
-            # Ajout de vérification de valeur nulle
-            if five_year_growth is not None:
-                # Ajustement basé sur la croissance démographique
-                if five_year_growth > 5:
-                    rental_demand_index += 0.2
-                    estimated_rental_yield += 0.003
-                elif five_year_growth > 2:
-                    rental_demand_index += 0.1
-                    estimated_rental_yield += 0.001
-                elif five_year_growth < 0:
-                    rental_demand_index -= 0.1
-                    estimated_rental_yield -= 0.001
+            # Ajustement basé sur la croissance démographique
+            if self.is_numeric_and_greater_than(five_year_growth, 5):
+                rental_demand_index += 0.2
+                estimated_rental_yield += 0.003
+            elif self.is_numeric_and_greater_than(five_year_growth, 2):
+                rental_demand_index += 0.1
+                estimated_rental_yield += 0.001
+            elif self.is_numeric_and_less_than(five_year_growth, 0):
+                rental_demand_index -= 0.1
+                estimated_rental_yield -= 0.001
                 
         # Déterminer le potentiel de croissance des loyers
         rental_growth_potential = "Moderate"
@@ -351,13 +347,13 @@ class InvestmentProcessor(BaseProcessor):
                 construction_vs_absorption_rate = new_residential_units / estimated_new_households
                 
         # Déterminer l'équilibre offre/demande
-        if construction_vs_absorption_rate > 1.25:
+        if self.is_numeric_and_greater_than(construction_vs_absorption_rate, 1.25):
             supply_demand_balance = "Oversupply"
-        elif construction_vs_absorption_rate > 1.1:
+        elif self.is_numeric_and_greater_than(construction_vs_absorption_rate, 1.1):
             supply_demand_balance = "Slight oversupply"
-        elif construction_vs_absorption_rate < 0.75:
+        elif self.is_numeric_and_less_than(construction_vs_absorption_rate, 0.75):
             supply_demand_balance = "Undersupply"
-        elif construction_vs_absorption_rate < 0.9:
+        elif self.is_numeric_and_less_than(construction_vs_absorption_rate, 0.9):
             supply_demand_balance = "Slight undersupply"
             
         # Déterminer la position dans le cycle du marché
@@ -370,19 +366,19 @@ class InvestmentProcessor(BaseProcessor):
             transaction_change = trends.get('year_over_year', {}).get('transaction_change_pct', 0)
             
             # Vérification des valeurs nulles pour price_change et transaction_change
-            if price_change is not None and transaction_change is not None:
-                if price_change > 10 and transaction_change > 5:
-                    market_cycle_position = "Strong growth phase"
-                elif price_change > 5 and transaction_change > 0:
-                    market_cycle_position = "Growth phase"
-                elif price_change < -5 and transaction_change < -5:
-                    market_cycle_position = "Correction phase"
-                elif price_change < 0 and transaction_change < 0:
-                    market_cycle_position = "Slowdown phase"
-                elif price_change > 0 and transaction_change < 0:
-                    market_cycle_position = "Late growth phase (pre-correction)"
-                elif abs(price_change) < 2 and abs(transaction_change) < 3:
-                    market_cycle_position = "Stabilization phase"
+            if self.is_numeric_and_greater_than(price_change, 10) and self.is_numeric_and_greater_than(transaction_change, 5):
+                market_cycle_position = "Strong growth phase"
+            elif self.is_numeric_and_greater_than(price_change, 5) and self.is_numeric_and_greater_than(transaction_change, 0):
+                market_cycle_position = "Growth phase"
+            elif self.is_numeric_and_less_than(price_change, -5) and self.is_numeric_and_less_than(transaction_change, -5):
+                market_cycle_position = "Correction phase"
+            elif self.is_numeric_and_less_than(price_change, 0) and self.is_numeric_and_less_than(transaction_change, 0):
+                market_cycle_position = "Slowdown phase"
+            elif self.is_numeric_and_greater_than(price_change, 0) and self.is_numeric_and_less_than(transaction_change, 0):
+                market_cycle_position = "Late growth phase (pre-correction)"
+            elif (price_change is not None and transaction_change is not None and 
+                abs(self.safe_numeric_value(price_change)) < 2 and abs(self.safe_numeric_value(transaction_change)) < 3):
+                market_cycle_position = "Stabilization phase"
                 
         return {
             "supply_demand_balance": supply_demand_balance,
@@ -413,11 +409,11 @@ class InvestmentProcessor(BaseProcessor):
             # Vérification des valeurs nulles
             if price_change_1y is not None and price_change_5y is not None and price_change_5y != 0:
                 # Calculer la volatilité comme la différence entre les tendances à court et long terme
-                volatility_indicator = abs(price_change_1y - (price_change_5y / 5))
+                volatility_indicator = abs(self.safe_numeric_value(price_change_1y) - (self.safe_numeric_value(price_change_5y) / 5))
                 
-                if volatility_indicator < 3:
+                if self.is_numeric_and_less_than(volatility_indicator, 3):
                     price_volatility = "Low"
-                elif volatility_indicator > 7:
+                elif self.is_numeric_and_greater_than(volatility_indicator, 7):
                     price_volatility = "High"
                 
         # Évaluer le score de liquidité
@@ -430,13 +426,13 @@ class InvestmentProcessor(BaseProcessor):
             # Vérification si pas None
             if transactions is not None:
                 # Ajuster le score de liquidité selon le volume de transactions
-                if transactions > 100:
+                if self.is_numeric_and_greater_than(transactions, 100):
                     liquidity_score += 20
-                elif transactions > 50:
+                elif self.is_numeric_and_greater_than(transactions, 50):
                     liquidity_score += 10
-                elif transactions < 20:
+                elif self.is_numeric_and_less_than(transactions, 20):
                     liquidity_score -= 10
-                elif transactions < 10:
+                elif self.is_numeric_and_less_than(transactions, 10):
                     liquidity_score -= 20
                     
             # Ajuster en fonction de l'évolution des transactions
@@ -444,15 +440,14 @@ class InvestmentProcessor(BaseProcessor):
             transaction_change = trends.get('year_over_year', {}).get('transaction_change_pct', 0)
             
             # Vérification si pas None
-            if transaction_change is not None:
-                if transaction_change > 10:
-                    liquidity_score += 10
-                elif transaction_change > 5:
-                    liquidity_score += 5
-                elif transaction_change < -10:
-                    liquidity_score -= 10
-                elif transaction_change < -5:
-                    liquidity_score -= 5
+            if self.is_numeric_and_greater_than(transaction_change, 10):
+                liquidity_score += 10
+            elif self.is_numeric_and_greater_than(transaction_change, 5):
+                liquidity_score += 5
+            elif self.is_numeric_and_less_than(transaction_change, -10):
+                liquidity_score -= 10
+            elif self.is_numeric_and_less_than(transaction_change, -5):
+                liquidity_score -= 5
                 
         # Borner le score entre 0 et 100
         liquidity_score = max(0, min(100, liquidity_score))
@@ -485,10 +480,11 @@ class InvestmentProcessor(BaseProcessor):
                     largest_sector_pct = max(largest_sector_pct, sector_pct)
                     
             # Évaluer le risque selon la concentration
-            if largest_sector_pct > 40:
+            if self.is_numeric_and_greater_than(largest_sector_pct, 40):
                 economic_dependency_risk = "High"
-            elif largest_sector_pct < 25:
+            elif self.is_numeric_and_less_than(largest_sector_pct, 25):
                 economic_dependency_risk = "Low"
+
                 
         return {
             "price_volatility": price_volatility,
@@ -558,21 +554,20 @@ class InvestmentProcessor(BaseProcessor):
             # Vérification des valeurs nulles pour price_change
             if price_change is not None:
                 # Ajuster le score selon les facteurs de croissance
-                if price_change > 5:
+                if self.is_numeric_and_greater_than(price_change, 5):
                     growth_potential_score += 15
-                elif price_change > 3:
+                elif self.is_numeric_and_greater_than(price_change, 3):
                     growth_potential_score += 10
-                elif price_change < 0:
+                elif self.is_numeric_and_less_than(price_change, 0):
                     growth_potential_score -= 10
             
             # Vérification des valeurs nulles pour population_growth
-            if population_growth is not None:
-                if population_growth > 5:
-                    growth_potential_score += 15
-                elif population_growth > 2:
-                    growth_potential_score += 10
-                elif population_growth < 0:
-                    growth_potential_score -= 10
+            if self.is_numeric_and_greater_than(population_growth, 5):
+                growth_potential_score += 15
+            elif self.is_numeric_and_greater_than(population_growth, 2):
+                growth_potential_score += 10
+            elif self.is_numeric_and_less_than(population_growth, 0):
+                growth_potential_score -= 10
                 
         # Borner le score entre 1 et 100
         growth_potential_score = max(1, min(100, growth_potential_score))
