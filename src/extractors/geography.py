@@ -24,77 +24,56 @@ class GeographyExtractor(BaseExtractor):
         """
         super().__init__(commune_id, province, period)
         
-    def extract_commune_info(self, commune_id: str) -> Dict[str, Any]:
+    def extract_commune_spatial_data(self, commune_id: str) -> Dict[str, Any]:
         """
-        Extrait les informations de base d'une commune.
+        Extrait les données spatiales d'une commune (superficie, etc.).
         
         Args:
             commune_id (str): Identifiant de la commune.
             
         Returns:
-            dict: Informations de base de la commune.
+            dict: Données spatiales de la commune.
         """
-        self.log_extraction_start(f"informations géographiques (commune {commune_id})")
-        
-        query = """
-            SELECT 
-                g.id_geography,
-                g.tx_name_fr AS commune_name,
-                g.tx_name_nl AS commune_name_nl,
-                g.cd_lau AS postal_code,
-                g.cd_parent,
-                g.cd_level,
-                g.cd_refnis
-            FROM 
-                dw.dim_geography g
-            WHERE 
-                g.id_geography = :commune_id
-                AND g.fl_current = TRUE
-        """
-        
-        params = {'commune_id': commune_id}
-        
         try:
-            result = self.execute_query(query, params)
+            # Récupérer d'abord le cd_refnis de la commune
+            query_refnis = """
+                SELECT cd_refnis 
+                FROM dw.dim_geography 
+                WHERE id_geography = :commune_id AND fl_current = TRUE
+            """
             
-            if not result or len(result) == 0:
-                logger.warning(f"Aucune information trouvée pour la commune {commune_id}")
+            params = {'commune_id': commune_id}
+            
+            refnis_result = self.execute_query(query_refnis, params)
+            
+            if not refnis_result or len(refnis_result) == 0:
+                logger.warning(f"Impossible de trouver le code refnis pour la commune {commune_id}")
                 return {}
                 
-            commune_info = result[0]
+            refnis = refnis_result[0]['cd_refnis']
             
-            # Chercher la province associée à cette commune
-            province_info = self.find_province_for_commune(commune_info['cd_parent'])
+            # Calculer la superficie totale à partir des secteurs statistiques
+            query = """
+                SELECT 
+                    SUM(ms_area_ha) / 100 AS area_km2
+                FROM 
+                    dw.dim_statistical_sectors
+                WHERE 
+                    cd_refnis = :refnis
+                    AND dt_end IS NULL
+            """
             
-            # Compléter les informations avec les données de la province
-            commune_info['province'] = province_info.get('province_name', 'Non spécifiée')
-            commune_info['region'] = province_info.get('region_name', 'Non spécifiée')
+            params = {'refnis': refnis}
             
-            # Extraire les informations spatiales (superficie)
-            spatial_info = self.extract_commune_spatial_data(commune_id)
+            result = self.execute_query(query, params)
             
-            # Fusionner toutes les informations
-            commune_data = {
-                'commune_id': commune_info['id_geography'],
-                'commune_name': commune_info['commune_name'],
-                'commune_name_nl': commune_info['commune_name_nl'],
-                'postal_code': commune_info['postal_code'],
-                'cd_refnis': commune_info['cd_refnis'],
-                'cd_parent': commune_info['cd_parent'],
-                'province': commune_info['province'],
-                'region': commune_info['region']
-            }
-            
-            # Ajouter les informations spatiales si disponibles
-            if spatial_info:
-                commune_data.update(spatial_info)
+            if result and len(result) > 0 and result[0]['area_km2'] is not None:
+                return {'area_km2': result[0]['area_km2']}
                 
-            self.log_extraction_end(f"informations géographiques (commune {commune_id})", 1)
-            
-            return commune_data
-            
+            return {}
+                
         except Exception as e:
-            logger.error(f"Erreur lors de l'extraction des informations géographiques: {str(e)}")
+            logger.error(f"Erreur lors de l'extraction des données spatiales: {str(e)}")
             return {}
             
     def find_province_for_commune(self, parent_code: str) -> Dict[str, Any]:
@@ -163,45 +142,43 @@ class GeographyExtractor(BaseExtractor):
             dict: Données spatiales de la commune.
         """
         try:
-            # Calculer la superficie totale à partir des secteurs statistiques
+            # D'abord récupérer le cd_refnis de la commune
+            query_refnis = """
+                SELECT cd_refnis
+                FROM dw.dim_geography
+                WHERE id_geography = :commune_id AND fl_current = TRUE
+            """
+            
+            params = {'commune_id': commune_id}
+            
+            refnis_result = self.execute_query(query_refnis, params)
+            
+            if not refnis_result or len(refnis_result) == 0:
+                logger.warning(f"Impossible de trouver le code refnis pour la commune {commune_id}")
+                return {}
+                
+            refnis = refnis_result[0]['cd_refnis']
+            
+            # Calculer la superficie totale en additionnant les secteurs statistiques
             query = """
                 SELECT 
                     SUM(ss.ms_area_ha) / 100 AS area_km2
                 FROM 
                     dw.dim_statistical_sectors ss
                 WHERE 
-                    ss.cd_refnis = (
-                        SELECT cd_refnis FROM dw.dim_geography 
-                        WHERE id_geography = :commune_id AND fl_current = TRUE
-                    )
+                    ss.cd_refnis = :refnis
                     AND ss.dt_end IS NULL
             """
             
-            params = {'commune_id': commune_id}
+            params = {'refnis': refnis}
             
             result = self.execute_query(query, params)
             
             if result and len(result) > 0 and result[0]['area_km2'] is not None:
                 return {'area_km2': result[0]['area_km2']}
-                
-            # Si on ne trouve pas via les secteurs, essayer directement
-            query_direct = """
-                SELECT 
-                    ms_area_ha / 100 AS area_km2
-                FROM 
-                    dw.dim_geography
-                WHERE 
-                    id_geography = :commune_id
-                    AND fl_current = TRUE
-            """
-            
-            result_direct = self.execute_query(query_direct, params)
-            
-            if result_direct and len(result_direct) > 0 and result_direct[0]['area_km2'] is not None:
-                return {'area_km2': result_direct[0]['area_km2']}
-                
+                    
             return {}
-            
+                
         except Exception as e:
             logger.error(f"Erreur lors de l'extraction des données spatiales: {str(e)}")
             return {}
