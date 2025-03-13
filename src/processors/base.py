@@ -266,6 +266,39 @@ class BaseProcessor:
             },
             "data_period": enriched_periods
         }
+    
+    def _get_previous_period(self, period: str, num_periods_back: int) -> str:
+        """
+        Calcule une période antérieure à partir d'une période donnée.
+        Gère à la fois les formats annuels (YYYY) et trimestriels (YYYY-QN).
+        
+        Args:
+            period: Période de référence (ex: "2024-Q4" ou "2023")
+            num_periods_back: Nombre de périodes à reculer
+            
+        Returns:
+            str: Période antérieure au format approprié
+        """
+        # Format trimestriel (YYYY-QN)
+        if '-' in period and period[5:6] == 'Q':
+            year = int(period[:4])
+            quarter = int(period[6:7])
+            
+            # Calculer le nouveau trimestre et année
+            quarters_back = num_periods_back
+            new_year = year - (quarters_back // 4)
+            new_quarter = quarter - (quarters_back % 4)
+            
+            # Ajuster si le nouveau trimestre est négatif ou zéro
+            if new_quarter <= 0:
+                new_year -= 1
+                new_quarter += 4
+                
+            return f"{new_year}-Q{new_quarter}"
+        
+        # Format annuel (YYYY)
+        else:
+            return str(int(period) - num_periods_back)
 
     def is_numeric_and_greater_than(self, value, threshold):
         """
