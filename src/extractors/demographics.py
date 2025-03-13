@@ -88,7 +88,7 @@ class DemographicsExtractor(BaseExtractor):
         query = """
             SELECT 
                 ps.id_age,
-                age.tx_age_fr AS age_group,
+                age.cd_age AS age_group,  -- Changé de age.tx_age_fr qui n'existe pas
                 age.nb_min_age AS min_age,
                 age.nb_max_age AS max_age,
                 ps.cd_sex,
@@ -105,7 +105,7 @@ class DemographicsExtractor(BaseExtractor):
                 AND ps.id_date = :date_id
                 AND ps.fl_current = TRUE
             GROUP BY
-                ps.id_age, age.tx_age_fr, age.nb_min_age, age.nb_max_age, ps.cd_sex, sex.tx_sex_fr
+                ps.id_age, age.cd_age, age.nb_min_age, age.nb_max_age, ps.cd_sex, sex.tx_sex_fr
             ORDER BY
                 age.nb_min_age, ps.cd_sex
         """
@@ -215,31 +215,31 @@ class DemographicsExtractor(BaseExtractor):
         
         query = """
             SELECT 
-                hc.cd_cohabitation,
-                cs.tx_cohabitation_fr AS cohabitation_description,
-                hc.cd_age_group,
-                hc.cd_sex,
-                sex.tx_sex_fr AS sex_description,
-                hc.cd_nationality,
-                nat.tx_nationality_fr AS nationality_description,
-                SUM(hc.ms_count) AS total_count
-            FROM 
-                dw.fact_household_cohabitation hc
-            JOIN 
-                dw.dim_cohabitation_status cs ON hc.cd_cohabitation = cs.cd_cohabitation
-            JOIN
-                dw.dim_sex sex ON hc.cd_sex = sex.cd_sex
-            JOIN
-                dw.dim_nationality nat ON hc.cd_nationality = nat.cd_nationality
-            WHERE 
-                hc.id_geography = :commune_id
-                AND hc.id_date = :date_id
-            GROUP BY
-                hc.cd_cohabitation, cs.tx_cohabitation_fr, 
-                hc.cd_age_group, hc.cd_sex, sex.tx_sex_fr,
-                hc.cd_nationality, nat.tx_nationality_fr
-            ORDER BY
-                cs.tx_cohabitation_fr, hc.cd_age_group, hc.cd_sex
+            hc.cd_cohabitation,
+            cs.cd_cohabitation AS cohabitation_description,  -- Changé de cs.tx_cohabitation_fr
+            hc.cd_age_group,
+            hc.cd_sex,
+            sex.tx_sex_fr AS sex_description,
+            hc.cd_nationality,
+            nat.tx_nationality_fr AS nationality_description,
+            SUM(hc.ms_count) AS total_count
+        FROM 
+            dw.fact_household_cohabitation hc
+        JOIN 
+            dw.dim_cohabitation_status cs ON hc.cd_cohabitation = cs.cd_cohabitation
+        JOIN
+            dw.dim_sex sex ON hc.cd_sex = sex.cd_sex
+        JOIN
+            dw.dim_nationality nat ON hc.cd_nationality = nat.cd_nationality
+        WHERE 
+            hc.id_geography = :commune_id
+            AND hc.id_date = :date_id
+        GROUP BY
+            hc.cd_cohabitation, cs.cd_cohabitation, 
+            hc.cd_age_group, hc.cd_sex, sex.tx_sex_fr,
+            hc.cd_nationality, nat.tx_nationality_fr
+        ORDER BY
+            cs.cd_cohabitation, hc.cd_age_group, hc.cd_sex
         """
         
         params = {

@@ -58,12 +58,12 @@ class InvestmentProcessor(BaseProcessor):
             
         # Calculer le ratio prix/revenu
         price_to_income_ratio = None
-        if avg_income > 0:
+        if avg_income and avg_income > 0:  # Vérification de None et 0
             price_to_income_ratio = median_price / avg_income
             
         # Calculer l'indice d'accessibilité hypothécaire
         mortgage_affordability_index = None
-        if avg_income > 0 and median_price > 0:
+        if avg_income and avg_income > 0 and median_price and median_price > 0:  # Vérifications supplémentaires
             # Calcul simplifié basé sur la mensualité d'un prêt immobilier
             down_payment = median_price * self.affordability_params['down_payment_percentage']
             loan_amount = median_price - down_payment
@@ -83,7 +83,7 @@ class InvestmentProcessor(BaseProcessor):
             
         # Calculer un score d'accessibilité à la propriété
         ownership_accessibility_score = None
-        if price_to_income_ratio and mortgage_affordability_index:
+        if price_to_income_ratio is not None and mortgage_affordability_index is not None:  # Vérification si None
             # Score sur 100, combinant le ratio prix/revenu et l'indice d'accessibilité hypothécaire
             pti_component = max(0, 100 - (price_to_income_ratio - 3) * 15)  # Moins élevé est meilleur
             mai_component = mortgage_affordability_index * 100
@@ -122,11 +122,13 @@ class InvestmentProcessor(BaseProcessor):
         if economic_data and 'unemployment' in economic_data:
             unemployment_rate = economic_data['unemployment'].get('overall_rate', 0)
             
-            # Ajustement basé sur le chômage (plus de chômage = rendement potentiellement plus bas)
-            if unemployment_rate > THRESHOLDS['high_unemployment']:
-                estimated_rental_yield -= 0.005
-            elif unemployment_rate < THRESHOLDS['high_unemployment'] / 2:
-                estimated_rental_yield += 0.003
+            # Ajout de vérification de valeur nulle
+            if unemployment_rate is not None:
+                # Ajustement basé sur le chômage (plus de chômage = rendement potentiellement plus bas)
+                if unemployment_rate > THRESHOLDS['high_unemployment']:
+                    estimated_rental_yield -= 0.005
+                elif unemployment_rate < THRESHOLDS['high_unemployment'] / 2:
+                    estimated_rental_yield += 0.003
                 
         # Évaluer l'indice de demande locative
         rental_demand_index = 0.5  # Valeur par défaut
@@ -135,16 +137,18 @@ class InvestmentProcessor(BaseProcessor):
             population_trend = demographic_data['population_overview'].get('population_trend', {})
             five_year_growth = population_trend.get('five_year_growth', 0)
             
-            # Ajustement basé sur la croissance démographique
-            if five_year_growth > 5:
-                rental_demand_index += 0.2
-                estimated_rental_yield += 0.003
-            elif five_year_growth > 2:
-                rental_demand_index += 0.1
-                estimated_rental_yield += 0.001
-            elif five_year_growth < 0:
-                rental_demand_index -= 0.1
-                estimated_rental_yield -= 0.001
+            # Ajout de vérification de valeur nulle
+            if five_year_growth is not None:
+                # Ajustement basé sur la croissance démographique
+                if five_year_growth > 5:
+                    rental_demand_index += 0.2
+                    estimated_rental_yield += 0.003
+                elif five_year_growth > 2:
+                    rental_demand_index += 0.1
+                    estimated_rental_yield += 0.001
+                elif five_year_growth < 0:
+                    rental_demand_index -= 0.1
+                    estimated_rental_yield -= 0.001
                 
         # Déterminer le potentiel de croissance des loyers
         rental_growth_potential = "Moderate"
@@ -234,18 +238,19 @@ class InvestmentProcessor(BaseProcessor):
                     housing_preferences = "Single-level homes, smaller maintenance-free units, access to healthcare and amenities"
                     
                 # Classer comme segment en croissance ou en déclin
-                if trend_value >= 1.0:
-                    growing_segments.append({
-                        "segment": self.get_age_segment_name(age_key),
-                        "growth_rate": trend_value,
-                        "housing_preferences": housing_preferences
-                    })
-                elif trend_value <= -1.0:
-                    declining_segments.append({
-                        "segment": self.get_age_segment_name(age_key),
-                        "decline_rate": trend_value,
-                        "housing_impact": self.get_housing_impact(age_key, trend_value)
-                    })
+                if trend_value is not None:  # Vérification de valeur nulle
+                    if trend_value >= 1.0:
+                        growing_segments.append({
+                            "segment": self.get_age_segment_name(age_key),
+                            "growth_rate": trend_value,
+                            "housing_preferences": housing_preferences
+                        })
+                    elif trend_value <= -1.0:
+                        declining_segments.append({
+                            "segment": self.get_age_segment_name(age_key),
+                            "decline_rate": trend_value,
+                            "housing_impact": self.get_housing_impact(age_key, trend_value)
+                        })
                     
             # Si aucun segment n'a été identifié, ajouter des données par défaut basées sur les tendances nationales
             if not growing_segments:
@@ -338,7 +343,7 @@ class InvestmentProcessor(BaseProcessor):
         population = demographic_data.get('population_overview', {}).get('total_population', 0) if demographic_data else 0
         estimated_new_households = 0
         
-        if population > 0 and population_growth_rate:
+        if population > 0 and population_growth_rate is not None:  # Vérification de None
             new_population = population * population_growth_rate / 100
             estimated_new_households = new_population / 2.5
             
@@ -364,18 +369,20 @@ class InvestmentProcessor(BaseProcessor):
             price_change = trends.get('year_over_year', {}).get('price_change_pct', 0)
             transaction_change = trends.get('year_over_year', {}).get('transaction_change_pct', 0)
             
-            if price_change > 10 and transaction_change > 5:
-                market_cycle_position = "Strong growth phase"
-            elif price_change > 5 and transaction_change > 0:
-                market_cycle_position = "Growth phase"
-            elif price_change < -5 and transaction_change < -5:
-                market_cycle_position = "Correction phase"
-            elif price_change < 0 and transaction_change < 0:
-                market_cycle_position = "Slowdown phase"
-            elif price_change > 0 and transaction_change < 0:
-                market_cycle_position = "Late growth phase (pre-correction)"
-            elif abs(price_change) < 2 and abs(transaction_change) < 3:
-                market_cycle_position = "Stabilization phase"
+            # Vérification des valeurs nulles pour price_change et transaction_change
+            if price_change is not None and transaction_change is not None:
+                if price_change > 10 and transaction_change > 5:
+                    market_cycle_position = "Strong growth phase"
+                elif price_change > 5 and transaction_change > 0:
+                    market_cycle_position = "Growth phase"
+                elif price_change < -5 and transaction_change < -5:
+                    market_cycle_position = "Correction phase"
+                elif price_change < 0 and transaction_change < 0:
+                    market_cycle_position = "Slowdown phase"
+                elif price_change > 0 and transaction_change < 0:
+                    market_cycle_position = "Late growth phase (pre-correction)"
+                elif abs(price_change) < 2 and abs(transaction_change) < 3:
+                    market_cycle_position = "Stabilization phase"
                 
         return {
             "supply_demand_balance": supply_demand_balance,
@@ -403,13 +410,15 @@ class InvestmentProcessor(BaseProcessor):
             price_change_1y = trends.get('year_over_year', {}).get('price_change_pct', 0)
             price_change_5y = trends.get('five_year', {}).get('price_change_pct', 0)
             
-            # Calculer la volatilité comme la différence entre les tendances à court et long terme
-            volatility_indicator = abs(price_change_1y - (price_change_5y / 5))
-            
-            if volatility_indicator < 3:
-                price_volatility = "Low"
-            elif volatility_indicator > 7:
-                price_volatility = "High"
+            # Vérification des valeurs nulles
+            if price_change_1y is not None and price_change_5y is not None and price_change_5y != 0:
+                # Calculer la volatilité comme la différence entre les tendances à court et long terme
+                volatility_indicator = abs(price_change_1y - (price_change_5y / 5))
+                
+                if volatility_indicator < 3:
+                    price_volatility = "Low"
+                elif volatility_indicator > 7:
+                    price_volatility = "High"
                 
         # Évaluer le score de liquidité
         liquidity_score = 50  # Valeur par défaut
@@ -418,28 +427,32 @@ class InvestmentProcessor(BaseProcessor):
             last_period = real_estate_data['municipality_overview'].get('last_period', {})
             transactions = last_period.get('total_transactions', 0)
             
-            # Ajuster le score de liquidité selon le volume de transactions
-            if transactions > 100:
-                liquidity_score += 20
-            elif transactions > 50:
-                liquidity_score += 10
-            elif transactions < 20:
-                liquidity_score -= 10
-            elif transactions < 10:
-                liquidity_score -= 20
-                
+            # Vérification si pas None
+            if transactions is not None:
+                # Ajuster le score de liquidité selon le volume de transactions
+                if transactions > 100:
+                    liquidity_score += 20
+                elif transactions > 50:
+                    liquidity_score += 10
+                elif transactions < 20:
+                    liquidity_score -= 10
+                elif transactions < 10:
+                    liquidity_score -= 20
+                    
             # Ajuster en fonction de l'évolution des transactions
             trends = real_estate_data['municipality_overview'].get('historical_trends', {})
             transaction_change = trends.get('year_over_year', {}).get('transaction_change_pct', 0)
             
-            if transaction_change > 10:
-                liquidity_score += 10
-            elif transaction_change > 5:
-                liquidity_score += 5
-            elif transaction_change < -10:
-                liquidity_score -= 10
-            elif transaction_change < -5:
-                liquidity_score -= 5
+            # Vérification si pas None
+            if transaction_change is not None:
+                if transaction_change > 10:
+                    liquidity_score += 10
+                elif transaction_change > 5:
+                    liquidity_score += 5
+                elif transaction_change < -10:
+                    liquidity_score -= 10
+                elif transaction_change < -5:
+                    liquidity_score -= 5
                 
         # Borner le score entre 0 et 100
         liquidity_score = max(0, min(100, liquidity_score))
@@ -467,7 +480,7 @@ class InvestmentProcessor(BaseProcessor):
             for sector_data in sectors.values():
                 enterprise_count = sector_data.get('enterprise_count', 0)
                 total_enterprises = economic_data['business_activity'].get('enterprise_overview', {}).get('total_enterprises', 0)
-                if total_enterprises > 0:
+                if total_enterprises and total_enterprises > 0:  # Vérification si pas None et > 0
                     sector_pct = (enterprise_count / total_enterprises) * 100
                     largest_sector_pct = max(largest_sector_pct, sector_pct)
                     
@@ -510,7 +523,8 @@ class InvestmentProcessor(BaseProcessor):
             # Extraire le revenu moyen
             avg_income = economic_data.get('income_tax', {}).get('income_overview', {}).get('average_income', 0)
             
-            if median_price > 0 and avg_income > 0:
+            # Vérification des valeurs nulles
+            if median_price is not None and avg_income is not None and median_price > 0 and avg_income > 0:
                 # Calculer le ratio prix/revenu et ajuster le score
                 price_to_income_ratio = median_price / avg_income
                 
@@ -541,20 +555,24 @@ class InvestmentProcessor(BaseProcessor):
             # Facteurs de croissance démographique
             population_growth = demographic_data.get('population_overview', {}).get('population_trend', {}).get('five_year_growth', 0)
             
-            # Ajuster le score selon les facteurs de croissance
-            if price_change > 5:
-                growth_potential_score += 15
-            elif price_change > 3:
-                growth_potential_score += 10
-            elif price_change < 0:
-                growth_potential_score -= 10
-                
-            if population_growth > 5:
-                growth_potential_score += 15
-            elif population_growth > 2:
-                growth_potential_score += 10
-            elif population_growth < 0:
-                growth_potential_score -= 10
+            # Vérification des valeurs nulles pour price_change
+            if price_change is not None:
+                # Ajuster le score selon les facteurs de croissance
+                if price_change > 5:
+                    growth_potential_score += 15
+                elif price_change > 3:
+                    growth_potential_score += 10
+                elif price_change < 0:
+                    growth_potential_score -= 10
+            
+            # Vérification des valeurs nulles pour population_growth
+            if population_growth is not None:
+                if population_growth > 5:
+                    growth_potential_score += 15
+                elif population_growth > 2:
+                    growth_potential_score += 10
+                elif population_growth < 0:
+                    growth_potential_score -= 10
                 
         # Borner le score entre 1 et 100
         growth_potential_score = max(1, min(100, growth_potential_score))
@@ -586,17 +604,22 @@ class InvestmentProcessor(BaseProcessor):
         Returns:
             dict: Section investment_analysis du JSON.
         """
+        # Vérifier que les dictionnaires existent pour éviter les erreurs
+        real_estate_data = real_estate_data or {}
+        economic_data = economic_data or {}
+        demographic_data = demographic_data or {}
+        building_dev_data = building_dev_data or {}
+        
         result = {
             "affordability_metrics": self.process_affordability_metrics(real_estate_data, economic_data),
             "rental_market_potential": self.process_rental_market_potential(real_estate_data, economic_data, demographic_data),
             "target_demographic_analysis": self.process_target_demographic_analysis(demographic_data, real_estate_data),
-            "market_dynamics": self.process_market_dynamics(real_estate_data, building_dev_data or {}, demographic_data),
+            "market_dynamics": self.process_market_dynamics(real_estate_data, building_dev_data, demographic_data),
             "risk_assessment": self.process_risk_assessment(real_estate_data, economic_data, building_dev_data),
             "comparative_ranking": self.process_comparative_ranking(real_estate_data, economic_data, demographic_data)
         }
         
-        return result 
-
+        return result
         
         
    
