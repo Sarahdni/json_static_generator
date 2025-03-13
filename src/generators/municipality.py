@@ -175,15 +175,23 @@ class MunicipalityGenerator:
                     'region': geo_commune_info.get('region', commune_info.get('region'))
                 })
         
-        # Traiter les données sectionnelles
-        real_estate_processed = re_processor.process_data(real_estate_raw)
-        
-        # Pour les données démographiques, passer la superficie
-        demographics_result = demo_processor.process_data(demographics_raw, area_km2)
-        
-        # Extraire les sections du résultat démographique
-        demographics_processed = demographics_result.get("demographics", {})
-        geographical_processed = demographics_result.get("geographical_context", {})
+        # Traiter les données sectionnelles avec protection contre les erreurs
+        try:
+            real_estate_processed = re_processor.process_data(real_estate_raw)
+        except Exception as e:
+            logger.error(f"Erreur lors du traitement des données immobilières: {str(e)}")
+            real_estate_processed = {}
+            
+        try:
+            # Pour les données démographiques, passer la superficie
+            demographics_result = demo_processor.process_data(demographics_raw, area_km2)
+            # Extraire les sections du résultat démographique
+            demographics_processed = demographics_result.get("demographics", {})
+            geographical_processed = demographics_result.get("geographical_context", {})
+        except Exception as e:
+            logger.error(f"Erreur lors du traitement des données démographiques: {str(e)}")
+            demographics_processed = {}
+            geographical_processed = {}
         
         # Intégrer les données des secteurs statistiques dans le contexte géographique
         if "statistical_sectors" in geography_raw and geographical_processed:
@@ -191,16 +199,29 @@ class MunicipalityGenerator:
                 geographical_processed["sectors"] = {}
             geographical_processed["sectors"]["statistical_sectors"] = geography_raw["statistical_sectors"]
         
-        economics_processed = eco_processor.process_data(economics_raw)
-        building_processed = building_processor.process_data(building_raw, real_estate_processed)
+        try:
+            economics_processed = eco_processor.process_data(economics_raw)
+        except Exception as e:
+            logger.error(f"Erreur lors du traitement des données économiques: {str(e)}")
+            economics_processed = {}
+            
+        try:
+            building_processed = building_processor.process_data(building_raw, real_estate_processed)
+        except Exception as e:
+            logger.error(f"Erreur lors du traitement des données de construction: {str(e)}")
+            building_processed = {}
         
         # Pour l'analyse d'investissement, nous avons besoin des données traitées des autres sections
-        investment_processed = invest_processor.process_data(
-            real_estate_processed, 
-            economics_processed,
-            demographics_processed,
-            building_processed
-        )
+        try:
+            investment_processed = invest_processor.process_data(
+                real_estate_processed, 
+                economics_processed,
+                demographics_processed,
+                building_processed
+            )
+        except Exception as e:
+            logger.error(f"Erreur lors du traitement des données d'investissement: {str(e)}")
+            investment_processed = {}
         
         # Générer les métadonnées
         metadata = self.base_processor.create_metadata(commune_info, self.data_periods)
@@ -215,10 +236,6 @@ class MunicipalityGenerator:
             "geographical_context": geographical_processed,
             "investment_analysis": investment_processed
         }
-        
-        # Note: Les sections "property_rights", "rental_market", "cadastral_data" et 
-        # "building_characteristics" nécessitent des extracteurs supplémentaires
-        # qui ne sont pas encore implémentés
         
         logger.info(f"Traitement des données terminé pour la commune {commune_info.get('commune_name')}")
         

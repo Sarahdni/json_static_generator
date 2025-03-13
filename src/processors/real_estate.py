@@ -168,7 +168,7 @@ class RealEstateProcessor(BaseProcessor):
             logger.warning("Données par type de propriété manquantes ou incomplètes")
             return {}
             
-        current_data = data['current_data']
+        current_data = data.get('current_data', {})
         previous_year_data = data.get('previous_year_data', {})
         five_year_data = data.get('five_year_data', {})
         
@@ -200,7 +200,7 @@ class RealEstateProcessor(BaseProcessor):
             transactions = building_data.get('ms_total_transactions', 0)
             
             # Check for most common type
-            if transactions > max_transactions:
+            if self.is_numeric_and_greater_than(transactions, max_transactions):
                 max_transactions = transactions
                 most_common_type = type_key
                 
@@ -208,7 +208,7 @@ class RealEstateProcessor(BaseProcessor):
             mean_price = building_data.get('ms_mean_price')
             
             # Check for most valuable segment
-            if mean_price and mean_price > highest_price:
+            if self.is_numeric_and_greater_than(mean_price, highest_price):
                 highest_price = mean_price
                 most_valuable_segment = type_key
                 
@@ -230,7 +230,7 @@ class RealEstateProcessor(BaseProcessor):
                 mean_price, five_year_price)
                 
             # Check for fastest growing segment
-            if price_change_1y and price_change_1y > highest_growth_rate:
+            if self.is_numeric_and_greater_than(price_change_1y, highest_growth_rate):
                 highest_growth_rate = price_change_1y
                 fastest_growing_segment = type_key
                 
@@ -249,8 +249,11 @@ class RealEstateProcessor(BaseProcessor):
             # Calculate price per sqm if surface data available
             price_per_sqm = None
             if building_data.get('ms_total_surface') and building_data.get('ms_total_price'):
-                price_per_sqm = building_data['ms_total_price'] / building_data['ms_total_surface']
-                
+                total_surface = self.safe_numeric_value(building_data['ms_total_surface'])
+                total_price = self.safe_numeric_value(building_data['ms_total_price'])
+                if self.is_numeric_and_greater_than(total_surface, 0):
+                    price_per_sqm = total_price / total_surface
+                    
             # Create detailed entry for this type
             detailed_types[type_key] = {
                 "code": code,
@@ -269,7 +272,7 @@ class RealEstateProcessor(BaseProcessor):
         # Calculate percentage of stock now that we have total
         total_stock = sum(t["inventory_count"] for t in detailed_types.values())
         for type_key, type_data in detailed_types.items():
-            if total_stock > 0:
+            if self.is_numeric_and_greater_than(total_stock, 0):
                 type_data["percentage_of_stock"] = (type_data["inventory_count"] / total_stock) * 100
                 
         # Build the summary
@@ -333,10 +336,10 @@ class RealEstateProcessor(BaseProcessor):
             
             # Vérifier si c'est le secteur le plus cher ou le plus abordable
             if sector_median_price:
-                if sector_median_price > highest_median_price:
+                if self.is_numeric_and_greater_than(sector_median_price, highest_median_price):
                     highest_median_price = sector_median_price
                     hottest_sector = sector_name
-                if sector_median_price < lowest_median_price:
+                if self.is_numeric_and_less_than(sector_median_price, lowest_median_price):
                     lowest_median_price = sector_median_price
                     most_affordable_sector = sector_name
                     
@@ -352,7 +355,7 @@ class RealEstateProcessor(BaseProcessor):
             
         # Calculer l'indice de disparité des prix (écart max / min)
         price_disparity_index = None
-        if all_prices and lowest_median_price > 0:
+        if all_prices and self.is_numeric_and_greater_than(lowest_median_price, 0):
             price_disparity_index = (highest_median_price - lowest_median_price) / lowest_median_price
             
         # Créer le résumé
@@ -528,15 +531,44 @@ class RealEstateProcessor(BaseProcessor):
         Returns:
             dict: Section real_estate_market du JSON.
         """
+        # Protégeons-nous contre un dictionnaire data qui serait None
+        if data is None:
+            data = {}
+            
         municipality_data = data.get('municipality_data', {})
         sector_data = data.get('sector_data', {})
         building_stock_data = data.get('building_stock', {})
         
+        # Séquençons plus clairement le traitement pour mieux identifier où l'erreur pourrait survenir
+        try:
+            municipality_overview = self.process_municipality_overview(municipality_data)
+        except Exception as e:
+            logger.error(f"Erreur dans process_municipality_overview: {str(e)}")
+            municipality_overview = {}
+            
+        try:
+            by_property_type = self.process_property_types(municipality_data, building_stock_data)
+        except Exception as e:
+            logger.error(f"Erreur dans process_property_types: {str(e)}")
+            by_property_type = {}
+            
+        try:
+            sector_analysis = self.process_sector_analysis(sector_data)
+        except Exception as e:
+            logger.error(f"Erreur dans process_sector_analysis: {str(e)}")
+            sector_analysis = {}
+            
+        try:
+            building_stock = self.process_building_stock(building_stock_data)
+        except Exception as e:
+            logger.error(f"Erreur dans process_building_stock: {str(e)}")
+            building_stock = {}
+        
         result = {
-            "municipality_overview": self.process_municipality_overview(municipality_data),
-            "by_property_type": self.process_property_types(municipality_data, building_stock_data),
-            "sector_analysis": self.process_sector_analysis(sector_data),
-            "building_stock": self.process_building_stock(building_stock_data)
+            "municipality_overview": municipality_overview,
+            "by_property_type": by_property_type,
+            "sector_analysis": sector_analysis,
+            "building_stock": building_stock
         }
         
         return result
