@@ -489,39 +489,74 @@ class DemographicsExtractor(BaseExtractor):
         """
         self.log_extraction_start(f"véhicules des ménages (commune {commune_id})")
         
-        # Obtenir l'ID de date pour la période spécifiée
-        with self.get_db_session() as session:
-            date_id = self.get_date_id(session, self.data_period, 'year')
-            if not date_id:
-                logger.warning(f"Aucune date trouvée pour la période {self.data_period}")
-                return {}
-        
-        # Requête pour obtenir les données par secteur
-        query = """
-            SELECT 
-                hv.id_sector_sk,
-                ss.tx_sector_fr AS sector_name,
-                hv.ms_households,
-                hv.ms_vehicles,
-                hv.rt_vehicles_per_household
-            FROM 
-                dw.fact_household_vehicles hv
-            JOIN 
-                dw.dim_statistical_sectors ss ON hv.id_sector_sk = ss.id_sector_sk
-            WHERE 
-                hv.id_geography = :commune_id
-                AND hv.id_date = :date_id
-                AND hv.fl_current = TRUE
-            ORDER BY
-                ss.tx_sector_fr
-        """
-        
-        params = {
-            'commune_id': commune_id,
-            'date_id': date_id
-        }
-        
         try:
+            # Vérifier d'abord si des données existent pour cette commune
+            check_query = """
+                SELECT COUNT(*) as count
+                FROM dw.fact_household_vehicles
+                WHERE id_geography = :commune_id
+            """
+            
+            check_result = self.execute_query(check_query, {'commune_id': commune_id})
+            data_exists = check_result[0]['count'] > 0 if check_result else False
+            
+            if not data_exists:
+                logger.warning(f"Aucune donnée de véhicules trouvée pour la commune {commune_id}")
+                return {}
+            
+            # Trouver la période la plus récente disponible
+            period_query = """
+                SELECT 
+                    hv.id_date,
+                    d.cd_year
+                FROM 
+                    dw.fact_household_vehicles hv
+                JOIN 
+                    dw.dim_date d ON hv.id_date = d.id_date
+                WHERE 
+                    hv.id_geography = :commune_id
+                    AND hv.fl_current = TRUE
+                ORDER BY 
+                    d.cd_year DESC
+                LIMIT 1
+            """
+            
+            period_result = self.execute_query(period_query, {'commune_id': commune_id})
+            
+            if not period_result or len(period_result) == 0:
+                logger.warning(f"Impossible de déterminer la période pour les données de véhicules")
+                return {}
+            
+            date_id = period_result[0]['id_date']
+            year = period_result[0]['cd_year']
+            
+            logger.info(f"Utilisation des données de véhicules pour l'année {year}")
+            
+            # Requête pour obtenir les données par secteur
+            query = """
+                SELECT 
+                    hv.id_sector_sk,
+                    ss.tx_sector_fr AS sector_name,
+                    hv.ms_households,
+                    hv.ms_vehicles,
+                    hv.rt_vehicles_per_household
+                FROM 
+                    dw.fact_household_vehicles hv
+                JOIN 
+                    dw.dim_statistical_sectors ss ON hv.id_sector_sk = ss.id_sector_sk
+                WHERE 
+                    hv.id_geography = :commune_id
+                    AND hv.id_date = :date_id
+                    AND hv.fl_current = TRUE
+                ORDER BY
+                    ss.tx_sector_fr
+            """
+            
+            params = {
+                'commune_id': commune_id,
+                'date_id': date_id
+            }
+            
             result = self.execute_query(query, params)
             
             # Requête pour obtenir les totaux au niveau de la commune
@@ -564,9 +599,10 @@ class DemographicsExtractor(BaseExtractor):
             
             return {
                 'commune_totals': commune_totals,
-                'sectors': sectors_data
+                'sectors': sectors_data,
+                'year': year
             }
-            
+                
         except Exception as e:
             logger.error(f"Erreur lors de l'extraction des données de véhicules des ménages: {str(e)}")
             return {}
