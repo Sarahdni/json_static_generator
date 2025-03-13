@@ -220,13 +220,41 @@ class RealEstateExtractor(BaseExtractor):
         """
         self.log_extraction_start(f"marché immobilier par secteur (commune {commune_id})")
         
-        # Obtenir l'ID de date pour la période spécifiée
         with self.get_db_session() as session:
-            date_id = self.get_date_id(session, self.data_period, 'quarter')
-            if not date_id:
-                logger.warning(f"Aucune date trouvée pour la période {self.data_period}")
+            # Déterminer la période la plus récente disponible pour cette commune
+            latest_period_query = """
+                SELECT 
+                    d.id_date,
+                    d.cd_year,
+                    d.cd_quarter
+                FROM 
+                    dw.fact_real_estate_sector res
+                JOIN 
+                    dw.dim_date d ON res.id_date = d.id_date
+                WHERE 
+                    res.id_geography = :commune_id
+                    AND res.fl_confidential = FALSE
+                ORDER BY 
+                    d.cd_year DESC, 
+                    CASE WHEN d.cd_quarter IS NULL THEN 5 ELSE d.cd_quarter END DESC
+                LIMIT 1
+            """
+            
+            latest_params = {'commune_id': commune_id}
+            latest_result = self.execute_query(latest_period_query, latest_params)
+            
+            if not latest_result or len(latest_result) == 0:
+                logger.warning(f"Aucune donnée par secteur trouvée pour la commune {commune_id}")
                 return {}
+                
+            # Utiliser la période la plus récente disponible
+            date_id = latest_result[0]['id_date']
+            latest_year = latest_result[0]['cd_year']
+            latest_quarter = latest_result[0]['cd_quarter']
+            
+            self.logger.info(f"Période la plus récente pour les secteurs: {latest_year}-Q{latest_quarter if latest_quarter else 'Année'}")
         
+        # Exécuter la requête avec la période trouvée
         query = """
             SELECT 
                 res.id_sector_sk,
@@ -265,24 +293,37 @@ class RealEstateExtractor(BaseExtractor):
             result = self.execute_query(query, params)
             
             # Regroupement par secteur et type de bien
-            sectors_data = {}
+            sectors_data = {
+                "latest_period": {
+                    "year": latest_year,
+                    "quarter": latest_quarter
+                },
+                "sectors": {}
+            }
+            
             for row in result:
                 sector_id = row['id_sector_sk']
-                if sector_id not in sectors_data:
-                    sectors_data[sector_id] = {
+                if sector_id not in sectors_data["sectors"]:
+                    sectors_data["sectors"][sector_id] = {
                         'sector_name': row['nm_sector'],
                         'residential_types': {}
                     }
                 
                 residential_type = row['cd_residential_type']
-                sectors_data[sector_id]['residential_types'][residential_type] = row
+                sectors_data["sectors"][sector_id]['residential_types'][residential_type] = row
             
             self.log_extraction_end(f"marché immobilier par secteur (commune {commune_id})", len(result))
             return sectors_data
             
         except Exception as e:
             logger.error(f"Erreur lors de l'extraction des données immobilières par secteur: {str(e)}")
-            return {}
+            return {
+                "latest_period": {
+                    "year": latest_year if 'latest_year' in locals() else None,
+                    "quarter": latest_quarter if 'latest_quarter' in locals() else None
+                },
+                "sectors": {}
+            }
     
     def extract_building_stock(self, commune_id: str) -> Dict[str, Any]:
         """
@@ -296,33 +337,77 @@ class RealEstateExtractor(BaseExtractor):
         """
         self.log_extraction_start(f"stock de bâtiments (commune {commune_id})")
         
-        # Obtenir l'ID de date pour la période spécifiée - utilisons l'année pour le stock de bâtiments
-        year_period = self.data_period[:4] if "-" in self.data_period else self.data_period
-        
+        # Obtenir la période la plus récente pour le stock de bâtiments (année)
         with self.get_db_session() as session:
-            date_id = self.get_date_id(session, year_period, 'year')
-            if not date_id:
-                logger.warning(f"Aucune date trouvée pour la période {year_period}")
+            latest_period_query = """
+                SELECT 
+                    d.id_date,
+                    d.cd_year
+                FROM 
+                    dw.fact_building_stock bs
+                JOIN 
+                    dw.dim_date d ON bs.id_date = d.id_date
+                WHERE 
+                    bs.id_geography = :commune_id
+                ORDER BY 
+                    d.cd_year DESC
+                LIMIT 1
+            """
+            
+            latest_params = {'commune_id': commune_id}
+            latest_result = self.execute_query(latest_period_query, latest_params)
+            
+            if not latest_result or len(latest_result) == 0:
+                logger.warning(f"Aucune donnée de stock de bâtiments trouvée pour la commune {commune_id}")
                 return {}
+                
+            # Utiliser l'année la plus récente disponible
+            date_id = latest_result[0]['id_date']
+            latest_year = latest_result[0]['cd_year']
+            
+            self.logger.info(f"Année la plus récente pour le stock de bâtiments: {latest_year}")
             
             # Récupération des données actuelles
             current_data = self.extract_building_stock_for_period(commune_id, date_id)
             
-            # Récupération des données d'il y a 5 ans pour les comparaisons
-            five_year_ago = str(int(year_period) - 5)
-            five_year_date_id = self.get_date_id(session, five_year_ago, 'year')
+            # Déterminer la période pour 5 ans en arrière
+            five_year_query = """
+                SELECT 
+                    d.id_date
+                FROM 
+                    dw.dim_date d
+                JOIN
+                    dw.fact_building_stock bs ON d.id_date = bs.id_date
+                WHERE 
+                    d.cd_year = :year
+                    AND bs.id_geography = :commune_id
+                ORDER BY
+                    d.cd_year DESC
+                LIMIT 1
+            """
+            
+            five_year_params = {
+                'year': latest_year - 5,
+                'commune_id': commune_id
+            }
+            
+            five_year_result = self.execute_query(five_year_query, five_year_params)
             five_year_data = {}
-            if five_year_date_id:
+            if five_year_result and len(five_year_result) > 0:
+                five_year_date_id = five_year_result[0]['id_date']
                 five_year_data = self.extract_building_stock_for_period(commune_id, five_year_date_id)
         
         # Construction du résultat avec les données actuelles et historiques
         result = {
             "current_data": current_data,
-            "five_year_data": five_year_data
+            "five_year_data": five_year_data,
+            "latest_period": {
+                "year": latest_year
+            }
         }
         
         self.log_extraction_end(f"stock de bâtiments (commune {commune_id})", 
-                               len(current_data) + len(five_year_data))
+                            len(current_data) + len(five_year_data))
         
         return result
     
