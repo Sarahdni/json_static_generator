@@ -37,35 +37,114 @@ class RealEstateExtractor(BaseExtractor):
         """
         self.log_extraction_start(f"marché immobilier municipal (commune {commune_id})")
         
-        # Obtenir l'ID de date pour la période spécifiée
         with self.get_db_session() as session:
-            date_id = self.get_date_id(session, self.data_period, 'quarter')
-            if not date_id:
-                logger.warning(f"Aucune date trouvée pour la période {self.data_period}")
-                return {}
+            # Déterminer la période la plus récente disponible pour cette commune
+            latest_period_query = """
+                SELECT 
+                    d.id_date,
+                    d.cd_year,
+                    d.cd_quarter
+                FROM 
+                    dw.fact_real_estate_municipality rem
+                JOIN 
+                    dw.dim_date d ON rem.id_date = d.id_date
+                WHERE 
+                    rem.id_geography = :commune_id
+                    AND rem.fl_confidential = FALSE
+                ORDER BY 
+                    d.cd_year DESC, 
+                    CASE WHEN d.cd_quarter IS NULL THEN 5 ELSE d.cd_quarter END DESC
+                LIMIT 1
+            """
             
-            # Récupération des données actuelles
+            latest_params = {'commune_id': commune_id}
+            latest_result = self.execute_query(latest_period_query, latest_params)
+            
+            if not latest_result or len(latest_result) == 0:
+                logger.warning(f"Aucune donnée immobilière trouvée pour la commune {commune_id}")
+                return {}
+                
+            # Utiliser la période la plus récente disponible
+            date_id = latest_result[0]['id_date']
+            latest_year = latest_result[0]['cd_year']
+            latest_quarter = latest_result[0]['cd_quarter']
+            
+            self.logger.info(f"Période la plus récente trouvée: {latest_year}-Q{latest_quarter if latest_quarter else 'Année'}")
+            
+            # Récupérer les données actuelles
             current_data = self.extract_municipality_data_for_period(commune_id, date_id)
             
-            # Récupération des données de l'année précédente pour les comparaisons
-            previous_year_period = f"{int(self.data_period[:4]) - 1}{self.data_period[4:]}"
-            previous_year_date_id = self.get_date_id(session, previous_year_period, 'quarter')
+            # Déterminer la période pour l'année précédente
+            prev_year_query = """
+                SELECT 
+                    d.id_date
+                FROM 
+                    dw.dim_date d
+                JOIN
+                    dw.fact_real_estate_municipality rem ON d.id_date = rem.id_date
+                WHERE 
+                    d.cd_year = :year
+                    AND (d.cd_quarter = :quarter OR (d.cd_quarter IS NULL AND :quarter IS NULL))
+                    AND rem.id_geography = :commune_id
+                    AND rem.fl_confidential = FALSE
+                ORDER BY
+                    d.cd_year DESC,
+                    CASE WHEN d.cd_quarter IS NULL THEN 5 ELSE d.cd_quarter END DESC
+                LIMIT 1
+            """
+            
+            prev_year_params = {
+                'year': latest_year - 1,
+                'quarter': latest_quarter,
+                'commune_id': commune_id
+            }
+            
+            prev_year_result = self.execute_query(prev_year_query, prev_year_params)
             previous_year_data = {}
-            if previous_year_date_id:
+            if prev_year_result and len(prev_year_result) > 0:
+                previous_year_date_id = prev_year_result[0]['id_date']
                 previous_year_data = self.extract_municipality_data_for_period(commune_id, previous_year_date_id)
             
-            # Récupération des données d'il y a 5 ans pour les comparaisons à long terme
-            five_year_period = f"{int(self.data_period[:4]) - 5}{self.data_period[4:]}"
-            five_year_date_id = self.get_date_id(session, five_year_period, 'quarter')
+            # Déterminer la période pour 5 ans en arrière
+            five_year_query = """
+                SELECT 
+                    d.id_date
+                FROM 
+                    dw.dim_date d
+                JOIN
+                    dw.fact_real_estate_municipality rem ON d.id_date = rem.id_date
+                WHERE 
+                    d.cd_year = :year
+                    AND (d.cd_quarter = :quarter OR (d.cd_quarter IS NULL AND :quarter IS NULL))
+                    AND rem.id_geography = :commune_id
+                    AND rem.fl_confidential = FALSE
+                ORDER BY
+                    d.cd_year DESC,
+                    CASE WHEN d.cd_quarter IS NULL THEN 5 ELSE d.cd_quarter END DESC
+                LIMIT 1
+            """
+            
+            five_year_params = {
+                'year': latest_year - 5,
+                'quarter': latest_quarter,
+                'commune_id': commune_id
+            }
+            
+            five_year_result = self.execute_query(five_year_query, five_year_params)
             five_year_data = {}
-            if five_year_date_id:
+            if five_year_result and len(five_year_result) > 0:
+                five_year_date_id = five_year_result[0]['id_date']
                 five_year_data = self.extract_municipality_data_for_period(commune_id, five_year_date_id)
         
         # Construction du résultat avec les données actuelles et historiques
         result = {
             "current_data": current_data,
             "previous_year_data": previous_year_data,
-            "five_year_data": five_year_data
+            "five_year_data": five_year_data,
+            "latest_period": {
+                "year": latest_year,
+                "quarter": latest_quarter
+            }
         }
         
         self.log_extraction_end(f"marché immobilier municipal (commune {commune_id})", 
