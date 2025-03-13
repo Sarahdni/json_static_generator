@@ -524,51 +524,25 @@ class RealEstateProcessor(BaseProcessor):
     def process_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Traite les données complètes du marché immobilier.
-        
-        Args:
-            data: Données brutes extraites.
-            
-        Returns:
-            dict: Section real_estate_market du JSON.
         """
-        # Protégeons-nous contre un dictionnaire data qui serait None
-        if data is None:
-            data = {}
-            
-        municipality_data = data.get('municipality_data', {})
-        sector_data = data.get('sector_data', {})
-        building_stock_data = data.get('building_stock', {})
-        
-        # Séquençons plus clairement le traitement pour mieux identifier où l'erreur pourrait survenir
         try:
-            municipality_overview = self.process_municipality_overview(municipality_data)
-        except Exception as e:
-            logger.error(f"Erreur dans process_municipality_overview: {str(e)}")
-            municipality_overview = {}
+            municipality_data = data.get('municipality_data', {})
+            sector_data = data.get('sector_data', {})
+            building_stock_data = data.get('building_stock', {})
             
-        try:
-            by_property_type = self.process_property_types(municipality_data, building_stock_data)
-        except Exception as e:
-            logger.error(f"Erreur dans process_property_types: {str(e)}")
-            by_property_type = {}
+            result = {
+                "municipality_overview": self.process_municipality_overview(municipality_data),
+                "by_property_type": self.process_property_types(municipality_data, building_stock_data),
+                "sector_analysis": self.process_sector_analysis(sector_data),
+                "building_stock": self.process_building_stock(building_stock_data)
+            }
             
-        try:
-            sector_analysis = self.process_sector_analysis(sector_data)
+            return result
         except Exception as e:
-            logger.error(f"Erreur dans process_sector_analysis: {str(e)}")
-            sector_analysis = {}
-            
-        try:
-            building_stock = self.process_building_stock(building_stock_data)
-        except Exception as e:
-            logger.error(f"Erreur dans process_building_stock: {str(e)}")
-            building_stock = {}
-        
-        result = {
-            "municipality_overview": municipality_overview,
-            "by_property_type": by_property_type,
-            "sector_analysis": sector_analysis,
-            "building_stock": building_stock
-        }
-        
-        return result
+            logger.error(f"Erreur dans RealEstateProcessor.process_data: {str(e)}")
+            return {
+                "municipality_overview": {},
+                "by_property_type": {},
+                "sector_analysis": {},
+                "building_stock": {}
+            }

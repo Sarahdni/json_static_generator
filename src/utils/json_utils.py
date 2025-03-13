@@ -4,6 +4,8 @@ Fournit des fonctions pour valider, formater et écrire des fichiers JSON.
 """
 import json
 import os
+import decimal
+from typing import Dict, Any
 import logging
 from typing import Dict, Any, Optional, List, Union
 from pathlib import Path
@@ -13,6 +15,13 @@ from datetime import datetime
 from src.config.settings import JSON_FORMAT
 
 logger = logging.getLogger(__name__)
+
+class DecimalEncoder(json.JSONEncoder):
+    """Encodeur JSON personnalisé pour gérer les objets Decimal."""
+    def default(self, obj):
+        if isinstance(obj, decimal.Decimal):
+            return float(obj)
+        return super(DecimalEncoder, self).default(obj)
 
 def format_json(data: Dict[str, Any]) -> str:
     """
@@ -28,7 +37,8 @@ def format_json(data: Dict[str, Any]) -> str:
         data,
         indent=JSON_FORMAT.get('indent', 2),
         ensure_ascii=JSON_FORMAT.get('ensure_ascii', False),
-        sort_keys=JSON_FORMAT.get('sort_keys', False)
+        sort_keys=JSON_FORMAT.get('sort_keys', False),
+        cls=DecimalEncoder  # Utiliser notre encodeur personnalisé
     )
 
 def save_json(data: Dict[str, Any], output_path: str) -> bool:

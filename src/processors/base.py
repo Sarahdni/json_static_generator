@@ -253,7 +253,6 @@ class BaseProcessor:
         except (TypeError, ValueError):
             return False  
 
-
     def safe_numeric_value(self, value, default=0):
         """
         Retourne la valeur si elle est numérique, sinon retourne la valeur par défaut.

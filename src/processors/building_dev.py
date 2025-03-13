@@ -271,19 +271,32 @@ class BuildingDevProcessor(BaseProcessor):
         Returns:
             dict: Section building_development du JSON.
         """
-        counts_data = data.get('permits_counts', {})
-        surface_data = data.get('permits_surface', {})
-        volume_data = data.get('permits_volume', {})
-        
-        # Traiter les données de permis
-        permits_result = self.process_permits(counts_data, surface_data, volume_data)
-        
-        # Traiter les données d'activité de construction
-        construction_activity_result = self.process_construction_activity(permits_result, real_estate_data)
-        
-        result = {
-            "permits": permits_result,
-            "construction_activity": construction_activity_result
-        }
-        
-        return result
+        try:
+            # Protégez-vous contre des données nulles
+            if data is None:
+                data = {}
+            if real_estate_data is None:
+                real_estate_data = {}
+                
+            counts_data = data.get('permits_counts', {})
+            surface_data = data.get('permits_surface', {})
+            volume_data = data.get('permits_volume', {})
+            
+            # Traiter les données de permis
+            permits_result = self.process_permits(counts_data, surface_data, volume_data)
+            
+            # Traiter les données d'activité de construction
+            construction_activity_result = self.process_construction_activity(permits_result, real_estate_data)
+            
+            result = {
+                "permits": permits_result,
+                "construction_activity": construction_activity_result
+            }
+            
+            return result
+        except Exception as e:
+            logger.error(f"Erreur dans BuildingDevProcessor.process_data: {str(e)}")
+            return {
+                "permits": {},
+                "construction_activity": {}
+            }
