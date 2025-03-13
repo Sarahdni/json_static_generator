@@ -88,9 +88,9 @@ class DemographicsExtractor(BaseExtractor):
         query = """
             SELECT 
                 ps.id_age,
-                age.cd_age AS age_group,  -- Changé de age.tx_age_fr qui n'existe pas
-                age.nb_min_age AS min_age,
-                age.nb_max_age AS max_age,
+                age.cd_age_group AS age_group,
+                ag.cd_age_min AS min_age,
+                ag.cd_age_max AS max_age,
                 ps.cd_sex,
                 sex.tx_sex_fr AS sex_description,
                 SUM(ps.ms_population) AS total_population
@@ -99,15 +99,17 @@ class DemographicsExtractor(BaseExtractor):
             JOIN 
                 dw.dim_age age ON ps.id_age = age.cd_age
             JOIN
+                dw.dim_age_group ag ON age.cd_age_group = ag.cd_age_group
+            JOIN
                 dw.dim_sex sex ON ps.cd_sex = sex.cd_sex
             WHERE 
                 ps.id_geography = :commune_id
                 AND ps.id_date = :date_id
                 AND ps.fl_current = TRUE
             GROUP BY
-                ps.id_age, age.cd_age, age.nb_min_age, age.nb_max_age, ps.cd_sex, sex.tx_sex_fr
+                ps.id_age, age.cd_age_group, ag.cd_age_min, ag.cd_age_max, ps.cd_sex, sex.tx_sex_fr
             ORDER BY
-                age.nb_min_age, ps.cd_sex
+                ag.cd_age_min, ps.cd_sex
         """
         
         params = {

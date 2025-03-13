@@ -8,7 +8,7 @@ def check_database_schema():
     # Vérifier les tables essentielles
     tables = [
         "dim_geography", "dim_age", "dim_sex", "dim_nationality", 
-        "fact_population_structure", "fact_real_estate_municipality"
+        "fact_population_structure", "fact_real_estate_municipality", "dim_age_group"
     ]
     
     print("=== Diagnostic de la base de données ===")
