@@ -13,6 +13,7 @@ from src.extractors.real_estate import RealEstateExtractor
 from src.extractors.demographics import DemographicsExtractor
 from src.extractors.economics import EconomicsExtractor
 from src.extractors.building import BuildingExtractor
+from src.extractors.geography import GeographyExtractor
 
 from src.processors.base import BaseProcessor
 from src.processors.real_estate import RealEstateProcessor
@@ -66,24 +67,34 @@ class MunicipalityGenerator:
         Returns:
             tuple: Informations de la commune et nom de fichier de sortie.
         """
-        # Utiliser l'extracteur de base pour récupérer les infos de la commune
-        re_extractor = RealEstateExtractor(commune_id)
+        # Utiliser l'extracteur géographique pour récupérer les infos de la commune
+        geo_extractor = GeographyExtractor(commune_id)
+        geo_data = geo_extractor.extract_data()
         
-        with re_extractor.get_db_session() as session:
-            communes = re_extractor.get_communes(session)
-            
-        if not communes or len(communes) == 0:
+        if not geo_data or "commune_info" not in geo_data:
             logger.error(f"Aucune information trouvée pour la commune {commune_id}")
             return {}, ""
             
-        commune_info = communes[0]
+        commune_info = geo_data["commune_info"]
+        
+        # Si certaines informations manquent, essayer avec l'extracteur de base
+        if not commune_info.get('province'):
+            with geo_extractor.get_db_session() as session:
+                communes = geo_extractor.get_communes(session)
+                if communes and len(communes) > 0:
+                    # Compléter les informations manquantes
+                    for key, value in communes[0].items():
+                        if key not in commune_info or not commune_info[key]:
+                            commune_info[key] = value
         
         # Déterminer le répertoire de sortie en fonction de la province
-        province_dir = commune_info['province'].lower().replace(' ', '_')
+        province = commune_info.get('province', '').lower().replace(' ', '_')
+        if not province or province == 'non_spécifiée':
+            province = 'autres'
         
         # Créer le nom de fichier de sortie
         filename = f"immo_score_{commune_id}.json"
-        output_path = os.path.join(OUTPUT_DIR, province_dir, filename)
+        output_path = os.path.join(OUTPUT_DIR, province, filename)
         
         return commune_info, output_path
         
@@ -104,12 +115,14 @@ class MunicipalityGenerator:
         demo_extractor = DemographicsExtractor(commune_id, self.province, self.data_periods)
         eco_extractor = EconomicsExtractor(commune_id, self.province, self.data_periods)
         building_extractor = BuildingExtractor(commune_id, self.province, self.data_periods)
+        geography_extractor = GeographyExtractor(commune_id, self.province, self.data_periods)  # Nouvel extracteur
         
         # Extraire les données
         real_estate_data = re_extractor.extract_data()
         demographics_data = demo_extractor.extract_data()
         economics_data = eco_extractor.extract_data()
         building_data = building_extractor.extract_data()
+        geography_data = geography_extractor.extract_data()  # Nouvelles données
         
         logger.info(f"Extraction des données terminée pour la commune {commune_id}")
         
@@ -117,7 +130,8 @@ class MunicipalityGenerator:
             "real_estate": real_estate_data,
             "demographics": demographics_data,
             "economics": economics_data,
-            "building": building_data
+            "building": building_data,
+            "geography": geography_data  # Ajout des données géographiques
         }
         
     def process_data(self, raw_data: Dict[str, Any], commune_info: Dict[str, Any]) -> Dict[str, Any]:
@@ -145,17 +159,37 @@ class MunicipalityGenerator:
         demographics_raw = raw_data.get("demographics", {})
         economics_raw = raw_data.get("economics", {})
         building_raw = raw_data.get("building", {})
+        geography_raw = raw_data.get("geography", {})  # Nouvelles données géographiques
+        
+        # Obtenir la superficie de la commune à partir des données géographiques
+        area_km2 = None
+        if geography_raw and "commune_info" in geography_raw:
+            area_km2 = geography_raw["commune_info"].get("area_km2")
+            
+            # Mettre à jour les informations de la commune avec les données géographiques
+            if "commune_info" in geography_raw:
+                geo_commune_info = geography_raw["commune_info"]
+                commune_info.update({
+                    'area_km2': geo_commune_info.get('area_km2'),
+                    'province': geo_commune_info.get('province', commune_info.get('province')),
+                    'region': geo_commune_info.get('region', commune_info.get('region'))
+                })
         
         # Traiter les données sectionnelles
         real_estate_processed = re_processor.process_data(real_estate_raw)
         
-        # Pour les données démographiques, nous avons besoin de la superficie (à obtenir ailleurs si disponible)
-        area_km2 = None  # À compléter si les données sont disponibles
+        # Pour les données démographiques, passer la superficie
         demographics_result = demo_processor.process_data(demographics_raw, area_km2)
         
         # Extraire les sections du résultat démographique
         demographics_processed = demographics_result.get("demographics", {})
         geographical_processed = demographics_result.get("geographical_context", {})
+        
+        # Intégrer les données des secteurs statistiques dans le contexte géographique
+        if "statistical_sectors" in geography_raw and geographical_processed:
+            if "sectors" not in geographical_processed:
+                geographical_processed["sectors"] = {}
+            geographical_processed["sectors"]["statistical_sectors"] = geography_raw["statistical_sectors"]
         
         economics_processed = eco_processor.process_data(economics_raw)
         building_processed = building_processor.process_data(building_raw, real_estate_processed)
