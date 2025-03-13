@@ -258,12 +258,11 @@ class DemographicsExtractor(BaseExtractor):
         query = """
             SELECT 
                 COALESCE(
-                    (SELECT id_parent FROM dw.dim_geography WHERE id_geography = 
-                        (SELECT id_parent FROM dw.dim_geography WHERE id_geography = :commune_id AND fl_current = TRUE)
+                    (SELECT cd_parent FROM dw.dim_geography WHERE id_geography = 
+                        (SELECT cd_parent FROM dw.dim_geography WHERE id_geography = :commune_id AND fl_current = TRUE)
                     AND fl_current = TRUE),
-                    (SELECT id_parent FROM dw.dim_geography WHERE id_geography = :commune_id AND fl_current = TRUE)
+                    (SELECT cd_parent FROM dw.dim_geography WHERE id_geography = :commune_id AND fl_current = TRUE)
                 ) AS region_id
-            FROM dual
         """
         
         # Version alternative si la requête ci-dessus ne fonctionne pas

@@ -290,7 +290,7 @@ class GeographyExtractor(BaseExtractor):
                     dw.dim_statistical_sectors ss
                 WHERE 
                     ss.cd_refnis = :refnis
-                    AND ss.dt_end IS NULL
+                    AND ss.dt_end = (SELECT MAX(dt_end) FROM dw.dim_statistical_sectors WHERE cd_refnis = :refnis)
                 ORDER BY
                     ss.tx_sector_fr
             """

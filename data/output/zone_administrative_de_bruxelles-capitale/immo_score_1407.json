@@ -116,8 +116,53 @@
     }
   },
   "building_development": {
-    "permits": {},
-    "construction_activity": {}
+    "permits": {
+      "summary": {
+        "total_permits_ytd": 0,
+        "trend_yoy": null,
+        "residential_ratio": 0
+      },
+      "counts": {
+        "residential": {
+          "new_construction": {
+            "buildings": 0,
+            "dwellings": 0,
+            "houses": 0,
+            "apartments": 0
+          },
+          "renovation": {
+            "buildings": 0,
+            "dwellings": 0
+          }
+        },
+        "non_residential": {
+          "new_construction": {
+            "buildings": 0
+          },
+          "renovation": {
+            "buildings": 0
+          }
+        }
+      },
+      "surface": {
+        "residential_new_construction_sqm": 0,
+        "avg_dwelling_size_sqm": 0,
+        "trend_yoy": null
+      },
+      "volume": {
+        "non_residential_new_construction_cubic_m": 0,
+        "trend_yoy": null
+      }
+    },
+    "construction_activity": {
+      "construction_intensity_index": 0.5,
+      "development_phase": "Stable",
+      "supply_pipeline": {
+        "residential_units_coming": 0.0,
+        "estimated_completion_timeframe": "18 months",
+        "impact_on_supply": "Low"
+      }
+    }
   },
   "demographics": {
     "population_overview": {
@@ -762,7 +807,561 @@
       }
     },
     "sectors": {
-      "statistical_sectors": {}
+      "statistical_sectors": {
+        "138735": {
+          "sector_id": 138735,
+          "cd_sector": "21001B17-",
+          "sector_name": "ABATTOIR",
+          "sector_name_nl": "SLACHTHUIS",
+          "area_km2": 0.2655
+        },
+        "140834": {
+          "sector_id": 140834,
+          "cd_sector": "21001A931",
+          "sector_name": "AGRAFE-NORBERT GILLE",
+          "sector_name_nl": "GESP - NORBERT GILLE",
+          "area_km2": 0.1509
+        },
+        "138809": {
+          "sector_id": 138809,
+          "cd_sector": "21001B31-",
+          "sector_name": "ALBERT I- IMMEUBLES",
+          "sector_name_nl": "ALBERT I - FLATGEBOUWEN",
+          "area_km2": 0.0366
+        },
+        "138810": {
+          "sector_id": 138810,
+          "cd_sector": "21001B321",
+          "sector_name": "ALBERT I- QUARTIER",
+          "sector_name_nl": "ALBERT I - BUURT",
+          "area_km2": 0.1464
+        },
+        "140993": {
+          "sector_id": 140993,
+          "cd_sector": "21001A401",
+          "sector_name": "ARBORETUM",
+          "sector_name_nl": "ARBORETUM",
+          "area_km2": 0.0605
+        },
+        "140981": {
+          "sector_id": 140981,
+          "cd_sector": "21001A08-",
+          "sector_name": "ASTRID (PARC)",
+          "sector_name_nl": "ASTRID (PARK)",
+          "area_km2": 0.1649
+        },
+        "141008": {
+          "sector_id": 141008,
+          "cd_sector": "21001A85-",
+          "sector_name": "AUBADE",
+          "sector_name_nl": "AUBADE",
+          "area_km2": 0.0827
+        },
+        "139527": {
+          "sector_id": 139527,
+          "cd_sector": "21001A32-",
+          "sector_name": "AURORE",
+          "sector_name_nl": "DAGERAAD",
+          "area_km2": 0.1606
+        },
+        "140984": {
+          "sector_id": 140984,
+          "cd_sector": "21001A112",
+          "sector_name": "BIESTEBROEK",
+          "sector_name_nl": "BIESTEBROEK",
+          "area_km2": 0.1556
+        },
+        "140980": {
+          "sector_id": 140980,
+          "cd_sector": "21001A07-",
+          "sector_name": "BIRMINGHAM",
+          "sector_name_nl": "BIRMINGHAM",
+          "area_km2": 0.2536
+        },
+        "138733": {
+          "sector_id": 138733,
+          "cd_sector": "21001A30-",
+          "sector_name": "BIZET",
+          "sector_name_nl": "BIZET",
+          "area_km2": 0.1945
+        },
+        "141023": {
+          "sector_id": 141023,
+          "cd_sector": "21001C70-",
+          "sector_name": "BON AIR - CENTRE",
+          "sector_name_nl": "GOEDE LUCHT - KERN",
+          "area_km2": 0.0694
+        },
+        "141028": {
+          "sector_id": 141028,
+          "cd_sector": "21001C71-",
+          "sector_name": "BON AIR - CITE JARDIN",
+          "sector_name_nl": "GOEDE LUCHT - TUINWIJK",
+          "area_km2": 0.2313
+        },
+        "141029": {
+          "sector_id": 141029,
+          "cd_sector": "21001C79-",
+          "sector_name": "BON AIR - HABITATIONS DISP.",
+          "sector_name_nl": "GOEDE LUCHT - VERSPR. BEWONING",
+          "area_km2": 0.2013
+        },
+        "141003": {
+          "sector_id": 141003,
+          "cd_sector": "21001A81-",
+          "sector_name": "BROECK",
+          "sector_name_nl": "BROEK",
+          "area_km2": 0.234
+        },
+        "138737": {
+          "sector_id": 138737,
+          "cd_sector": "21001B21-",
+          "sector_name": "BROGNIEZ-NORD",
+          "sector_name_nl": "BROGNIEZ-NOORD",
+          "area_km2": 0.1416
+        },
+        "140997": {
+          "sector_id": 140997,
+          "cd_sector": "21001B22-",
+          "sector_name": "BROGNIEZ-SUD",
+          "sector_name_nl": "BROGNIEZ-ZUID",
+          "area_km2": 0.0744
+        },
+        "140856": {
+          "sector_id": 140856,
+          "cd_sector": "21001A95-",
+          "sector_name": "BUFFON",
+          "sector_name_nl": "BUFFON",
+          "area_km2": 0.2004
+        },
+        "139643": {
+          "sector_id": 139643,
+          "cd_sector": "21001A350",
+          "sector_name": "CERIA - ZONE D'HABITAT",
+          "sector_name_nl": "COOVI - WOONZONE",
+          "area_km2": 0.189
+        },
+        "140992": {
+          "sector_id": 140992,
+          "cd_sector": "21001A3MJ",
+          "sector_name": "CERIA I",
+          "sector_name_nl": "COOVI I",
+          "area_km2": 0.251
+        },
+        "141013": {
+          "sector_id": 141013,
+          "cd_sector": "21001C512",
+          "sector_name": "CHANTS D'OISEAUX",
+          "sector_name_nl": "VOGELENZANG",
+          "area_km2": 0.2656
+        },
+        "138734": {
+          "sector_id": 138734,
+          "cd_sector": "21001A31-",
+          "sector_name": "CHAUSSEE DE MONS - SAINT-LUC",
+          "sector_name_nl": "BERGENSESTEENWEG - SINT-LUKAS",
+          "area_km2": 0.0947
+        },
+        "141017": {
+          "sector_id": 141017,
+          "cd_sector": "21001C581",
+          "sector_name": "CIMETIERE",
+          "sector_name_nl": "KERKHOF",
+          "area_km2": 0.6921
+        },
+        "138736": {
+          "sector_id": 138736,
+          "cd_sector": "21001B20-",
+          "sector_name": "CONSEIL-NORD",
+          "sector_name_nl": "RAAD-NOORD",
+          "area_km2": 0.1965
+        },
+        "141004": {
+          "sector_id": 141004,
+          "cd_sector": "21001B23-",
+          "sector_name": "CONSEIL-SUD",
+          "sector_name_nl": "RAAD-ZUID",
+          "area_km2": 0.0892
+        },
+        "140845": {
+          "sector_id": 140845,
+          "cd_sector": "21001A941",
+          "sector_name": "CROCUS",
+          "sector_name_nl": "KROKUSSEN",
+          "area_km2": 0.1328
+        },
+        "138812": {
+          "sector_id": 138812,
+          "cd_sector": "21001B372",
+          "sector_name": "DEUX GARES",
+          "sector_name_nl": "TWEESTATIONS",
+          "area_km2": 0.107
+        },
+        "139659": {
+          "sector_id": 139659,
+          "cd_sector": "21001A441",
+          "sector_name": "DOCTEUR ROUX",
+          "sector_name_nl": "DR. ROUX",
+          "area_km2": 0.1276
+        },
+        "139840": {
+          "sector_id": 139840,
+          "cd_sector": "21001A492",
+          "sector_name": "ETANGS - PARC",
+          "sector_name_nl": "VIJVERS - PARK",
+          "area_km2": 0.0754
+        },
+        "138811": {
+          "sector_id": 138811,
+          "cd_sector": "21001B332",
+          "sector_name": "GOUJONS",
+          "sector_name_nl": "GRONDELS",
+          "area_km2": 0.0565
+        },
+        "141015": {
+          "sector_id": 141015,
+          "cd_sector": "21001C522",
+          "sector_name": "HOPITAL U.L.B.",
+          "sector_name_nl": "ZIEKENHUIS U.L.B.",
+          "area_km2": 0.5317
+        },
+        "140816": {
+          "sector_id": 140816,
+          "cd_sector": "21001A92-",
+          "sector_name": "JAKOB SMITS",
+          "sector_name_nl": "JAKOB SMITS",
+          "area_km2": 0.2101
+        },
+        "140995": {
+          "sector_id": 140995,
+          "cd_sector": "21001A42-",
+          "sector_name": "KAT",
+          "sector_name_nl": "DE KAT",
+          "area_km2": 0.0637
+        },
+        "138587": {
+          "sector_id": 138587,
+          "cd_sector": "21001A011",
+          "sector_name": "KLEINMOLEN",
+          "sector_name_nl": "KLEINMOLEN",
+          "area_km2": 0.1788
+        },
+        "140976": {
+          "sector_id": 140976,
+          "cd_sector": "21001A051",
+          "sector_name": "LINDE-EST",
+          "sector_name_nl": "LINDE-OOST",
+          "area_km2": 0.1042
+        },
+        "138721": {
+          "sector_id": 138721,
+          "cd_sector": "21001A152",
+          "sector_name": "LINDE-OUEST",
+          "sector_name_nl": "LINDE-WEST",
+          "area_km2": 0.0755
+        },
+        "141019": {
+          "sector_id": 141019,
+          "cd_sector": "21001C5PA",
+          "sector_name": "MEERVELD",
+          "sector_name_nl": "MEERVELD",
+          "area_km2": 0.5666
+        },
+        "141018": {
+          "sector_id": 141018,
+          "cd_sector": "21001C5MA",
+          "sector_name": "MEYLEMEERSCH",
+          "sector_name_nl": "MIJLENMEERS",
+          "area_km2": 0.3798
+        },
+        "141020": {
+          "sector_id": 141020,
+          "cd_sector": "21001C6MB",
+          "sector_name": "MEYLEMEERSCH-EST",
+          "sector_name_nl": "MIJLENMEERS-OOST",
+          "area_km2": 0.3407
+        },
+        "138717": {
+          "sector_id": 138717,
+          "cd_sector": "21001A120",
+          "sector_name": "MINIMES",
+          "sector_name_nl": "MINIEMEN",
+          "area_km2": 0.1278
+        },
+        "141005": {
+          "sector_id": 141005,
+          "cd_sector": "21001A82-",
+          "sector_name": "MOORTEBEEK",
+          "sector_name_nl": "MOORTEBEEK",
+          "area_km2": 0.3265
+        },
+        "139924": {
+          "sector_id": 139924,
+          "cd_sector": "21001A53-",
+          "sector_name": "NELLIE MELBA",
+          "sector_name_nl": "NELLIE MELBA",
+          "area_km2": 0.0897
+        },
+        "140998": {
+          "sector_id": 140998,
+          "cd_sector": "21001A72-",
+          "sector_name": "OSSEGEM",
+          "sector_name_nl": "OSSEGEM",
+          "area_km2": 0.1953
+        },
+        "140861": {
+          "sector_id": 140861,
+          "cd_sector": "21001A982",
+          "sector_name": "PARC FORESTIER",
+          "sector_name_nl": "BOSPARK",
+          "area_km2": 0.0466
+        },
+        "141006": {
+          "sector_id": 141006,
+          "cd_sector": "21001A83-",
+          "sector_name": "PETERBOS",
+          "sector_name_nl": "PETERBOS",
+          "area_km2": 0.173
+        },
+        "141012": {
+          "sector_id": 141012,
+          "cd_sector": "21001B3MJ",
+          "sector_name": "PETITE ILE- RIVE DROITE",
+          "sector_name_nl": "KLEIN EILAND- RECHTEROEVER",
+          "area_km2": 1.9774
+        },
+        "141007": {
+          "sector_id": 141007,
+          "cd_sector": "21001A84-",
+          "sector_name": "POESIE",
+          "sector_name_nl": "DICHTKUNST",
+          "area_km2": 0.1176
+        },
+        "138622": {
+          "sector_id": 138622,
+          "cd_sector": "21001A10-",
+          "sector_name": "PORSELEIN",
+          "sector_name_nl": "PORSELEIN",
+          "area_km2": 0.08
+        },
+        "138718": {
+          "sector_id": 138718,
+          "cd_sector": "21001A132",
+          "sector_name": "RAUTER-NORD",
+          "sector_name_nl": "RAUTER-NOORD",
+          "area_km2": 0.0762
+        },
+        "140990": {
+          "sector_id": 140990,
+          "cd_sector": "21001A031",
+          "sector_name": "RAUTER-SUD",
+          "sector_name_nl": "RAUTER-ZUID",
+          "area_km2": 0.1089
+        },
+        "140988": {
+          "sector_id": 140988,
+          "cd_sector": "21001A00-",
+          "sector_name": "RESISTANCE",
+          "sector_name_nl": "VERZET",
+          "area_km2": 0.1251
+        },
+        "138808": {
+          "sector_id": 138808,
+          "cd_sector": "21001B25-",
+          "sector_name": "REVISION-NORD",
+          "sector_name_nl": "HERZIENING-NOORD",
+          "area_km2": 0.1775
+        },
+        "138807": {
+          "sector_id": 138807,
+          "cd_sector": "21001B241",
+          "sector_name": "REVISION-SUD",
+          "sector_name_nl": "HERZIENING-ZUID",
+          "area_km2": 0.1464
+        },
+        "140994": {
+          "sector_id": 140994,
+          "cd_sector": "21001A41-",
+          "sector_name": "ROMAIN ROLLAND",
+          "sector_name_nl": "ROMAIN ROLLAND",
+          "area_km2": 0.1984
+        },
+        "140679": {
+          "sector_id": 140679,
+          "cd_sector": "21001B10-",
+          "sector_name": "ROSEE-EST",
+          "sector_name_nl": "DAUW-OOST",
+          "area_km2": 0.1419
+        },
+        "141011": {
+          "sector_id": 141011,
+          "cd_sector": "21001B11-",
+          "sector_name": "ROSEE-OUEST",
+          "sector_name_nl": "DAUW-WEST",
+          "area_km2": 0.09
+        },
+        "139571": {
+          "sector_id": 139571,
+          "cd_sector": "21001A332",
+          "sector_name": "ROUE",
+          "sector_name_nl": "RAD",
+          "area_km2": 0.0775
+        },
+        "139581": {
+          "sector_id": 139581,
+          "cd_sector": "21001A34-",
+          "sector_name": "ROUE - CITE JARDIN",
+          "sector_name_nl": "RAD - TUINWIJK",
+          "area_km2": 0.2023
+        },
+        "139880": {
+          "sector_id": 139880,
+          "cd_sector": "21001A51-",
+          "sector_name": "SCHERDEMAEL",
+          "sector_name_nl": "SCHERDEMAAL",
+          "area_km2": 0.1885
+        },
+        "139922": {
+          "sector_id": 139922,
+          "cd_sector": "21001A52-",
+          "sector_name": "SCHERDEMAEL-NORD",
+          "sector_name_nl": "SCHERDEMAAL-NOORD",
+          "area_km2": 0.1722
+        },
+        "140794": {
+          "sector_id": 140794,
+          "cd_sector": "21001A712",
+          "sector_name": "SCHEUT - DE SMET",
+          "sector_name_nl": "SCHEUT - DE SMET",
+          "area_km2": 0.0843
+        },
+        "141010": {
+          "sector_id": 141010,
+          "cd_sector": "21001A911",
+          "sector_name": "SCHEUT-EST",
+          "sector_name_nl": "SCHEUT-OOST",
+          "area_km2": 0.1388
+        },
+        "141001": {
+          "sector_id": 141001,
+          "cd_sector": "21001A783",
+          "sector_name": "SCHEUT-INTERNAT",
+          "sector_name_nl": "SCHEUT-INTERNAAT",
+          "area_km2": 0.0442
+        },
+        "141000": {
+          "sector_id": 141000,
+          "cd_sector": "21001A74-",
+          "sector_name": "SCHEUT-OUEST",
+          "sector_name_nl": "SCHEUT-WEST",
+          "area_km2": 0.1519
+        },
+        "141009": {
+          "sector_id": 141009,
+          "cd_sector": "21001A90-",
+          "sector_name": "SCHEUTKAPEL",
+          "sector_name_nl": "SCHEUTKAPEL",
+          "area_km2": 0.1631
+        },
+        "140999": {
+          "sector_id": 140999,
+          "cd_sector": "21001A732",
+          "sector_name": "SCHEUTVELD",
+          "sector_name_nl": "SCHEUTVELD",
+          "area_km2": 0.1232
+        },
+        "141002": {
+          "sector_id": 141002,
+          "cd_sector": "21001A80-",
+          "sector_name": "SILLON",
+          "sector_name_nl": "VOOR",
+          "area_km2": 0.2328
+        },
+        "138813": {
+          "sector_id": 138813,
+          "cd_sector": "21001C611",
+          "sector_name": "SOETKIN",
+          "sector_name_nl": "SOETKIN",
+          "area_km2": 0.4504
+        },
+        "139837": {
+          "sector_id": 139837,
+          "cd_sector": "21001A472",
+          "sector_name": "STADE COMMUNAL - INDUSTRIE",
+          "sector_name_nl": "GEMEENTESTADION - INDUSTRIE",
+          "area_km2": 0.0854
+        },
+        "140264": {
+          "sector_id": 140264,
+          "cd_sector": "21001A552",
+          "sector_name": "TREFLE",
+          "sector_name_nl": "KLAVER",
+          "area_km2": 0.4695
+        },
+        "140996": {
+          "sector_id": 140996,
+          "cd_sector": "21001A43-",
+          "sector_name": "VAN BEETHOVEN",
+          "sector_name_nl": "VAN BEETHOVEN",
+          "area_km2": 0.0736
+        },
+        "138720": {
+          "sector_id": 138720,
+          "cd_sector": "21001A142",
+          "sector_name": "VEEWEYDE-NORD",
+          "sector_name_nl": "VEEWEIDE-NOORD",
+          "area_km2": 0.0883
+        },
+        "140975": {
+          "sector_id": 140975,
+          "cd_sector": "21001A041",
+          "sector_name": "VEEWEYDE-SUD",
+          "sector_name_nl": "VEEWEIDE-ZUID",
+          "area_km2": 0.1575
+        },
+        "139804": {
+          "sector_id": 139804,
+          "cd_sector": "21001A451",
+          "sector_name": "VENIZELOS",
+          "sector_name_nl": "VENIZELOS",
+          "area_km2": 0.1187
+        },
+        "139855": {
+          "sector_id": 139855,
+          "cd_sector": "21001A503",
+          "sector_name": "VIVES",
+          "sector_name_nl": "VIVES",
+          "area_km2": 0.0579
+        },
+        "139545": {
+          "sector_id": 139545,
+          "cd_sector": "21001A331",
+          "sector_name": "WALCOURT",
+          "sector_name_nl": "WALCOURT",
+          "area_km2": 0.0717
+        },
+        "140989": {
+          "sector_id": 140989,
+          "cd_sector": "21001A02-",
+          "sector_name": "WAYEZ",
+          "sector_name_nl": "WAYEZ",
+          "area_km2": 0.0388
+        },
+        "141022": {
+          "sector_id": 141022,
+          "cd_sector": "21001C6PB",
+          "sector_name": "ZONE RURALE",
+          "sector_name_nl": "PLATTELAND",
+          "area_km2": 2.7339
+        },
+        "140991": {
+          "sector_id": 140991,
+          "cd_sector": "21001A37-",
+          "sector_name": "ZUEN - INDUSTRIE",
+          "sector_name_nl": "ZUUN - INDUSTRIE",
+          "area_km2": 0.2389
+        }
+      }
     }
   },
   "investment_analysis": {
@@ -794,7 +1393,7 @@
     "risk_assessment": {
       "price_volatility": "Low",
       "liquidity_score": 80,
-      "oversupply_risk": "Medium",
+      "oversupply_risk": "Low",
       "economic_dependency_risk": "Low"
     },
     "comparative_ranking": {

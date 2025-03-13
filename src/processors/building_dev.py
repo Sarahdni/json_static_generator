@@ -86,7 +86,7 @@ class BuildingDevProcessor(BaseProcessor):
         non_residential_buildings += current_data.get('non_residential', {}).get('renovation', {}).get('buildings', 0)
         
         residential_ratio = 0
-        if total_buildings > 0:
+        if self.is_numeric_and_greater_than(total_buildings, 0):
             residential_ratio = residential_buildings / total_buildings
             
         return {
@@ -159,7 +159,7 @@ class BuildingDevProcessor(BaseProcessor):
         # Si la taille moyenne n'est pas disponible, la calculer à partir des données de comptage
         if not avg_dwelling_size_sqm:
             dwellings_count = counts_data.get('residential', {}).get('new_construction', {}).get('dwellings', 0)
-            if dwellings_count > 0:
+            if self.is_numeric_and_greater_than(dwellings_count, 0):
                 avg_dwelling_size_sqm = total_surface_sqm / dwellings_count
                 
         return {
@@ -215,43 +215,44 @@ class BuildingDevProcessor(BaseProcessor):
             new_residential_dwellings = permits_data.get('counts', {}).get('residential', {}).get('new_construction', {}).get('dwellings', 0)
             
             # Facteurs d'ajustement de l'indice
-            if trend_yoy is not None and trend_yoy > 20:
+            if self.is_numeric_and_greater_than(trend_yoy, 20):
                 construction_intensity_index += 0.2
-            elif trend_yoy > 10:
+            elif self.is_numeric_and_greater_than(trend_yoy, 10):
                 construction_intensity_index += 0.1
-            elif trend_yoy < -10:
+            elif self.is_numeric_and_less_than(trend_yoy, -10):
                 construction_intensity_index -= 0.1
-            elif trend_yoy < -20:
+            elif self.is_numeric_and_less_than(trend_yoy, -20):
                 construction_intensity_index -= 0.2
-                
+                            
             # Ajustement basé sur le volume de permis résidentiels
-            if new_residential_dwellings > 100:
+            if self.is_numeric_and_greater_than(new_residential_dwellings, 100):
                 construction_intensity_index += 0.1
-            elif new_residential_dwellings > 50:
+            elif self.is_numeric_and_greater_than(new_residential_dwellings, 50):
                 construction_intensity_index += 0.05
+
                 
         # Déterminer la phase de développement
         development_phase = "Stable"
-        if construction_intensity_index > 0.8:
+        if construction_intensity_index > 0.8:  # Possible problème
             development_phase = "Strong Growth"
-        elif construction_intensity_index > 0.6:
+        elif construction_intensity_index > 0.6:  # Possible problème
             development_phase = "Moderate Growth"
-        elif construction_intensity_index < 0.4:
+        elif construction_intensity_index < 0.4:  # Possible problème
             development_phase = "Slowdown"
-        elif construction_intensity_index < 0.2:
+        elif construction_intensity_index < 0.2:  # Possible problème
             development_phase = "Stagnation"
             
         # Estimer le pipeline d'offre future
         supply_pipeline = {
-            "residential_units_coming": new_residential_dwellings * 1.5 if 'new_residential_dwellings' in locals() else 0,
+            "residential_units_coming": new_residential_dwellings * 1.5 if 'new_residential_dwellings' in locals() else 0,  # Possible multiplication avec None
             "estimated_completion_timeframe": "18 months",
             "impact_on_supply": "Medium"
         }
-        
+
         # Ajuster l'impact sur l'offre
-        if supply_pipeline["residential_units_coming"] > 200:
+        if supply_pipeline["residential_units_coming"] > 200:  # Possible problème
             supply_pipeline["impact_on_supply"] = "High"
-        elif supply_pipeline["residential_units_coming"] < 50:
+        elif supply_pipeline["residential_units_coming"] < 50:  # Possible problème
             supply_pipeline["impact_on_supply"] = "Low"
             
         return {
