@@ -215,7 +215,7 @@ class BuildingDevProcessor(BaseProcessor):
             new_residential_dwellings = permits_data.get('counts', {}).get('residential', {}).get('new_construction', {}).get('dwellings', 0)
             
             # Facteurs d'ajustement de l'indice
-            if trend_yoy > 20:  # Forte croissance des permis
+            if trend_yoy is not None and trend_yoy > 20:
                 construction_intensity_index += 0.2
             elif trend_yoy > 10:
                 construction_intensity_index += 0.1
