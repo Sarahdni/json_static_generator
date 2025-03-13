@@ -390,7 +390,7 @@ class DemographicsProcessor(BaseProcessor):
         
     def process_cultural_diversity(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Traite les données de diversité culturelle (nationalités).
+        Traite les données de diversité culturelle avec les deux catégories disponibles (BE/NOT_BE).
         
         Args:
             data: Données brutes de la structure de population.
@@ -408,38 +408,31 @@ class DemographicsProcessor(BaseProcessor):
         nationalities_raw = current_data.get('nationalities', {})
         total_population = current_data.get('total_population', 0) or 1  # Éviter division par zéro
         
-        # Agréger par groupe de nationalité
+        # Préparer les groupes de nationalité selon les données réellement disponibles
         nationality_groups = {
             "belgian": {
                 "count": 0,
                 "percentage": 0
             },
-            "eu_non_belgian": {
-                "count": 0,
-                "percentage": 0
-            },
-            "non_eu": {
+            "foreign": {  # Renommé de "non_eu" à "foreign" pour refléter la réalité des données
                 "count": 0,
                 "percentage": 0
             }
         }
         
+        # Remplir les données selon la nationalité
         for nat_code, nat_data in nationalities_raw.items():
             count = nat_data.get('population', 0)
-            group = nat_data.get('group', 'OTHER')
             
-            # Mapper le groupe vers notre structure
             if nat_code == 'BE':
-                nationality_groups["belgian"]["count"] += count
-            elif group == 'EU':
-                nationality_groups["eu_non_belgian"]["count"] += count
-            else:
-                nationality_groups["non_eu"]["count"] += count
-                
+                nationality_groups["belgian"]["count"] = count
+            elif nat_code == 'NOT_BE':
+                nationality_groups["foreign"]["count"] = count
+        
         # Calculer les pourcentages
         for group in nationality_groups.values():
             group["percentage"] = (group["count"] / total_population) * 100
-            
+        
         return {
             "nationality_groups": nationality_groups
         }

@@ -7,7 +7,7 @@
     "province": "Zone administrative de Bruxelles-Capitale",
     "region": "Région de Bruxelles-Capitale",
     "version": "1.0",
-    "generated_date": "2025-03-13",
+    "generated_date": "2025-03-14",
     "temporal_coverage": {
       "current_year": 2025,
       "historical_start": 2000,
@@ -175,30 +175,30 @@
       }
     },
     "age_structure": {
-      "median_age": null,
+      "median_age": 34,
       "age_groups": {
         "under_18": {
-          "count": 5140.2,
-          "percentage": 4.110022788150162,
-          "trend": "+3,2%"
+          "count": 32540,
+          "percentage": 26.018470395394395,
+          "trend": "-0,4%"
         },
         "18_to_35": {
-          "count": 31157.999999999993,
-          "percentage": 24.913445008595524,
-          "trend": "+1,1%"
+          "count": 31922,
+          "percentage": 25.524327349778115,
+          "trend": "+1,4%"
         },
         "36_to_65": {
-          "count": 44504.40000000001,
-          "percentage": 35.58501579178828,
-          "trend": "-0,2%"
+          "count": 46208,
+          "percentage": 36.94718746251949,
+          "trend": "-0,3%"
         },
         "over_65": {
-          "count": 9329.400000000001,
-          "percentage": 7.459640986686924,
-          "trend": "-0,1%"
+          "count": 14395,
+          "percentage": 11.510014792308,
+          "trend": "-1,4%"
         }
       },
-      "dependency_ratio": 0.19123897735202694
+      "dependency_ratio": 0.6007295533085882
     },
     "household_composition": {
       "total_households": 0,
