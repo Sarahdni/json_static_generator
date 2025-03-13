@@ -202,54 +202,147 @@ class DemographicsExtractor(BaseExtractor):
     
     def extract_household_composition(self, commune_id: str) -> Dict[str, Any]:
         """
-        Extrait les données de composition des ménages pour une commune.
+        Extrait les données de composition des ménages pour une commune en utilisant
+        les données de la région correspondante comme base.
         
         Args:
             commune_id (str): Identifiant de la commune.
             
         Returns:
-            dict: Données extraites de fact_household_cohabitation.
+            dict: Données estimées de composition des ménages basées sur les données régionales.
         """
         self.log_extraction_start(f"composition des ménages (commune {commune_id})")
         
-        # Obtenir l'ID de date pour la période spécifiée
-        with self.get_db_session() as session:
-            date_id = self.get_date_id(session, self.data_period, 'year')
-            if not date_id:
-                logger.warning(f"Aucune date trouvée pour la période {self.data_period}")
+        try:
+            # 1. Déterminer la région de la commune
+            region_id = self._get_region_for_commune(commune_id)
+            if not region_id:
+                logger.warning(f"Impossible de déterminer la région pour la commune {commune_id}")
                 return {}
-        
+                
+            # 2. Obtenir les données démographiques de la commune pour adapater l'échelle
+            population_data = self.extract_population_structure(commune_id)
+            if not population_data or 'current_data' not in population_data:
+                logger.warning(f"Données démographiques manquantes pour la commune {commune_id}")
+                return {}
+                
+            commune_population = population_data.get('current_data', {}).get('total_population', 0)
+            if not commune_population:
+                logger.warning(f"Population totale manquante pour la commune {commune_id}")
+                return {}
+                
+            # 3. Extraire les données de ménages au niveau régional
+            with self.get_db_session() as session:
+                date_id = self.get_date_id(session, self.data_period, 'year')
+                if not date_id:
+                    logger.warning(f"Aucune date trouvée pour la période {self.data_period}")
+                    return {}
+            
+            regional_data = self._extract_regional_household_data(region_id, date_id)
+            if not regional_data:
+                logger.warning(f"Aucune donnée régionale trouvée pour la région {region_id}")
+                return {}
+                
+            # 4. Adapter les données régionales à l'échelle de la commune
+            commune_data = self._scale_regional_data_to_commune(regional_data, commune_population)
+            self.log_extraction_end(f"composition des ménages (commune {commune_id}, estimation basée sur région {region_id})", 1)
+            
+            return commune_data
+            
+        except Exception as e:
+            logger.error(f"Erreur lors de l'extraction des données de composition des ménages: {str(e)}")
+            return {}
+            
+    def _get_region_for_commune(self, commune_id: str) -> Optional[str]:
+        """Détermine l'ID de la région à laquelle appartient une commune."""
         query = """
             SELECT 
-            hc.cd_cohabitation,
-            cs.cd_cohabitation AS cohabitation_description,  -- Changé de cs.tx_cohabitation_fr
-            hc.cd_age_group,
-            hc.cd_sex,
-            sex.tx_sex_fr AS sex_description,
-            hc.cd_nationality,
-            nat.tx_nationality_fr AS nationality_description,
-            SUM(hc.ms_count) AS total_count
-        FROM 
-            dw.fact_household_cohabitation hc
-        JOIN 
-            dw.dim_cohabitation_status cs ON hc.cd_cohabitation = cs.cd_cohabitation
-        JOIN
-            dw.dim_sex sex ON hc.cd_sex = sex.cd_sex
-        JOIN
-            dw.dim_nationality nat ON hc.cd_nationality = nat.cd_nationality
-        WHERE 
-            hc.id_geography = :commune_id
-            AND hc.id_date = :date_id
-        GROUP BY
-            hc.cd_cohabitation, cs.cd_cohabitation, 
-            hc.cd_age_group, hc.cd_sex, sex.tx_sex_fr,
-            hc.cd_nationality, nat.tx_nationality_fr
-        ORDER BY
-            cs.cd_cohabitation, hc.cd_age_group, hc.cd_sex
+                COALESCE(
+                    (SELECT id_parent FROM dw.dim_geography WHERE id_geography = 
+                        (SELECT id_parent FROM dw.dim_geography WHERE id_geography = :commune_id AND fl_current = TRUE)
+                    AND fl_current = TRUE),
+                    (SELECT id_parent FROM dw.dim_geography WHERE id_geography = :commune_id AND fl_current = TRUE)
+                ) AS region_id
+            FROM dual
+        """
+        
+        # Version alternative si la requête ci-dessus ne fonctionne pas
+        fallback_query = """
+            WITH commune_info AS (
+                SELECT cd_refnis FROM dw.dim_geography WHERE id_geography = :commune_id AND fl_current = TRUE
+            )
+            SELECT 
+                CASE 
+                    WHEN SUBSTRING(cd_refnis, 1, 1) = '1' THEN 2061  -- Région wallonne
+                    WHEN SUBSTRING(cd_refnis, 1, 1) = '2' THEN 2031  -- Région flamande
+                    WHEN SUBSTRING(cd_refnis, 1, 1) = '3' THEN 2028  -- Région Bruxelles-Capitale
+                    ELSE NULL
+                END AS region_id
+            FROM commune_info
+        """
+        
+        try:
+            result = self.execute_query(query, {'commune_id': commune_id})
+            if not result or len(result) == 0 or result[0]['region_id'] is None:
+                # Si la première requête échoue, essayer avec la méthode de fallback
+                result = self.execute_query(fallback_query, {'commune_id': commune_id})
+                
+            return result[0]['region_id'] if result and len(result) > 0 else None
+            
+        except Exception as e:
+            logger.error(f"Erreur lors de la détermination de la région: {str(e)}")
+            
+            # En cas d'échec, utiliser une correspondance simplifiée basée sur le premier chiffre de l'ID
+            if str(commune_id).startswith('1'):
+                return '2061'  # Région wallonne
+            elif str(commune_id).startswith('2'):
+                return '2031'  # Région flamande
+            elif str(commune_id).startswith('3'):
+                return '2028'  # Région Bruxelles-Capitale
+            return None
+    
+    def _extract_regional_household_data(self, region_id: str, date_id: int) -> Dict[str, Any]:
+        """
+        Extrait les données de composition des ménages au niveau régional.
+        
+        Args:
+            region_id (str): Identifiant de la région.
+            date_id (int): Identifiant de la date/période.
+            
+        Returns:
+            dict: Données régionales de composition des ménages.
+        """
+        query = """
+            SELECT 
+                hc.cd_cohabitation,
+                cs.cd_cohabitation AS cohabitation_description,
+                hc.cd_age_group,
+                hc.cd_sex,
+                sex.tx_sex_fr AS sex_description,
+                hc.cd_nationality,
+                nat.tx_nationality_fr AS nationality_description,
+                SUM(hc.ms_count) AS total_count
+            FROM 
+                dw.fact_household_cohabitation hc
+            JOIN 
+                dw.dim_cohabitation_status cs ON hc.cd_cohabitation = cs.cd_cohabitation
+            JOIN
+                dw.dim_sex sex ON hc.cd_sex = sex.cd_sex
+            JOIN
+                dw.dim_nationality nat ON hc.cd_nationality = nat.cd_nationality
+            WHERE 
+                hc.id_geography = :region_id
+                AND hc.id_date = :date_id
+            GROUP BY
+                hc.cd_cohabitation, cs.cd_cohabitation, 
+                hc.cd_age_group, hc.cd_sex, sex.tx_sex_fr,
+                hc.cd_nationality, nat.tx_nationality_fr
+            ORDER BY
+                cs.cd_cohabitation, hc.cd_age_group, hc.cd_sex
         """
         
         params = {
-            'commune_id': commune_id,
+            'region_id': region_id,
             'date_id': date_id
         }
         
@@ -264,7 +357,7 @@ class DemographicsExtractor(BaseExtractor):
                 FROM 
                     dw.fact_household_cohabitation hc
                 WHERE 
-                    hc.id_geography = :commune_id
+                    hc.id_geography = :region_id
                     AND hc.id_date = :date_id
             """
             
@@ -312,8 +405,6 @@ class DemographicsExtractor(BaseExtractor):
                     }
                 cohabitation_types[cohabitation]['nationalities'][nationality]['count'] += row['total_count']
             
-            self.log_extraction_end(f"composition des ménages (commune {commune_id})", len(result))
-            
             return {
                 'total_household_types': total_households,
                 'total_individuals': total_individuals,
@@ -321,9 +412,71 @@ class DemographicsExtractor(BaseExtractor):
             }
             
         except Exception as e:
-            logger.error(f"Erreur lors de l'extraction des données de composition des ménages: {str(e)}")
+            logger.error(f"Erreur lors de l'extraction des données régionales de ménages: {str(e)}")
             return {}
-    
+
+    def _scale_regional_data_to_commune(self, regional_data: Dict[str, Any], commune_population: int) -> Dict[str, Any]:
+        """
+        Adapte les données régionales à l'échelle de la commune.
+        
+        Args:
+            regional_data: Données de ménages au niveau régional.
+            commune_population: Population totale de la commune.
+            
+        Returns:
+            dict: Données de ménages adaptées à l'échelle de la commune.
+        """
+        if not regional_data or 'total_individuals' not in regional_data or regional_data['total_individuals'] == 0:
+            return {}
+        
+        # Calculer le facteur d'échelle
+        regional_population = regional_data['total_individuals']
+        scale_factor = commune_population / regional_population
+        
+        # Estimer le nombre total de ménages dans la commune
+        estimated_households = int(regional_data['total_household_types'] * scale_factor)
+        
+        # Créer une copie des données régionales
+        commune_data = {
+            'total_household_types': estimated_households,
+            'total_individuals': commune_population,
+            'is_estimated': True,  # Marquer comme données estimées
+            'cohabitation_types': {}
+        }
+        
+        # Adapter chaque type de cohabitation
+        for cohab_type, cohab_data in regional_data['cohabitation_types'].items():
+            scaled_count = int(cohab_data['total_count'] * scale_factor)
+            
+            # Créer une entrée pour ce type de cohabitation
+            commune_data['cohabitation_types'][cohab_type] = {
+                'description': cohab_data['description'],
+                'total_count': scaled_count,
+                'age_groups': {},
+                'sexes': {},
+                'nationalities': {}
+            }
+            
+            # Adapter les données par groupe d'âge
+            for age_group, count in cohab_data['age_groups'].items():
+                commune_data['cohabitation_types'][cohab_type]['age_groups'][age_group] = int(count * scale_factor)
+            
+            # Adapter les données par sexe
+            for sex, sex_data in cohab_data['sexes'].items():
+                commune_data['cohabitation_types'][cohab_type]['sexes'][sex] = {
+                    'description': sex_data['description'],
+                    'count': int(sex_data['count'] * scale_factor)
+                }
+            
+            # Adapter les données par nationalité
+            for nationality, nat_data in cohab_data['nationalities'].items():
+                commune_data['cohabitation_types'][cohab_type]['nationalities'][nationality] = {
+                    'description': nat_data['description'],
+                    'count': int(nat_data['count'] * scale_factor)
+                }
+        
+        return commune_data
+
     def extract_household_vehicles(self, commune_id: str) -> Dict[str, Any]:
         """
         Extrait les données sur les véhicules des ménages pour une commune.

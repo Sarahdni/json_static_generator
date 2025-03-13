@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "commune_id": 1407,
+    "commune_name": "Anderlecht",
+    "postal_code": "21001",
+    "district": null,
+    "province": "Zone administrative de Bruxelles-Capitale",
+    "region": "Région de Bruxelles-Capitale",
+    "version": "1.0",
+    "generated_date": "2025-03-13",
+    "temporal_coverage": {
+      "current_year": 2025,
+      "historical_start": 2000,
+      "range_years": 25
+    },
+    "data_period": {
+      "real_estate_data": {
+        "current": "2024-Q4",
+        "previous_year": "2023-Q4",
+        "five_year": "2019-Q4",
+        "ten_year": "2014-Q4",
+        "fifteen_year": "2009-Q4",
+        "since_2000": "2000-Q1 à 2024-Q4",
+        "historical_range": "2000-Q1 à 2024-Q4"
+      },
+      "economic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "demographic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "tax_data": {
+        "current": "2022",
+        "previous_year": "2021",
+        "five_year": "2017",
+        "ten_year": "2012",
+        "fifteen_year": "2007",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2022"
+      },
+      "construction_data": {
+        "current": "2024-Q1",
+        "previous_year": "2023-Q1",
+        "five_year": "2019-Q1",
+        "ten_year": "2014-Q1",
+        "fifteen_year": "2009-Q1",
+        "since_2000": "2000-Q1 à 2024-Q1",
+        "historical_range": "2000-Q1 à 2024-Q1"
+      }
+    }
+  },
+  "real_estate_market": {
+    "municipality_overview": {
+      "last_period": {
+        "total_transactions": 1012,
+        "price_trends": {
+          "mean_price": 206927.2776679842,
+          "median_price": 155000.0,
+          "price_p10": 95000.0,
+          "price_p25": 121250.0,
+          "price_p75": 197000.0,
+          "price_p90": 255000.0
+        },
+        "total_surface_sqm": 64551.0,
+        "avg_surface_sqm": 63.78557312252964
+      },
+      "historical_trends": {
+        "year_over_year": {
+          "transaction_change_pct": 12.82051282051282,
+          "price_change_pct": 2.095905964776422
+        },
+        "five_year": {
+          "transaction_change_pct": -5.154639175257731,
+          "price_change_pct": 14.797363897098952
+        }
+      }
+    },
+    "by_property_type": {
+      "summary": {
+        "most_common_type": null,
+        "fastest_growing_segment": null,
+        "most_valuable_segment": null
+      },
+      "detailed_types": {}
+    },
+    "sector_analysis": {
+      "summary": {
+        "sectors_count": 0,
+        "price_disparity_index": null,
+        "hottest_sector": null,
+        "most_affordable_sector": null
+      },
+      "sectors": []
+    },
+    "building_stock": {
+      "total_buildings": 0,
+      "by_type": {},
+      "by_age": {},
+      "housing_units": {
+        "total_count": 0,
+        "units_per_building_avg": null,
+        "units_per_capita": null
+      }
+    }
+  },
+  "building_development": {
+    "permits": {},
+    "construction_activity": {}
+  },
+  "demographics": {
+    "population_overview": {
+      "total_population": 126581,
+      "population_density": null,
+      "population_trend": {
+        "one_year_growth": 0.0,
+        "five_year_growth": 0.0,
+        "forecast_growth": 0.0
+      }
+    },
+    "age_structure": {
+      "median_age": null,
+      "age_groups": {
+        "under_18": {
+          "count": 5330.400000000001,
+          "percentage": 4.211058531691171,
+          "trend": "+0,0%"
+        },
+        "18_to_35": {
+          "count": 31844.533333333336,
+          "percentage": 25.157435423431114,
+          "trend": "+0,0%"
+        },
+        "36_to_65": {
+          "count": 45208.56666666665,
+          "percentage": 35.71512838946339,
+          "trend": "+0,0%"
+        },
+        "over_65": {
+          "count": 9562.5,
+          "percentage": 7.55445129995813,
+          "trend": "+0,0%"
+        }
+      },
+      "dependency_ratio": 0.19328099713055027
+    },
+    "household_composition": {
+      "total_households": 0,
+      "average_household_size": null,
+      "household_types": {
+        "single_person": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_age": {
+            "under_35": {
+              "count": 0,
+              "percentage": 0
+            },
+            "35_to_65": {
+              "count": 0,
+              "percentage": 0
+            },
+            "over_65": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "couples_without_children": {
+          "count": 0,
+          "percentage": 0
+        },
+        "couples_with_children": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_children": {
+            "with_1_child": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_2_children": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_3_plus_children": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "single_parent": {
+          "count": 0,
+          "percentage": 0
+        }
+      },
+      "household_evolution": {
+        "trend_single_person": null,
+        "trend_family": null,
+        "trend_average_size": null
+      }
+    },
+    "cultural_diversity": {
+      "nationality_groups": {
+        "belgian": {
+          "count": 82550,
+          "percentage": 65.21515867310261
+        },
+        "eu_non_belgian": {
+          "count": 0,
+          "percentage": 0.0
+        },
+        "non_eu": {
+          "count": 44031,
+          "percentage": 34.7848413268974
+        }
+      }
+    }
+  },
+  "economic_indicators": {
+    "income_tax": {
+      "income_overview": {
+        "average_income": 26583.758985597997,
+        "median_income": 26480.50267345022,
+        "income_distribution": {
+          "low_income_pct": 25.0,
+          "middle_income_pct": 65.0,
+          "high_income_pct": 10.0
+        }
+      },
+      "tax_burden": {
+        "average_tax_rate": 17.28995448655338,
+        "municipal_tax_rate": 5.350996062466845
+      },
+      "income_sources": {
+        "professional_income_pct": 98.1660231790715,
+        "real_estate_income_pct": 1.4208176063006497,
+        "investment_income_pct": 0.27756079165109804,
+        "other_income_pct": 0.1355984229767493
+      }
+    },
+    "business_activity": {
+      "enterprise_overview": {
+        "total_enterprises": 0,
+        "net_creation": 0,
+        "creation_rate": 0,
+        "closure_rate": 0
+      },
+      "sectors": {},
+      "enterprise_size": {
+        "micro_enterprises_pct": 0,
+        "small_enterprises_pct": 0,
+        "medium_enterprises_pct": 0,
+        "large_enterprises_pct": 0
+      },
+      "foreign_investment": {
+        "foreign_enterprises_count": 0,
+        "foreign_investment_growth": "+0.0%"
+      }
+    },
+    "unemployment": {
+      "overall_rate": 0,
+      "trend_yoy": null,
+      "by_age_group": {
+        "under_25": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "25_to_50": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "over_50": {
+          "rate": 0.0,
+          "trend": null
+        }
+      }
+    }
+  },
+  "geographical_context": {
+    "mobility": {
+      "vehicle_ownership": {
+        "average_vehicles_per_household": null,
+        "households_with_no_vehicle_pct": 0.0,
+        "households_with_multiple_vehicles_pct": 0.0
+      },
+      "vehicle_distribution": {
+        "by_sector": []
+      }
+    },
+    "sectors": {
+      "statistical_sectors": {}
+    }
+  },
+  "investment_analysis": {
+    "affordability_metrics": {
+      "price_to_income_ratio": 5.830627643140036,
+      "mortgage_affordability_index": 0.23906410737970907,
+      "ownership_accessibility_score": 44.08691550692804
+    },
+    "rental_market_potential": {
+      "estimated_rental_yield": 0.045000000000000005,
+      "rental_demand_index": 0.5,
+      "rental_growth_potential": "Moderate"
+    },
+    "target_demographic_analysis": {
+      "growing_segments": [
+        {
+          "segment": "Seniors (65+)",
+          "growth_rate": 2.0,
+          "housing_preferences": "Smaller, accessible units close to amenities"
+        }
+      ],
+      "declining_segments": []
+    },
+    "market_dynamics": {
+      "supply_demand_balance": "Balanced",
+      "construction_vs_absorption_rate": 1.0,
+      "market_cycle_position": "Mid-growth phase"
+    },
+    "risk_assessment": {
+      "price_volatility": "Low",
+      "liquidity_score": 80,
+      "oversupply_risk": "Medium",
+      "economic_dependency_risk": "Low"
+    },
+    "comparative_ranking": {
+      "value_for_money_rank": 41,
+      "growth_potential_rank": 51,
+      "overall_investment_score": 54.0
+    }
+  }
+}
