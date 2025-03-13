@@ -162,23 +162,24 @@ class BaseProcessor:
             return "unknown"
             
         # Marché en hausse (prix et transactions augmentent)
-        if price_change > THRESHOLDS['high_price_growth'] and transaction_change > 0:
+        if self.is_numeric_and_greater_than(price_change, THRESHOLDS['high_price_growth']) and self.is_numeric_and_greater_than(transaction_change, 0):
             return "hot"
-        elif price_change > 0 and transaction_change > 0:
+        elif self.is_numeric_and_greater_than(price_change, 0) and self.is_numeric_and_greater_than(transaction_change, 0):
             return "warm"
             
         # Marché équilibré (prix stables)
-        elif abs(price_change) <= 2 and abs(transaction_change) <= 5:
+        elif abs(self.safe_numeric_value(price_change)) <= 2 and abs(self.safe_numeric_value(transaction_change)) <= 5:
             return "balanced"
             
         # Marché en baisse (prix baissent)
-        elif price_change < THRESHOLDS['low_price_growth'] and transaction_change < 0:
+        elif self.is_numeric_and_less_than(price_change, THRESHOLDS['low_price_growth']) and self.is_numeric_and_less_than(transaction_change, 0):
             return "cold"
-        elif price_change < 0 and transaction_change < 0:
+        elif self.is_numeric_and_less_than(price_change, 0) and self.is_numeric_and_less_than(transaction_change, 0):
             return "cooling"
             
         # Marché instable (tendances contradictoires)
-        elif (price_change > 0 and transaction_change < 0) or (price_change < 0 and transaction_change > 0):
+        elif ((self.is_numeric_and_greater_than(price_change, 0) and self.is_numeric_and_less_than(transaction_change, 0)) or
+            (self.is_numeric_and_less_than(price_change, 0) and self.is_numeric_and_greater_than(transaction_change, 0))):
             return "volatile"
             
         # Autres cas
