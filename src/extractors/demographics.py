@@ -75,31 +75,17 @@ class DemographicsExtractor(BaseExtractor):
     
     def extract_population_data_for_period(self, commune_id: str, date_id: int) -> Dict[str, Any]:
         """
-        Extrait les données de population pour une période spécifique.
-        
-        Args:
-            commune_id (str): Identifiant de la commune.
-            date_id (int): Identifiant de la date/période.
-            
-        Returns:
-            dict: Données extraites pour cette période.
+        Extrait les données de population par âge exact pour une période spécifique.
         """
-        # Requête pour obtenir les totaux par sexe et âge
+        # Requête pour obtenir les données par âge exact et sexe
         query = """
             SELECT 
-                ps.id_age,
-                age.cd_age_group AS age_group,
-                ag.cd_age_min AS min_age,
-                ag.cd_age_max AS max_age,
+                ps.id_age AS exact_age,
                 ps.cd_sex,
                 sex.tx_sex_fr AS sex_description,
                 SUM(ps.ms_population) AS total_population
             FROM 
                 dw.fact_population_structure ps
-            JOIN 
-                dw.dim_age age ON ps.id_age = age.cd_age
-            JOIN
-                dw.dim_age_group ag ON age.cd_age_group = ag.cd_age_group
             JOIN
                 dw.dim_sex sex ON ps.cd_sex = sex.cd_sex
             WHERE 
@@ -107,9 +93,9 @@ class DemographicsExtractor(BaseExtractor):
                 AND ps.id_date = :date_id
                 AND ps.fl_current = TRUE
             GROUP BY
-                ps.id_age, age.cd_age_group, ag.cd_age_min, ag.cd_age_max, ps.cd_sex, sex.tx_sex_fr
+                ps.id_age, ps.cd_sex, sex.tx_sex_fr
             ORDER BY
-                ag.cd_age_min, ps.cd_sex
+                ps.id_age, ps.cd_sex
         """
         
         params = {
@@ -135,15 +121,15 @@ class DemographicsExtractor(BaseExtractor):
             total_result = self.execute_query(total_query, params)
             total_population = total_result[0]['total_population'] if total_result else 0
             
-            # Requête pour obtenir les totaux par nationalité
+            # Requête pour obtenir les totaux par nationalité (inchangée)
             nationality_query = """
                 SELECT 
                     ps.cd_nationality,
                     nat.tx_nationality_fr AS nationality_description,
                     CASE 
                         WHEN ps.cd_nationality = 'BE' THEN 'BE'
-                        WHEN ps.cd_nationality = 'NOT_BE' THEN 'OTHER'  -- Simplification
-                        ELSE 'OTHER'  -- Par sécurité pour d'éventuelles valeurs non prévues
+                        WHEN nat.tx_nationality_fr LIKE '%européenne%' OR ps.cd_nationality IN ('FR', 'DE', 'IT', 'NL', 'ES', 'PT', 'GR', 'PL') THEN 'EU'
+                        ELSE 'OTHER'
                     END AS nationality_group,
                     SUM(ps.ms_population) AS total_population
                 FROM 
@@ -162,25 +148,22 @@ class DemographicsExtractor(BaseExtractor):
             
             nationality_result = self.execute_query(nationality_query, params)
             
-            # Organisation des données par groupe d'âge et sexe
-            age_groups = {}
+            # Organisation des données par âge exact et sexe
+            ages_data = {}
             for row in result:
-                age_group = row['id_age']
-                if age_group not in age_groups:
-                    age_groups[age_group] = {
-                        'description': row['age_group'],
-                        'min_age': row['min_age'],
-                        'max_age': row['max_age'],
+                exact_age = row['exact_age']
+                if exact_age not in ages_data:
+                    ages_data[exact_age] = {
                         'sexes': {}
                     }
                 
                 sex = row['cd_sex']
-                age_groups[age_group]['sexes'][sex] = {
+                ages_data[exact_age]['sexes'][sex] = {
                     'description': row['sex_description'],
                     'population': row['total_population']
                 }
             
-            # Organisation des données par nationalité
+            # Organisation des données par nationalité (inchangée)
             nationalities = {}
             for row in nationality_result:
                 nationality = row['cd_nationality']
@@ -192,7 +175,7 @@ class DemographicsExtractor(BaseExtractor):
             
             return {
                 'total_population': total_population,
-                'age_groups': age_groups,
+                'ages_data': ages_data,  # Nouvelle structure par âge exact
                 'nationalities': nationalities
             }
             

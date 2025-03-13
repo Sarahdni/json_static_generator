@@ -100,7 +100,7 @@ class DemographicsProcessor(BaseProcessor):
         
     def process_age_structure(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Traite les données de structure d'âge de la population.
+        Traite les données de structure d'âge de la population en utilisant les âges exacts.
         
         Args:
             data: Données brutes de la structure de population.
@@ -115,8 +115,8 @@ class DemographicsProcessor(BaseProcessor):
         current_data = data['current_data']
         previous_year_data = data.get('previous_year_data', {})
         
-        # Extraire les données par groupe d'âge et calculer l'âge médian
-        age_groups_raw = current_data.get('age_groups', {})
+        # Extraire les données par âge exact
+        ages_data_current = current_data.get('ages_data', {})
         total_population = current_data.get('total_population', 0) or 1  # Éviter division par zéro
         
         # Préparation des groupes d'âge agrégés selon notre mapping
@@ -128,38 +128,31 @@ class DemographicsProcessor(BaseProcessor):
                 "trend": None
             }
             
-        # Remplir les données de groupes d'âge agrégés
-        for db_age_id, db_age_data in age_groups_raw.items():
-            min_age = db_age_data.get('min_age')
-            max_age = db_age_data.get('max_age')
-            
-            if min_age is None or max_age is None:
+        # Agréger les données par nos groupes d'âge personnalisés
+        for exact_age_str, age_data in ages_data_current.items():
+            try:
+                exact_age = int(exact_age_str)
+                
+                # Calculer la population totale pour cet âge (hommes + femmes)
+                age_population = 0
+                for sex_data in age_data.get('sexes', {}).values():
+                    age_population += sex_data.get('population', 0)
+                    
+                # Déterminer à quel groupe d'âge cette population appartient
+                for age_group_key, age_range in self.age_group_mapping.items():
+                    if exact_age >= age_range['min'] and exact_age <= age_range['max']:
+                        age_groups[age_group_key]["count"] += age_population
+                        break
+            except (ValueError, TypeError):
                 continue
                 
-            # Calculer la population totale pour ce groupe d'âge (hommes + femmes)
-            age_group_population = 0
-            for sex_data in db_age_data.get('sexes', {}).values():
-                age_group_population += sex_data.get('population', 0)
-                
-            # Déterminer dans quel groupe agrégé cela va
-            for age_group_key, age_range in self.age_group_mapping.items():
-                if (min_age >= age_range['min'] and min_age <= age_range['max']) or \
-                   (max_age >= age_range['min'] and max_age <= age_range['max']) or \
-                   (min_age <= age_range['min'] and max_age >= age_range['max']):
-                    # Cas de chevauchement, répartir proportionnellement
-                    overlap_years = min(max_age, age_range['max']) - max(min_age, age_range['min']) + 1
-                    total_years = max_age - min_age + 1
-                    proportion = overlap_years / total_years
-                    
-                    age_groups[age_group_key]["count"] += age_group_population * proportion
-                    
         # Calculer les pourcentages
         for age_group in age_groups.values():
             age_group["percentage"] = (age_group["count"] / total_population) * 100
             
         # Calculer les tendances avec l'année précédente
         if previous_year_data:
-            prev_age_groups_raw = previous_year_data.get('age_groups', {})
+            ages_data_prev = previous_year_data.get('ages_data', {})
             prev_total_population = previous_year_data.get('total_population', 0) or 1
             
             # Préparation des groupes d'âge précédents
@@ -167,40 +160,44 @@ class DemographicsProcessor(BaseProcessor):
             for age_group_key in self.age_group_mapping.keys():
                 prev_age_groups[age_group_key] = 0
                 
-            # Remplir les données des groupes d'âge précédents
-            for db_age_id, db_age_data in prev_age_groups_raw.items():
-                min_age = db_age_data.get('min_age')
-                max_age = db_age_data.get('max_age')
-                
-                if min_age is None or max_age is None:
+            # Agréger les données précédentes par nos groupes d'âge
+            for exact_age_str, age_data in ages_data_prev.items():
+                try:
+                    exact_age = int(exact_age_str)
+                    
+                    # Calculer la population totale pour cet âge (hommes + femmes)
+                    age_population = 0
+                    for sex_data in age_data.get('sexes', {}).values():
+                        age_population += sex_data.get('population', 0)
+                        
+                    # Déterminer à quel groupe d'âge cette population appartient
+                    for age_group_key, age_range in self.age_group_mapping.items():
+                        if exact_age >= age_range['min'] and exact_age <= age_range['max']:
+                            prev_age_groups[age_group_key] += age_population
+                            break
+                except (ValueError, TypeError):
                     continue
                     
-                # Calculer la population totale pour ce groupe d'âge (hommes + femmes)
-                age_group_population = 0
-                for sex_data in db_age_data.get('sexes', {}).values():
-                    age_group_population += sex_data.get('population', 0)
-                    
-                # Déterminer dans quel groupe agrégé cela va
-                for age_group_key, age_range in self.age_group_mapping.items():
-                    if (min_age >= age_range['min'] and min_age <= age_range['max']) or \
-                      (max_age >= age_range['min'] and max_age <= age_range['max']) or \
-                      (min_age <= age_range['min'] and max_age >= age_range['max']):
-                        # Cas de chevauchement, répartir proportionnellement
-                        overlap_years = min(max_age, age_range['max']) - max(min_age, age_range['min']) + 1
-                        total_years = max_age - min_age + 1
-                        proportion = overlap_years / total_years
-                        
-                        prev_age_groups[age_group_key] += age_group_population * proportion
-                        
             # Calculer les tendances (variation de pourcentage)
             for age_group_key, age_group in age_groups.items():
                 prev_count = prev_age_groups[age_group_key]
-                prev_percentage = (prev_count / prev_total_population) * 100
                 
-                change, change_formatted = self.calculate_change(age_group["percentage"], prev_percentage)
-                age_group["trend"] = change_formatted
-                
-        # Calculer le ratio de dépendance ((jeunes + seniors) / adultes en âge de travailler)
+                if prev_count > 0 and prev_total_population > 0:
+                    prev_percentage = (prev_count / prev_total_population) * 100
+                    
+                    # Calculer la tendance avec une précision améliorée
+                    change, change_formatted = self.calculate_change(age_group["percentage"], prev_percentage)
+                    
+                    # S'assurer qu'une petite tendance est toujours visible
+                    if change and abs(change) < 0.1 and change != 0:
+                        sign = "+" if change > 0 else "-"
+                        change_formatted = f"{sign}0,1%"
+                    
+                    age_group["trend"] = change_formatted
+                else:
+                    age_group["trend"] = "N/A"
+                    
+        # Calculer le ratio de dépendance
         dependent_population = age_groups["under_18"]["count"] + age_groups["over_65"]["count"]
         working_age_population = age_groups["18_to_35"]["count"] + age_groups["36_to_65"]["count"]
         
@@ -208,16 +205,53 @@ class DemographicsProcessor(BaseProcessor):
         if working_age_population > 0:
             dependency_ratio = dependent_population / working_age_population
         
-        # Calculer l'âge médian approximatif
-        # Cette approximation n'est pas exacte sans les données détaillées par âge individuel
-        median_age = None
+        # Estimons aussi l'âge médian
+        median_age = self.calculate_median_age(ages_data_current, total_population)
         
         return {
             "median_age": median_age,
             "age_groups": age_groups,
             "dependency_ratio": dependency_ratio
         }
-        
+
+    def calculate_median_age(self, ages_data: Dict[str, Any], total_population: int) -> Optional[float]:
+        """
+        Calcule l'âge médian à partir des données d'âge exact.
+        """
+        if not ages_data or total_population <= 0:
+            return None
+            
+        try:
+            # Créer une liste de tuples (âge, population)
+            age_distribution = []
+            for age_str, age_data in ages_data.items():
+                try:
+                    age = int(age_str)
+                    population = sum(sex_data.get('population', 0) for sex_data in age_data.get('sexes', {}).values())
+                    age_distribution.append((age, population))
+                except (ValueError, TypeError):
+                    continue
+                    
+            if not age_distribution:
+                return None
+                
+            # Trier par âge
+            age_distribution.sort(key=lambda x: x[0])
+            
+            # Calculer la population cumulée pour trouver l'âge médian
+            cumulative_population = 0
+            median_position = total_population / 2
+            
+            for age, population in age_distribution:
+                cumulative_population += population
+                if cumulative_population >= median_position:
+                    return age
+                    
+            return None
+        except Exception as e:
+            logger.error(f"Erreur lors du calcul de l'âge médian: {str(e)}")
+            return None
+
     def process_household_composition(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Traite les données de composition des ménages.
