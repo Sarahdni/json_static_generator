@@ -87,7 +87,7 @@ class RealEstateExtractor(BaseExtractor):
         query = """
             SELECT 
                 rem.cd_building_type,
-                bt.ds_building_type AS building_type_description,
+                bt.tx_building_type_fr AS building_type_description,
                 rem.ms_total_transactions,
                 rem.ms_total_price,
                 rem.ms_total_surface,
@@ -107,7 +107,7 @@ class RealEstateExtractor(BaseExtractor):
                 AND rem.id_date = :date_id
                 AND rem.fl_confidential = FALSE
             ORDER BY
-                bt.ds_building_type
+                bt.tx_building_type_fr
         """
         
         params = {
@@ -151,9 +151,9 @@ class RealEstateExtractor(BaseExtractor):
         query = """
             SELECT 
                 res.id_sector_sk,
-                ss.nm_sector,
+                ss.tx_sector_fr AS nm_sector,
                 res.cd_residential_type,
-                rt.ds_residential_type AS residential_type_description,
+                rt.tx_residential_type_fr AS residential_type_description,
                 res.nb_transactions,
                 res.ms_price_p10,
                 res.ms_price_p25,
@@ -174,7 +174,7 @@ class RealEstateExtractor(BaseExtractor):
                 AND res.id_date = :date_id
                 AND res.fl_confidential = FALSE
             ORDER BY
-                ss.nm_sector, rt.ds_residential_type
+                ss.tx_sector_fr, rt.tx_residential_type_fr
         """
         
         params = {
@@ -261,9 +261,9 @@ class RealEstateExtractor(BaseExtractor):
         query = """
             SELECT 
                 bs.cd_building_type,
-                bt.ds_building_type AS building_type_description,
+                bt.tx_building_type_fr AS building_type_description,
                 bs.cd_statistic_type,
-                bst.ds_statistic_type AS statistic_type_description,
+                bst.tx_statistic_type_fr AS statistic_type_description,
                 bs.ms_building_count
             FROM 
                 dw.fact_building_stock bs
@@ -275,7 +275,7 @@ class RealEstateExtractor(BaseExtractor):
                 bs.id_geography = :commune_id
                 AND bs.id_date = :date_id
             ORDER BY
-                bt.ds_building_type, bst.ds_statistic_type
+                bt.tx_building_type_fr, bst.tx_statistic_type_fr
         """
         
         params = {

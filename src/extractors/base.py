@@ -71,7 +71,7 @@ class BaseExtractor:
             # Utiliser engine directement pour exécuter
             with self.get_db_session() as session:
                 result = session.execute(sql, params or {})
-                return [dict(row) for row in result]
+                return [dict(zip(result.keys(), row)) for row in result]
         except Exception as e:
             self.logger.error(f"Erreur lors de l'exécution de la requête: {str(e)}")
             self.logger.debug(f"Requête: {query}")
@@ -89,31 +89,26 @@ class BaseExtractor:
             list: Liste de dictionnaires contenant les informations des communes.
         """
         try:
-            # Construire la requête de base
+            # Construire une requête simple
             query = """
                 SELECT 
-                    g.id_geography AS commune_id,
-                    g.tx_name_fr AS commune_name,
-                    g.cd_lau AS postal_code,
-                    g.cd_parent,
-                    g.cd_refnis
-                FROM 
-                    dw.dim_geography g
-                WHERE 
-                    g.cd_level = 4  -- niveau commune
-                    AND g.fl_current = TRUE
+                    id_geography AS commune_id,
+                    tx_name_fr AS commune_name,
+                    cd_lau AS postal_code,
+                    'Région wallonne' AS region,
+                    'Non spécifiée' AS province
+                FROM dw.dim_geography
+                WHERE cd_level = 4
+                    AND fl_current = true
             """
             
-            params = {}
-            
-            # Ajouter le filtre pour une commune spécifique si nécessaire
+            # Ajouter le filtre pour la commune spécifique si nécessaire
             if self.commune_id:
-                query += " AND g.id_geography = :commune_id"
-                params['commune_id'] = self.commune_id
+                query += f" AND id_geography = {self.commune_id}"
             
-            # Exécuter la requête
+            # Exécuter la requête en mode texte brut
             from sqlalchemy import text
-            result = session.execute(text(query), params)
+            result = session.execute(text(query))
             
             # Convertir les résultats en liste de dictionnaires
             communes = []
@@ -122,66 +117,15 @@ class BaseExtractor:
                     'commune_id': row.commune_id,
                     'commune_name': row.commune_name,
                     'postal_code': row.postal_code,
-                    'cd_parent': row.cd_parent,
-                    'cd_refnis': row.cd_refnis,
-                    'province': 'Non spécifiée',  # Sera complété plus tard si possible
-                    'region': 'Région wallonne'   # Par défaut pour ce projet
+                    'region': row.region,
+                    'province': row.province
                 }
                 communes.append(commune)
             
-            # Si une province est spécifiée, filtrer les communes par province
-            if self.province and not self.commune_id:
-                # Obtenir les codes des provinces
-                province_query = """
-                    SELECT 
-                        p.id_geography AS province_id,
-                        p.tx_name_fr AS province_name,
-                        p.cd_refnis
-                    FROM 
-                        dw.dim_geography p
-                    WHERE 
-                        p.cd_level = 2  -- niveau province
-                        AND p.fl_current = TRUE
-                        AND LOWER(p.tx_name_fr) LIKE :province_pattern
-                """
-                
-                # Utiliser une correspondance partielle pour plus de flexibilité
-                province_pattern = f"%{self.province.lower()}%"
-                province_params = {'province_pattern': province_pattern}
-                
-                province_result = session.execute(text(province_query), province_params)
-                province_info = None
-                
-                for prow in province_result:
-                    province_info = {
-                        'province_id': prow.province_id,
-                        'province_name': prow.province_name,
-                        'cd_refnis': prow.cd_refnis
-                    }
-                    break  # Prendre la première correspondance
-                
-                if province_info:
-                    # Filtrer les communes par le code parent correspondant à la province
-                    # Note: ceci est une approximation car le lien exact dépend de la structure de vos données
-                    filtered_communes = []
-                    province_code = province_info['cd_refnis']
-                    province_prefix = province_code[:3] if province_code else ""
-                    
-                    for commune in communes:
-                        commune_parent = commune['cd_parent']
-                        if commune_parent and commune_parent.startswith(province_prefix):
-                            commune['province'] = province_info['province_name']
-                            filtered_communes.append(commune)
-                    
-                    communes = filtered_communes
-                else:
-                    self.logger.warning(f"Province '{self.province}' non trouvée dans la base de données")
-            
             return communes
-            
         except Exception as e:
             self.logger.error(f"Erreur lors de la récupération des communes: {str(e)}")
-            return []
+            raise
             
     def get_date_id(self, session, period, type_data):
         """

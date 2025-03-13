@@ -88,11 +88,11 @@ class DemographicsExtractor(BaseExtractor):
         query = """
             SELECT 
                 ps.id_age,
-                age.ds_age AS age_group,
+                age.tx_age_fr AS age_group,
                 age.nb_min_age AS min_age,
                 age.nb_max_age AS max_age,
                 ps.cd_sex,
-                sex.ds_sex AS sex_description,
+                sex.tx_sex_fr AS sex_description,
                 SUM(ps.ms_population) AS total_population
             FROM 
                 dw.fact_population_structure ps
@@ -105,7 +105,7 @@ class DemographicsExtractor(BaseExtractor):
                 AND ps.id_date = :date_id
                 AND ps.fl_current = TRUE
             GROUP BY
-                ps.id_age, age.ds_age, age.nb_min_age, age.nb_max_age, ps.cd_sex, sex.ds_sex
+                ps.id_age, age.tx_age_fr, age.nb_min_age, age.nb_max_age, ps.cd_sex, sex.tx_sex_fr
             ORDER BY
                 age.nb_min_age, ps.cd_sex
         """
@@ -137,7 +137,7 @@ class DemographicsExtractor(BaseExtractor):
             nationality_query = """
                 SELECT 
                     ps.cd_nationality,
-                    nat.ds_nationality AS nationality_description,
+                    nat.tx_nationality_fr AS nationality_description,
                     nat.cd_country_group AS nationality_group,
                     SUM(ps.ms_population) AS total_population
                 FROM 
@@ -149,7 +149,7 @@ class DemographicsExtractor(BaseExtractor):
                     AND ps.id_date = :date_id
                     AND ps.fl_current = TRUE
                 GROUP BY
-                    ps.cd_nationality, nat.ds_nationality, nat.cd_country_group
+                    ps.cd_nationality, nat.tx_nationality_fr, nat.cd_country_group
                 ORDER BY
                     nat.cd_country_group, SUM(ps.ms_population) DESC
             """
@@ -216,12 +216,12 @@ class DemographicsExtractor(BaseExtractor):
         query = """
             SELECT 
                 hc.cd_cohabitation,
-                cs.ds_cohabitation AS cohabitation_description,
+                cs.tx_cohabitation_fr AS cohabitation_description,
                 hc.cd_age_group,
                 hc.cd_sex,
-                sex.ds_sex AS sex_description,
+                sex.tx_sex_fr AS sex_description,
                 hc.cd_nationality,
-                nat.ds_nationality AS nationality_description,
+                nat.tx_nationality_fr AS nationality_description,
                 SUM(hc.ms_count) AS total_count
             FROM 
                 dw.fact_household_cohabitation hc
@@ -235,11 +235,11 @@ class DemographicsExtractor(BaseExtractor):
                 hc.id_geography = :commune_id
                 AND hc.id_date = :date_id
             GROUP BY
-                hc.cd_cohabitation, cs.ds_cohabitation, 
-                hc.cd_age_group, hc.cd_sex, sex.ds_sex,
-                hc.cd_nationality, nat.ds_nationality
+                hc.cd_cohabitation, cs.tx_cohabitation_fr, 
+                hc.cd_age_group, hc.cd_sex, sex.tx_sex_fr,
+                hc.cd_nationality, nat.tx_nationality_fr
             ORDER BY
-                cs.ds_cohabitation, hc.cd_age_group, hc.cd_sex
+                cs.tx_cohabitation_fr, hc.cd_age_group, hc.cd_sex
         """
         
         params = {
@@ -341,7 +341,7 @@ class DemographicsExtractor(BaseExtractor):
         query = """
             SELECT 
                 hv.id_sector_sk,
-                ss.nm_sector AS sector_name,
+                ss.tx_sector_fr AS sector_name,
                 hv.ms_households,
                 hv.ms_vehicles,
                 hv.rt_vehicles_per_household
@@ -354,7 +354,7 @@ class DemographicsExtractor(BaseExtractor):
                 AND hv.id_date = :date_id
                 AND hv.fl_current = TRUE
             ORDER BY
-                ss.nm_sector
+                ss.tx_sector_fr
         """
         
         params = {

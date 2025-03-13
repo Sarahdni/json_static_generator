@@ -322,7 +322,7 @@ class EconomicsExtractor(BaseExtractor):
             sex_query = """
                 SELECT 
                     u.cd_sex,
-                    s.ds_sex AS sex_description,
+                    s.tx_sex_fr AS sex_description,
                     u.ms_unemployment_rate
                 FROM 
                     dw.fact_unemployment u
@@ -344,7 +344,7 @@ class EconomicsExtractor(BaseExtractor):
             age_query = """
                 SELECT 
                     u.cd_age_group,
-                    ag.ds_age_group AS age_group_description,
+                    ag.tx_age_group_fr AS age_group_description,
                     u.ms_unemployment_rate
                 FROM 
                     dw.fact_unemployment u
@@ -368,7 +368,7 @@ class EconomicsExtractor(BaseExtractor):
             education_query = """
                 SELECT 
                     u.cd_education_level,
-                    e.ds_education_level AS education_description,
+                    e.tx_education_level_fr AS education_description,
                     u.ms_unemployment_rate
                 FROM 
                     dw.fact_unemployment u
@@ -517,7 +517,7 @@ class EconomicsExtractor(BaseExtractor):
             sectors_query = """
                 SELECT 
                     nace.cd_economic_activity,
-                    ea.ds_economic_activity AS activity_description,
+                    ea.tx_economic_activity_fr AS activity_description,
                     SUM(nace.ms_num_entreprises) AS sector_enterprises,
                     SUM(nace.ms_num_starts) AS sector_starts,
                     SUM(nace.ms_num_stops) AS sector_stops,
@@ -532,7 +532,7 @@ class EconomicsExtractor(BaseExtractor):
                     AND nace.id_date = :date_id
                     AND nace.cd_nace_level = 1
                 GROUP BY
-                    nace.cd_economic_activity, ea.ds_economic_activity, nace.cd_year
+                    nace.cd_economic_activity, ea.tx_economic_activity_fr, nace.cd_year
                 ORDER BY
                     SUM(nace.ms_num_entreprises) DESC
             """
@@ -543,7 +543,7 @@ class EconomicsExtractor(BaseExtractor):
             size_query = """
                 SELECT 
                     nace.cd_size_class,
-                    es.ds_size_class AS size_description,
+                    es.tx_size_class_fr AS size_description,
                     SUM(nace.ms_num_entreprises) AS size_enterprises,
                     es.nb_min_employees,
                     es.nb_max_employees
@@ -555,7 +555,7 @@ class EconomicsExtractor(BaseExtractor):
                     nace.id_geography = :commune_id
                     AND nace.id_date = :date_id
                 GROUP BY
-                    nace.cd_size_class, es.ds_size_class, es.nb_min_employees, es.nb_max_employees
+                    nace.cd_size_class, es.tx_size_class_fr, es.nb_min_employees, es.nb_max_employees
                 ORDER BY
                     es.nb_min_employees
             """

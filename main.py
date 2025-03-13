@@ -13,6 +13,7 @@ from src.generators.municipality import MunicipalityGenerator
 from src.config.settings import LOG_LEVEL, LOG_FORMAT, LOG_FILE, DEFAULT_PERIOD, OUTPUT_DIR
 from src.utils.json_utils import get_files_by_province, find_extreme_values, merge_json_files
 
+
 # Configuration du logging
 def setup_logging(log_to_file: bool = True):
     """Configure le système de logging."""
