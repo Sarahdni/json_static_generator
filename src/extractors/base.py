@@ -212,3 +212,57 @@ class BaseExtractor:
         self.logger.info(f"Extraction terminée: {count} entrées de {data_type} extraites" + 
                         (f" pour la commune {self.commune_id}" if self.commune_id else "") +
                         (f" dans la province {self.province}" if self.province else ""))
+        
+    def is_numeric_and_greater_than(self, value, threshold):
+        """
+        Vérifie si une valeur est supérieure à un seuil, en gérant le cas où la valeur est None.
+        
+        Args:
+            value: Valeur à comparer
+            threshold: Seuil de comparaison
+            
+        Returns:
+            bool: True si la valeur est > threshold, False sinon (y compris si None)
+        """
+        if value is None:
+            return False
+        try:
+            return float(value) > threshold
+        except (TypeError, ValueError):
+            return False
+            
+    def is_numeric_and_less_than(self, value, threshold):
+        """
+        Vérifie si une valeur est inférieure à un seuil, en gérant le cas où la valeur est None.
+        
+        Args:
+            value: Valeur à comparer
+            threshold: Seuil de comparaison
+            
+        Returns:
+            bool: True si la valeur est < threshold, False sinon (y compris si None)
+        """
+        if value is None:
+            return False
+        try:
+            return float(value) < threshold
+        except (TypeError, ValueError):
+            return False
+            
+    def safe_numeric_value(self, value, default=0):
+        """
+        Retourne la valeur si elle est numérique, sinon retourne la valeur par défaut.
+        
+        Args:
+            value: Valeur à vérifier
+            default: Valeur par défaut à retourner si non numérique
+            
+        Returns:
+            float ou int: La valeur convertie ou la valeur par défaut
+        """
+        if value is None:
+            return default
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return default
