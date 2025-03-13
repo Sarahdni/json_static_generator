@@ -210,6 +210,7 @@ class BaseProcessor:
             "commune_id": commune_data.get('commune_id'),
             "commune_name": commune_data.get('commune_name'),
             "postal_code": commune_data.get('postal_code'),
+            "district": commune_data.get('district'),
             "province": commune_data.get('province'),
             "region": commune_data.get('region'),
             "version": "1.0",

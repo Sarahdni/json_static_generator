@@ -64,11 +64,12 @@ class GeographyExtractor(BaseExtractor):
             commune_info = result[0]
             
             # Chercher la province associée à cette commune
-            province_info = self.find_province_for_commune(commune_info['cd_parent'])
+            admin_hierarchy = self.find_administrative_hierarchy(commune_info['cd_parent'])
             
-            # Compléter les informations avec les données de la province
-            commune_info['province'] = province_info.get('province_name', 'Non spécifiée')
-            commune_info['region'] = province_info.get('region_name', 'Non spécifiée')
+            # Compléter les informations avec la hiérarchie administrative
+            commune_info['district'] = admin_hierarchy.get('district_name', 'Arrondissement inconnu')
+            commune_info['province'] = admin_hierarchy.get('province_name', 'Province inconnue')
+            commune_info['region'] = admin_hierarchy.get('region_name', 'Région inconnue')
             
             # Extraire les informations spatiales (superficie)
             spatial_info = self.extract_commune_spatial_data(commune_id)
@@ -97,59 +98,102 @@ class GeographyExtractor(BaseExtractor):
             logger.error(f"Erreur lors de l'extraction des informations géographiques: {str(e)}")
             return {}       
             
-    def find_province_for_commune(self, parent_code: str) -> Dict[str, Any]:
+    def find_administrative_hierarchy(self, parent_code: str) -> Dict[str, Any]:
         """
-        Trouve la province associée à une commune à partir de son code parent.
+        Trouve l'arrondissement, la province et la région associés à une commune.
         
         Args:
-            parent_code (str): Code parent de la commune (format BE2xx).
+            parent_code (str): Code parent de la commune (code de l'arrondissement).
             
         Returns:
-            dict: Informations sur la province.
+            dict: Informations sur l'arrondissement, la province et la région.
         """
         if not parent_code:
             return {}
             
         try:
-            # Essayer de trouver la province directement par son code NUTS
+            # Requête pour remonter la hiérarchie complète: commune -> arrondissement -> province -> région
             query = """
+                WITH district AS (
+                    SELECT 
+                        d.id_geography AS district_id,
+                        d.tx_name_fr AS district_name,
+                        d.cd_lau AS district_code,
+                        d.cd_parent AS province_code
+                    FROM 
+                        dw.dim_geography d
+                    WHERE 
+                        d.cd_lau = :parent_code
+                        AND d.cd_level = 3  -- niveau arrondissement
+                        AND d.fl_current = TRUE
+                ),
+                province AS (
+                    SELECT 
+                        d.district_id,
+                        d.district_name,
+                        d.district_code,
+                        p.id_geography AS province_id,
+                        p.tx_name_fr AS province_name,
+                        p.cd_lau AS province_code,
+                        p.cd_parent AS region_code
+                    FROM 
+                        district d
+                    JOIN 
+                        dw.dim_geography p ON p.cd_lau = d.province_code
+                    WHERE 
+                        p.cd_level = 2  -- niveau province
+                        AND p.fl_current = TRUE
+                )
                 SELECT 
-                    g.id_geography AS province_id,
-                    g.tx_name_fr AS province_name,
-                    r.tx_name_fr AS region_name
+                    p.district_id,
+                    p.district_name,
+                    p.district_code,
+                    p.province_id,
+                    p.province_name,
+                    p.province_code,
+                    r.id_geography AS region_id,
+                    r.tx_name_fr AS region_name,
+                    r.cd_lau AS region_code
                 FROM 
-                    dw.dim_geography g
+                    province p
                 LEFT JOIN 
-                    dw.dim_geography r ON g.cd_parent = r.cd_refnis
+                    dw.dim_geography r ON r.cd_lau = p.region_code
                 WHERE 
-                    g.cd_level = 2  -- niveau province
-                    AND g.fl_current = TRUE
-                    AND (g.cd_refnis = :parent_code OR g.cd_refnis LIKE :parent_pattern)
-                LIMIT 1
+                    r.cd_level = 1  -- niveau région
+                    AND r.fl_current = TRUE
             """
             
-            # Si le parent_code est au format BE2xx, on cherche aussi des variantes
-            parent_pattern = parent_code[:3] + '%'
-            
-            params = {
-                'parent_code': parent_code,
-                'parent_pattern': parent_pattern
-            }
-            
+            params = {'parent_code': parent_code}
             result = self.execute_query(query, params)
             
             if result and len(result) > 0:
-                return result[0]
-                
-            # Si on ne trouve pas la province, on retourne des infos par défaut
+                return {
+                    'district_id': result[0]['district_id'],
+                    'district_name': result[0]['district_name'],
+                    'district_code': result[0]['district_code'],
+                    'province_id': result[0]['province_id'],
+                    'province_name': result[0]['province_name'],
+                    'province_code': result[0]['province_code'],
+                    'region_id': result[0]['region_id'],
+                    'region_name': result[0]['region_name'],
+                    'region_code': result[0]['region_code']
+                }
+            
+            # Si on ne trouve pas la hiérarchie complète, on retourne des infos par défaut
             return {
+                'district_id': None,
+                'district_name': 'Arrondissement inconnu',
+                'district_code': parent_code,
                 'province_id': None,
                 'province_name': 'Province inconnue',
-                'region_name': 'Région inconnue'
+                'province_code': None,
+                'region_id': None,
+                'region_name': 'Région inconnue',
+                'region_code': None
             }
-            
+        
         except Exception as e:
-            logger.error(f"Erreur lors de la recherche de la province: {str(e)}")
+            self.logger.error(f"Erreur lors de la recherche de la hiérarchie administrative: {str(e)}")
             return {}
             
     def extract_commune_spatial_data(self, commune_id: str) -> Dict[str, Any]:
