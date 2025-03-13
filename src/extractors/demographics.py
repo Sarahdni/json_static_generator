@@ -140,7 +140,11 @@ class DemographicsExtractor(BaseExtractor):
                 SELECT 
                     ps.cd_nationality,
                     nat.tx_nationality_fr AS nationality_description,
-                    nat.cd_country_group AS nationality_group,
+                    CASE 
+                        WHEN ps.cd_nationality = 'BE' THEN 'BE'
+                        WHEN ps.cd_nationality = 'NOT_BE' THEN 'OTHER'  -- Simplification
+                        ELSE 'OTHER'  -- Par sécurité pour d'éventuelles valeurs non prévues
+                    END AS nationality_group,
                     SUM(ps.ms_population) AS total_population
                 FROM 
                     dw.fact_population_structure ps
@@ -151,9 +155,9 @@ class DemographicsExtractor(BaseExtractor):
                     AND ps.id_date = :date_id
                     AND ps.fl_current = TRUE
                 GROUP BY
-                    ps.cd_nationality, nat.tx_nationality_fr, nat.cd_country_group
+                    ps.cd_nationality, nat.tx_nationality_fr
                 ORDER BY
-                    nat.cd_country_group, SUM(ps.ms_population) DESC
+                    SUM(ps.ms_population) DESC
             """
             
             nationality_result = self.execute_query(nationality_query, params)
