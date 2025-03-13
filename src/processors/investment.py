@@ -44,58 +44,66 @@ class InvestmentProcessor(BaseProcessor):
         Returns:
             dict: Section affordability_metrics du JSON.
         """
-        # Extraire les prix immobiliers
-        median_price = 0
-        if real_estate_data and 'municipality_overview' in real_estate_data:
-            price_trends = real_estate_data['municipality_overview'].get('last_period', {}).get('price_trends', {})
-            median_price = price_trends.get('median_price', 0)
-            
-        # Extraire les revenus
-        avg_income = 0
-        if economic_data and 'income_tax' in economic_data:
-            income_overview = economic_data['income_tax'].get('income_overview', {})
-            avg_income = income_overview.get('average_income', 0)
-            
-        # Calculer le ratio prix/revenu
-        price_to_income_ratio = None
-        if avg_income and avg_income > 0:  # Vérification de None et 0
-            price_to_income_ratio = median_price / avg_income
-            
-        # Calculer l'indice d'accessibilité hypothécaire
-        mortgage_affordability_index = None
-        if avg_income and avg_income > 0 and median_price and median_price > 0:  # Vérifications supplémentaires
-            # Calcul simplifié basé sur la mensualité d'un prêt immobilier
-            down_payment = median_price * self.affordability_params['down_payment_percentage']
-            loan_amount = median_price - down_payment
-            monthly_income = avg_income / 12
-            
-            # Calculer le paiement mensuel approximatif (formule simplifiée)
-            r = self.affordability_params['mortgage_rate'] / 12
-            n = self.affordability_params['mortgage_term_years'] * 12
-            monthly_payment = loan_amount * (r * (1 + r) ** n) / ((1 + r) ** n - 1)
-            
-            # Calculer le ratio de service de la dette
-            debt_service_ratio = monthly_payment / monthly_income
-            
-            # Calculer l'indice d'accessibilité (1 = parfaitement abordable, 0 = inaccessible)
-            mortgage_affordability_index = 1 - (debt_service_ratio / self.affordability_params['debt_service_ratio_max'])
-            mortgage_affordability_index = max(0, min(1, mortgage_affordability_index))
-            
-        # Calculer un score d'accessibilité à la propriété
-        ownership_accessibility_score = None
-        if price_to_income_ratio is not None and mortgage_affordability_index is not None:  # Vérification si None
-            # Score sur 100, combinant le ratio prix/revenu et l'indice d'accessibilité hypothécaire
-            pti_component = max(0, 100 - (price_to_income_ratio - 3) * 15)  # Moins élevé est meilleur
-            mai_component = mortgage_affordability_index * 100
-            
-            ownership_accessibility_score = (pti_component * 0.6) + (mai_component * 0.4)
-            ownership_accessibility_score = max(0, min(100, ownership_accessibility_score))
-            
-        return {
-            "price_to_income_ratio": price_to_income_ratio,
-            "mortgage_affordability_index": mortgage_affordability_index,
-            "ownership_accessibility_score": ownership_accessibility_score
-        }
+        try:
+            # Extraire les prix immobiliers
+            median_price = 0
+            if real_estate_data and 'municipality_overview' in real_estate_data:
+                price_trends = real_estate_data['municipality_overview'].get('last_period', {}).get('price_trends', {})
+                median_price = self.safe_numeric_value(price_trends.get('median_price', 0))
+                
+            # Extraire les revenus
+            avg_income = 0
+            if economic_data and 'income_tax' in economic_data:
+                income_overview = economic_data['income_tax'].get('income_overview', {})
+                avg_income = self.safe_numeric_value(income_overview.get('average_income', 0))
+                
+            # Calculer le ratio prix/revenu
+            price_to_income_ratio = None
+            if self.is_numeric_and_greater_than(avg_income, 0):
+                price_to_income_ratio = median_price / avg_income
+                
+            # Calculer l'indice d'accessibilité hypothécaire
+            mortgage_affordability_index = None
+            if self.is_numeric_and_greater_than(avg_income, 0) and self.is_numeric_and_greater_than(median_price, 0):
+                # Calcul simplifié basé sur la mensualité d'un prêt immobilier
+                down_payment = median_price * self.affordability_params['down_payment_percentage']
+                loan_amount = median_price - down_payment
+                monthly_income = avg_income / 12
+                
+                # Calculer le paiement mensuel approximatif (formule simplifiée)
+                r = self.affordability_params['mortgage_rate'] / 12
+                n = self.affordability_params['mortgage_term_years'] * 12
+                monthly_payment = loan_amount * (r * (1 + r) ** n) / ((1 + r) ** n - 1)
+                
+                # Calculer le ratio de service de la dette
+                debt_service_ratio = monthly_payment / monthly_income
+                
+                # Calculer l'indice d'accessibilité (1 = parfaitement abordable, 0 = inaccessible)
+                mortgage_affordability_index = 1 - (debt_service_ratio / self.affordability_params['debt_service_ratio_max'])
+                mortgage_affordability_index = max(0, min(1, mortgage_affordability_index))
+                
+            # Calculer un score d'accessibilité à la propriété
+            ownership_accessibility_score = None
+            if price_to_income_ratio is not None and mortgage_affordability_index is not None:
+                # Score sur 100, combinant le ratio prix/revenu et l'indice d'accessibilité hypothécaire
+                pti_component = max(0, 100 - (price_to_income_ratio - 3) * 15)  # Moins élevé est meilleur
+                mai_component = mortgage_affordability_index * 100
+                
+                ownership_accessibility_score = (pti_component * 0.6) + (mai_component * 0.4)
+                ownership_accessibility_score = max(0, min(100, ownership_accessibility_score))
+                
+            return {
+                "price_to_income_ratio": price_to_income_ratio,
+                "mortgage_affordability_index": mortgage_affordability_index,
+                "ownership_accessibility_score": ownership_accessibility_score
+            }
+        except Exception as e:
+            logger.error(f"Erreur dans process_affordability_metrics: {str(e)}")
+            return {
+                "price_to_income_ratio": None,
+                "mortgage_affordability_index": None,
+                "ownership_accessibility_score": None
+            }
         
     def process_rental_market_potential(self, real_estate_data: Dict[str, Any], economic_data: Dict[str, Any], demographic_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
@@ -585,8 +593,8 @@ class InvestmentProcessor(BaseProcessor):
         }
         
     def process_data(self, real_estate_data: Dict[str, Any], economic_data: Dict[str, Any], 
-                   demographic_data: Optional[Dict[str, Any]] = None, 
-                   building_dev_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+               demographic_data: Optional[Dict[str, Any]] = None, 
+               building_dev_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
         Traite les données complètes pour l'analyse d'investissement.
         
@@ -599,25 +607,67 @@ class InvestmentProcessor(BaseProcessor):
         Returns:
             dict: Section investment_analysis du JSON.
         """
-        # Vérifier que les dictionnaires existent pour éviter les erreurs
-        real_estate_data = real_estate_data or {}
-        economic_data = economic_data or {}
-        demographic_data = demographic_data or {}
-        building_dev_data = building_dev_data or {}
-        
-        result = {
-            "affordability_metrics": self.process_affordability_metrics(real_estate_data, economic_data),
-            "rental_market_potential": self.process_rental_market_potential(real_estate_data, economic_data, demographic_data),
-            "target_demographic_analysis": self.process_target_demographic_analysis(demographic_data, real_estate_data),
-            "market_dynamics": self.process_market_dynamics(real_estate_data, building_dev_data, demographic_data),
-            "risk_assessment": self.process_risk_assessment(real_estate_data, economic_data, building_dev_data),
-            "comparative_ranking": self.process_comparative_ranking(real_estate_data, economic_data, demographic_data)
-        }
-        
-        return result
-        
-        
-   
-        
-    
- 
+        try:
+            # Vérifier que les dictionnaires existent pour éviter les erreurs
+            real_estate_data = real_estate_data or {}
+            economic_data = economic_data or {}
+            demographic_data = demographic_data or {}
+            building_dev_data = building_dev_data or {}
+            
+            # Traiter chaque section avec protection contre les erreurs
+            try:
+                affordability_metrics = self.process_affordability_metrics(real_estate_data, economic_data)
+            except Exception as e:
+                logger.error(f"Erreur dans process_affordability_metrics: {str(e)}")
+                affordability_metrics = {}
+                
+            try:
+                rental_market_potential = self.process_rental_market_potential(real_estate_data, economic_data, demographic_data)
+            except Exception as e:
+                logger.error(f"Erreur dans process_rental_market_potential: {str(e)}")
+                rental_market_potential = {}
+                
+            try:
+                target_demographic_analysis = self.process_target_demographic_analysis(demographic_data, real_estate_data)
+            except Exception as e:
+                logger.error(f"Erreur dans process_target_demographic_analysis: {str(e)}")
+                target_demographic_analysis = {}
+                
+            try:
+                market_dynamics = self.process_market_dynamics(real_estate_data, building_dev_data, demographic_data)
+            except Exception as e:
+                logger.error(f"Erreur dans process_market_dynamics: {str(e)}")
+                market_dynamics = {}
+                
+            try:
+                risk_assessment = self.process_risk_assessment(real_estate_data, economic_data, building_dev_data)
+            except Exception as e:
+                logger.error(f"Erreur dans process_risk_assessment: {str(e)}")
+                risk_assessment = {}
+                
+            try:
+                comparative_ranking = self.process_comparative_ranking(real_estate_data, economic_data, demographic_data)
+            except Exception as e:
+                logger.error(f"Erreur dans process_comparative_ranking: {str(e)}")
+                comparative_ranking = {}
+            
+            result = {
+                "affordability_metrics": affordability_metrics,
+                "rental_market_potential": rental_market_potential,
+                "target_demographic_analysis": target_demographic_analysis,
+                "market_dynamics": market_dynamics,
+                "risk_assessment": risk_assessment,
+                "comparative_ranking": comparative_ranking
+            }
+            
+            return result
+        except Exception as e:
+            logger.error(f"Erreur globale dans InvestmentProcessor.process_data: {str(e)}")
+            return {
+                "affordability_metrics": {},
+                "rental_market_potential": {},
+                "target_demographic_analysis": {},
+                "market_dynamics": {},
+                "risk_assessment": {},
+                "comparative_ranking": {}
+            }
