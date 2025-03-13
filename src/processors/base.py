@@ -197,25 +197,74 @@ class BaseProcessor:
         
     def create_metadata(self, commune_data: Dict[str, Any], data_periods: Dict[str, str]) -> Dict[str, Any]:
         """
-        Crée la section de métadonnées du JSON.
-        
-        Args:
-            commune_data: Données de la commune.
-            data_periods: Périodes de données par type.
-            
-        Returns:
-            dict: Section metadata du JSON.
+        Crée la section de métadonnées du JSON avec une temporalité étendue.
         """
+        current_year = datetime.now().year
+        
+        # Créer une structure enrichie pour les périodes de données
+        enriched_periods = {
+            "real_estate_data": {
+                "current": data_periods.get('real_estate_data', "2024-Q4"),
+                "previous_year": self._get_previous_period(data_periods.get('real_estate_data', "2024-Q4"), 4),  # -4 trimestres
+                "five_year": self._get_previous_period(data_periods.get('real_estate_data', "2024-Q4"), 20),     # -20 trimestres
+                "ten_year": self._get_previous_period(data_periods.get('real_estate_data', "2024-Q4"), 40),      # -40 trimestres
+                "fifteen_year": self._get_previous_period(data_periods.get('real_estate_data', "2024-Q4"), 60),  # -60 trimestres
+                "since_2000": f"2000-Q1 à {data_periods.get('real_estate_data', '2024-Q4')}",
+                "historical_range": f"2000-Q1 à {data_periods.get('real_estate_data', '2024-Q4')}"
+            },
+            "economic_data": {
+                "current": data_periods.get('economic_data', "2023"),
+                "previous_year": str(int(data_periods.get('economic_data', "2023")) - 1),
+                "five_year": str(int(data_periods.get('economic_data', "2023")) - 5),
+                "ten_year": str(int(data_periods.get('economic_data', "2023")) - 10),
+                "fifteen_year": str(int(data_periods.get('economic_data', "2023")) - 15),
+                "since_2000": "2000",
+                "historical_range": f"2000 à {data_periods.get('economic_data', '2023')}"
+            },
+            "demographic_data": {
+                "current": data_periods.get('demographic_data', "2023"),
+                "previous_year": str(int(data_periods.get('demographic_data', "2023")) - 1),
+                "five_year": str(int(data_periods.get('demographic_data', "2023")) - 5),
+                "ten_year": str(int(data_periods.get('demographic_data', "2023")) - 10),
+                "fifteen_year": str(int(data_periods.get('demographic_data', "2023")) - 15),
+                "since_2000": "2000",
+                "historical_range": f"2000 à {data_periods.get('demographic_data', '2023')}"
+            },
+            "tax_data": {
+                "current": data_periods.get('tax_data', "2022"),
+                "previous_year": str(int(data_periods.get('tax_data', "2022")) - 1),
+                "five_year": str(int(data_periods.get('tax_data', "2022")) - 5),
+                "ten_year": str(int(data_periods.get('tax_data', "2022")) - 10),
+                "fifteen_year": str(int(data_periods.get('tax_data', "2022")) - 15),
+                "since_2000": "2000",
+                "historical_range": f"2000 à {data_periods.get('tax_data', '2022')}"
+            },
+            "construction_data": {
+                "current": data_periods.get('construction_data', "2024-Q1"),
+                "previous_year": self._get_previous_period(data_periods.get('construction_data', "2024-Q1"), 4),  # -4 trimestres
+                "five_year": self._get_previous_period(data_periods.get('construction_data', "2024-Q1"), 20),     # -20 trimestres
+                "ten_year": self._get_previous_period(data_periods.get('construction_data', "2024-Q1"), 40),      # -40 trimestres
+                "fifteen_year": self._get_previous_period(data_periods.get('construction_data', "2024-Q1"), 60),  # -60 trimestres
+                "since_2000": f"2000-Q1 à {data_periods.get('construction_data', '2024-Q1')}",
+                "historical_range": f"2000-Q1 à {data_periods.get('construction_data', '2024-Q1')}"
+            }
+        }
+        
         return {
             "commune_id": commune_data.get('commune_id'),
             "commune_name": commune_data.get('commune_name'),
             "postal_code": commune_data.get('postal_code'),
-            "district": commune_data.get('district'),
+            "district": commune_data.get('district'),  
             "province": commune_data.get('province'),
             "region": commune_data.get('region'),
             "version": "1.0",
             "generated_date": self.get_current_date(),
-            "data_period": data_periods
+            "temporal_coverage": {
+                "current_year": current_year,
+                "historical_start": 2000,
+                "range_years": current_year - 2000
+            },
+            "data_period": enriched_periods
         }
 
     def is_numeric_and_greater_than(self, value, threshold):
