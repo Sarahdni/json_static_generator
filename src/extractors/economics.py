@@ -226,15 +226,27 @@ class EconomicsExtractor(BaseExtractor):
     
     def extract_unemployment(self, commune_id: str) -> Dict[str, Any]:
         """
-        Extrait les données de chômage pour une commune.
+        Extrait les données de chômage pour une commune, sa province et sa région.
         
         Args:
             commune_id (str): Identifiant de la commune.
             
         Returns:
-            dict: Données extraites de fact_unemployment.
+            dict: Données de chômage à différents niveaux géographiques.
         """
         self.log_extraction_start(f"chômage (commune {commune_id})")
+        
+        # Obtenir les identifiants de la hiérarchie géographique
+        hierarchy = self._get_geographical_hierarchy(commune_id)
+        if not hierarchy:
+            logger.warning(f"Impossible de déterminer la hiérarchie géographique pour la commune {commune_id}")
+            return {}
+        
+        commune_name = hierarchy.get('commune_name', 'Inconnue')
+        province_id = hierarchy.get('province_id')
+        province_name = hierarchy.get('province_name', 'Inconnue')
+        region_id = hierarchy.get('region_id')
+        region_name = hierarchy.get('region_name', 'Inconnue')
         
         # Obtenir l'ID de date pour la période spécifiée
         with self.get_db_session() as session:
@@ -243,188 +255,336 @@ class EconomicsExtractor(BaseExtractor):
                 logger.warning(f"Aucune date trouvée pour la période {self.data_period}")
                 return {}
             
-            # Récupération des données actuelles
-            current_data = self.extract_unemployment_data_for_period(commune_id, date_id)
+            # Récupération des données pour l'année en cours
+            current_data = {
+                'commune': self._extract_unemployment_data_if_available(int(commune_id), date_id),
+                'province': self._extract_unemployment_data_if_available(province_id, date_id) if province_id else {},
+                'region': self._extract_unemployment_data_if_available(region_id, date_id) if region_id else {}
+            }
+            
+            # Ajout des noms
+            if current_data['commune']:
+                current_data['commune']['name'] = commune_name
+            if current_data['province']:
+                current_data['province']['name'] = province_name
+            if current_data['region']:
+                current_data['region']['name'] = region_name
             
             # Récupération des données de l'année précédente pour les comparaisons
             previous_year = str(int(self.data_period) - 1)
             previous_year_date_id = self.get_date_id(session, previous_year, 'year')
             previous_year_data = {}
             if previous_year_date_id:
-                previous_year_data = self.extract_unemployment_data_for_period(commune_id, previous_year_date_id)
+                previous_year_data = {
+                    'commune': self._extract_unemployment_data_if_available(int(commune_id), previous_year_date_id),
+                    'province': self._extract_unemployment_data_if_available(province_id, previous_year_date_id) if province_id else {},
+                    'region': self._extract_unemployment_data_if_available(region_id, previous_year_date_id) if region_id else {}
+                }
             
             # Récupération des données d'il y a 3 ans pour les comparaisons à moyen terme
             three_year_ago = str(int(self.data_period) - 3)
             three_year_date_id = self.get_date_id(session, three_year_ago, 'year')
             three_year_data = {}
             if three_year_date_id:
-                three_year_data = self.extract_unemployment_data_for_period(commune_id, three_year_date_id)
+                three_year_data = {
+                    'commune': self._extract_unemployment_data_if_available(int(commune_id), three_year_date_id),
+                    'province': self._extract_unemployment_data_if_available(province_id, three_year_date_id) if province_id else {},
+                    'region': self._extract_unemployment_data_if_available(region_id, three_year_date_id) if region_id else {}
+                }
         
         # Construction du résultat avec les données actuelles et historiques
         result = {
             "current_data": current_data,
             "previous_year_data": previous_year_data,
-            "three_year_data": three_year_data
+            "three_year_data": three_year_data,
+            "hierarchy": {
+                "commune_id": commune_id,
+                "commune_name": commune_name,
+                "province_id": province_id,
+                "province_name": province_name,
+                "region_id": region_id,
+                "region_name": region_name
+            }
         }
         
         self.log_extraction_end(f"chômage (commune {commune_id})", 
-                              len(current_data.keys()))
+                            sum(1 for k, v in current_data.items() if v))
         
         return result
-    
-    def extract_unemployment_data_for_period(self, commune_id: str, date_id: int) -> Dict[str, Any]:
+
+    def _get_geographical_hierarchy(self, commune_id: str) -> Dict[str, Any]:
         """
-        Extrait les données de chômage pour une période spécifique.
-        
-        Args:
-            commune_id (str): Identifiant de la commune.
-            date_id (int): Identifiant de la date/période.
+        Détermine la hiérarchie géographique complète pour une commune.
+        """
+        try:
+            query = """
+                WITH commune AS (
+                    SELECT 
+                        id_geography AS commune_id,
+                        tx_name_fr AS commune_name,
+                        cd_parent AS arr_id
+                    FROM 
+                        dw.dim_geography
+                    WHERE 
+                        id_geography = :commune_id
+                        AND fl_current = TRUE
+                ),
+                arrondissement AS (
+                    SELECT 
+                        commune.*,
+                        arr.tx_name_fr AS arr_name,
+                        arr.cd_parent AS province_code
+                    FROM 
+                        commune
+                    LEFT JOIN 
+                        dw.dim_geography arr ON arr.cd_lau = commune.arr_id AND arr.fl_current = TRUE
+                ),
+                province AS (
+                    SELECT 
+                        arrondissement.*,
+                        p.id_geography AS province_id,
+                        p.tx_name_fr AS province_name,
+                        p.cd_parent AS region_code
+                    FROM 
+                        arrondissement
+                    LEFT JOIN 
+                        dw.dim_geography p ON p.cd_lau = arrondissement.province_code AND p.fl_current = TRUE
+                ),
+                region AS (
+                    SELECT 
+                        province.*,
+                        r.id_geography AS region_id,
+                        r.tx_name_fr AS region_name
+                    FROM 
+                        province
+                    LEFT JOIN 
+                        dw.dim_geography r ON r.cd_lau = province.region_code AND r.fl_current = TRUE
+                )
+                SELECT * FROM region
+            """
             
-        Returns:
-            dict: Données extraites pour cette période.
+            params = {'commune_id': int(commune_id)}
+            result = self.execute_query(query, params)
+            
+            if result and len(result) > 0:
+                return result[0]
+            
+            # Si la requête complexe échoue, essayer une approche plus simple
+            return self._get_simplified_hierarchy(commune_id)
+        except Exception as e:
+            logger.error(f"Erreur lors de la détermination de la hiérarchie géographique: {str(e)}")
+            return self._get_simplified_hierarchy(commune_id)
+
+    def _get_simplified_hierarchy(self, commune_id: str) -> Dict[str, Any]:
         """
-        # Requête pour obtenir le taux de chômage global
-        total_query = """
+        Version simplifiée pour obtenir la hiérarchie géographique.
+        Utilise une approche basée sur les codes REFNIS ou LAU.
+        """
+        try:
+            # D'abord récupérer les infos de la commune
+            commune_query = """
+                SELECT 
+                    id_geography AS commune_id,
+                    tx_name_fr AS commune_name,
+                    cd_refnis
+                FROM 
+                    dw.dim_geography
+                WHERE 
+                    id_geography = :commune_id
+                    AND fl_current = TRUE
+            """
+            
+            commune_result = self.execute_query(commune_query, {'commune_id': int(commune_id)})
+            if not commune_result or len(commune_result) == 0:
+                return {}
+                
+            commune_info = commune_result[0]
+            cd_refnis = commune_info.get('cd_refnis', '')
+            
+            # Déterminer la région et la province basées sur le code REFNIS
+            if cd_refnis:
+                first_digit = cd_refnis[0] if len(cd_refnis) > 0 else '0'
+                
+                if first_digit == '1':
+                    region_id = 2061  # Région wallonne
+                    
+                    # Déterminer la province basée sur les deux premiers chiffres
+                    province_code = cd_refnis[:2] if len(cd_refnis) > 1 else '10'
+                    province_info = self._get_walloon_province(province_code)
+                    
+                    return {
+                        'commune_id': commune_info['commune_id'],
+                        'commune_name': commune_info['commune_name'],
+                        'province_id': province_info.get('id'),
+                        'province_name': province_info.get('name', 'Province inconnue'),
+                        'region_id': region_id,
+                        'region_name': 'Région wallonne'
+                    }
+                elif first_digit == '2':
+                    region_id = 2031  # Région flamande
+                    
+                    # Déterminer la province basée sur les deux premiers chiffres
+                    province_code = cd_refnis[:2] if len(cd_refnis) > 1 else '20'
+                    province_info = self._get_flemish_province(province_code)
+                    
+                    return {
+                        'commune_id': commune_info['commune_id'],
+                        'commune_name': commune_info['commune_name'],
+                        'province_id': province_info.get('id'),
+                        'province_name': province_info.get('name', 'Province inconnue'),
+                        'region_id': region_id,
+                        'region_name': 'Région flamande'
+                    }
+                elif first_digit == '3':
+                    return {
+                        'commune_id': commune_info['commune_id'],
+                        'commune_name': commune_info['commune_name'],
+                        'province_id': 2028,  # Zone administrative de Bruxelles-Capitale
+                        'province_name': 'Zone administrative de Bruxelles-Capitale',
+                        'region_id': 2028,
+                        'region_name': 'Région de Bruxelles-Capitale'
+                    }
+            
+            # Si on n'a pas pu déterminer la hiérarchie
+            return {
+                'commune_id': commune_info['commune_id'],
+                'commune_name': commune_info['commune_name']
+            }
+        except Exception as e:
+            logger.error(f"Erreur lors de la détermination simplifiée de la hiérarchie: {str(e)}")
+            return {}
+
+    def _get_walloon_province(self, province_code: str) -> Dict[str, Any]:
+        """Retourne l'ID et le nom de la province wallonne basés sur le code REFNIS."""
+        provinces = {
+            '10': {'id': 1, 'name': 'Province de Brabant wallon'},
+            '13': {'id': 2, 'name': 'Province de Hainaut'},
+            '15': {'id': 3, 'name': 'Province de Liège'},
+            '16': {'id': 4, 'name': 'Province de Luxembourg'},
+            '17': {'id': 5, 'name': 'Province de Namur'}
+        }
+        return provinces.get(province_code, {'id': None, 'name': 'Province inconnue'})
+
+    def _get_flemish_province(self, province_code: str) -> Dict[str, Any]:
+        """Retourne l'ID et le nom de la province flamande basés sur le code REFNIS."""
+        provinces = {
+            '20': {'id': 6, 'name': 'Province d\'Anvers'},
+            '21': {'id': 7, 'name': 'Province de Brabant flamand'},
+            '23': {'id': 8, 'name': 'Province de Flandre occidentale'},
+            '24': {'id': 9, 'name': 'Province de Flandre orientale'},
+            '26': {'id': 10, 'name': 'Province de Limbourg'}
+        }
+        return provinces.get(province_code, {'id': None, 'name': 'Province inconnue'})
+
+    def _extract_unemployment_data_if_available(self, entity_id: int, date_id: int) -> Dict[str, Any]:
+        """
+        Tente d'extraire les données de chômage pour une entité géographique.
+        Retourne un dictionnaire vide si aucune donnée n'est disponible.
+        """
+        if not entity_id:
+            return {}
+            
+        query = """
             SELECT 
                 u.ms_unemployment_rate,
-                d.cd_year
+                d.cd_year,
+                u.cd_unemp_type
             FROM 
                 dw.fact_unemployment u
             JOIN
                 dw.dim_date d ON u.id_date = d.id_date
             WHERE 
-                u.id_geography = :commune_id
+                u.id_geography = :entity_id
                 AND u.id_date = :date_id
                 AND u.fl_total_sex = TRUE
                 AND u.fl_total_age = TRUE
                 AND u.fl_total_education = TRUE
                 AND u.fl_valid = TRUE
-                AND u.cd_unemp_type = 'TOTAL'
+            ORDER BY
+                CASE WHEN u.cd_unemp_type = 'NORMAL' THEN 1
+                    WHEN u.cd_unemp_type = 'LONG_TERM' THEN 2
+                    ELSE 3 END
+            LIMIT 1
         """
         
-        params = {
-            'commune_id': commune_id,
-            'date_id': date_id
-        }
+        params = {'entity_id': entity_id, 'date_id': date_id}
         
         try:
-            total_result = self.execute_query(total_query, params)
+            result = self.execute_query(query, params)
             
-            if not total_result or len(total_result) == 0:
-                logger.warning(f"Aucune donnée de chômage global trouvée pour la commune {commune_id} et la période {date_id}")
+            if not result or len(result) == 0:
                 return {}
+                
+            data = result[0]
+            overall_rate = data['ms_unemployment_rate'] * 100 if data['ms_unemployment_rate'] else 0
+            year = data['cd_year']
+            unemp_type = data['cd_unemp_type']
             
-            total_data = total_result[0]
-            overall_rate = total_data['ms_unemployment_rate'] * 100 if total_data['ms_unemployment_rate'] else 0
-            year = total_data['cd_year']
-            
-            # Requête pour obtenir le taux de chômage par sexe
-            sex_query = """
-                SELECT 
-                    u.cd_sex,
-                    s.tx_sex_fr AS sex_description,
-                    u.ms_unemployment_rate
-                FROM 
-                    dw.fact_unemployment u
-                JOIN
-                    dw.dim_sex s ON u.cd_sex = s.cd_sex
-                WHERE 
-                    u.id_geography = :commune_id
-                    AND u.id_date = :date_id
-                    AND u.fl_total_age = TRUE
-                    AND u.fl_total_education = TRUE
-                    AND u.fl_valid = TRUE
-                    AND u.cd_unemp_type = 'TOTAL'
-                    AND u.fl_total_sex = FALSE
-            """
-            
-            sex_result = self.execute_query(sex_query, params)
-            
-            # Requête pour obtenir le taux de chômage par groupe d'âge
-            age_query = """
-                SELECT 
-                    u.cd_age_group,
-                    ag.tx_age_group_fr AS age_group_description,
-                    u.ms_unemployment_rate
-                FROM 
-                    dw.fact_unemployment u
-                JOIN
-                    dw.dim_age_group ag ON u.cd_age_group = ag.cd_age_group
-                WHERE 
-                    u.id_geography = :commune_id
-                    AND u.id_date = :date_id
-                    AND u.fl_total_sex = TRUE
-                    AND u.fl_total_education = TRUE
-                    AND u.fl_valid = TRUE
-                    AND u.cd_unemp_type = 'TOTAL'
-                    AND u.fl_total_age = FALSE
-                ORDER BY
-                    ag.nb_min_age
-            """
-            
-            age_result = self.execute_query(age_query, params)
-            
-            # Requête pour obtenir le taux de chômage par niveau d'éducation
-            education_query = """
-                SELECT 
-                    u.cd_education_level,
-                    e.tx_education_level_fr AS education_description,
-                    u.ms_unemployment_rate
-                FROM 
-                    dw.fact_unemployment u
-                JOIN
-                    dw.dim_education_level e ON u.cd_education_level = e.cd_education_level
-                WHERE 
-                    u.id_geography = :commune_id
-                    AND u.id_date = :date_id
-                    AND u.fl_total_sex = TRUE
-                    AND u.fl_total_age = TRUE
-                    AND u.fl_valid = TRUE
-                    AND u.cd_unemp_type = 'TOTAL'
-                    AND u.fl_total_education = FALSE
-                ORDER BY
-                    u.ms_unemployment_rate DESC
-            """
-            
-            education_result = self.execute_query(education_query, params)
-            
-            # Organisation des données par sexe
-            by_sex = {}
-            for row in sex_result:
-                sex = row['cd_sex']
-                by_sex[sex] = {
-                    'description': row['sex_description'],
-                    'rate': row['ms_unemployment_rate'] * 100 if row['ms_unemployment_rate'] else 0
-                }
-            
-            # Organisation des données par groupe d'âge
-            by_age_group = {}
-            for row in age_result:
-                age_group = row['cd_age_group']
-                by_age_group[age_group] = {
-                    'description': row['age_group_description'],
-                    'rate': row['ms_unemployment_rate'] * 100 if row['ms_unemployment_rate'] else 0
-                }
-            
-            # Organisation des données par niveau d'éducation
-            by_education = {}
-            for row in education_result:
-                education = row['cd_education_level']
-                by_education[education] = {
-                    'description': row['education_description'],
-                    'rate': row['ms_unemployment_rate'] * 100 if row['ms_unemployment_rate'] else 0
-                }
+            # Récupérer les données par groupe d'âge
+            by_age_group = self._extract_unemployment_by_age(entity_id, date_id, unemp_type)
             
             return {
                 'year': year,
                 'overall_rate': overall_rate,
-                'by_sex': by_sex,
-                'by_age_group': by_age_group,
-                'by_education': by_education
+                'unemployment_type': unemp_type,
+                'by_age_group': by_age_group
+            }
+        except Exception as e:
+            logger.error(f"Erreur lors de l'extraction des données de chômage pour l'entité {entity_id}: {str(e)}")
+            return {}
+
+    def _extract_unemployment_by_age(self, entity_id: int, date_id: int, unemp_type: str) -> Dict[str, Any]:
+        """Extrait les données de chômage par groupe d'âge."""
+        query = """
+            SELECT 
+                u.cd_age_group,
+                ag.tx_age_group_fr AS age_group_description,
+                ag.nb_min_age,
+                u.ms_unemployment_rate
+            FROM 
+                dw.fact_unemployment u
+            JOIN
+                dw.dim_age_group ag ON u.cd_age_group = ag.cd_age_group
+            WHERE 
+                u.id_geography = :entity_id
+                AND u.id_date = :date_id
+                AND u.fl_total_sex = TRUE
+                AND u.fl_total_education = TRUE
+                AND u.fl_valid = TRUE
+                AND u.cd_unemp_type = :unemp_type
+                AND u.fl_total_age = FALSE
+            ORDER BY
+                ag.nb_min_age
+        """
+        
+        params = {'entity_id': entity_id, 'date_id': date_id, 'unemp_type': unemp_type}
+        
+        try:
+            result = self.execute_query(query, params)
+            
+            by_age_group = {
+                "under_25": {"rate": None, "trend": None},
+                "25_to_50": {"rate": None, "trend": None},
+                "over_50": {"rate": None, "trend": None}
             }
             
+            for row in result:
+                age_group = row['cd_age_group']
+                min_age = row['nb_min_age']
+                rate = row['ms_unemployment_rate'] * 100 if row['ms_unemployment_rate'] else None
+                
+                # Mapper vers nos catégories standard
+                if min_age is not None:
+                    if min_age < 25:
+                        by_age_group["under_25"]["rate"] = rate
+                    elif min_age < 50:
+                        by_age_group["25_to_50"]["rate"] = rate
+                    else:
+                        by_age_group["over_50"]["rate"] = rate
+                        
+            return by_age_group
         except Exception as e:
-            logger.error(f"Erreur lors de l'extraction des données de chômage: {str(e)}")
+            logger.error(f"Erreur lors de l'extraction des données par âge: {str(e)}")
             return {}
     
     def extract_business_activity(self, commune_id: str) -> Dict[str, Any]:
