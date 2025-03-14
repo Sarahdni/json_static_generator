@@ -261,11 +261,7 @@
           "count": 81959,
           "percentage": 65.53312277615639
         },
-        "eu_non_belgian": {
-          "count": 0,
-          "percentage": 0.0
-        },
-        "non_eu": {
+        "foreign": {
           "count": 43106,
           "percentage": 34.4668772238436
         }

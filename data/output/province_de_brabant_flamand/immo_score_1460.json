@@ -1,0 +1,613 @@
+{
+  "metadata": {
+    "commune_id": 1460,
+    "commune_name": "Affligem",
+    "postal_code": "23105",
+    "district": null,
+    "province": "Province de Brabant flamand",
+    "region": "Région flamande",
+    "version": "1.0",
+    "generated_date": "2025-03-14",
+    "temporal_coverage": {
+      "current_year": 2025,
+      "historical_start": 2000,
+      "range_years": 25
+    },
+    "data_period": {
+      "real_estate_data": {
+        "current": "2024-Q4",
+        "previous_year": "2023-Q4",
+        "five_year": "2019-Q4",
+        "ten_year": "2014-Q4",
+        "fifteen_year": "2009-Q4",
+        "since_2000": "2000-Q1 à 2024-Q4",
+        "historical_range": "2000-Q1 à 2024-Q4"
+      },
+      "economic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "demographic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "tax_data": {
+        "current": "2022",
+        "previous_year": "2021",
+        "five_year": "2017",
+        "ten_year": "2012",
+        "fifteen_year": "2007",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2022"
+      },
+      "construction_data": {
+        "current": "2024-Q1",
+        "previous_year": "2023-Q1",
+        "five_year": "2019-Q1",
+        "ten_year": "2014-Q1",
+        "fifteen_year": "2009-Q1",
+        "since_2000": "2000-Q1 à 2024-Q1",
+        "historical_range": "2000-Q1 à 2024-Q1"
+      }
+    }
+  },
+  "real_estate_market": {
+    "municipality_overview": {
+      "last_period": {
+        "total_transactions": 118,
+        "price_trends": {
+          "mean_price": 269720.6101694915,
+          "median_price": 239000.0,
+          "price_p10": 160000.0,
+          "price_p25": 190000.0,
+          "price_p75": 305000.0,
+          "price_p90": 340000.0
+        },
+        "total_surface_sqm": 66462.0,
+        "avg_surface_sqm": 563.2372881355932
+      },
+      "historical_trends": {
+        "year_over_year": {
+          "transaction_change_pct": -12.592592592592592,
+          "price_change_pct": 3.2727536808256126
+        },
+        "five_year": {
+          "transaction_change_pct": -34.806629834254146,
+          "price_change_pct": 19.6136087169236
+        }
+      }
+    },
+    "by_property_type": {
+      "summary": {
+        "most_common_type": null,
+        "fastest_growing_segment": null,
+        "most_valuable_segment": null
+      },
+      "detailed_types": {}
+    },
+    "sector_analysis": {
+      "summary": {
+        "sectors_count": 0,
+        "price_disparity_index": null,
+        "hottest_sector": null,
+        "most_affordable_sector": null
+      },
+      "sectors": []
+    },
+    "building_stock": {
+      "total_buildings": 0,
+      "by_type": {},
+      "by_age": {},
+      "housing_units": {
+        "total_count": 0,
+        "units_per_building_avg": null,
+        "units_per_capita": null
+      }
+    }
+  },
+  "building_development": {
+    "permits": {
+      "summary": {
+        "total_permits_ytd": 0,
+        "trend_yoy": null,
+        "residential_ratio": 0
+      },
+      "counts": {
+        "residential": {
+          "new_construction": {
+            "buildings": 0,
+            "dwellings": 0,
+            "houses": 0,
+            "apartments": 0
+          },
+          "renovation": {
+            "buildings": 0,
+            "dwellings": 0
+          }
+        },
+        "non_residential": {
+          "new_construction": {
+            "buildings": 0
+          },
+          "renovation": {
+            "buildings": 0
+          }
+        }
+      },
+      "surface": {
+        "residential_new_construction_sqm": 0,
+        "avg_dwelling_size_sqm": 0,
+        "trend_yoy": null
+      },
+      "volume": {
+        "non_residential_new_construction_cubic_m": 0,
+        "trend_yoy": null
+      }
+    },
+    "construction_activity": {
+      "construction_intensity_index": 0.5,
+      "development_phase": "Stable",
+      "supply_pipeline": {
+        "residential_units_coming": 0.0,
+        "estimated_completion_timeframe": "18 months",
+        "impact_on_supply": "Low"
+      }
+    }
+  },
+  "demographics": {
+    "population_overview": {
+      "total_population": 13556,
+      "population_density": null,
+      "population_trend": {
+        "one_year_growth": 0.6683499183127878,
+        "five_year_growth": 2.502835538752363,
+        "forecast_growth": 0.5005671077504725
+      }
+    },
+    "age_structure": {
+      "median_age": 43,
+      "age_groups": {
+        "under_18": {
+          "count": 2893,
+          "percentage": 21.34110357037474,
+          "trend": "-1,4%"
+        },
+        "18_to_35": {
+          "count": 2523,
+          "percentage": 18.611684862791382,
+          "trend": "+1,8%"
+        },
+        "36_to_65": {
+          "count": 5537,
+          "percentage": 40.845382118619064,
+          "trend": "-0,6%"
+        },
+        "over_65": {
+          "count": 2603,
+          "percentage": 19.201829448214813,
+          "trend": "+1,3%"
+        }
+      },
+      "dependency_ratio": 0.6818858560794044
+    },
+    "household_composition": {
+      "total_households": 0,
+      "average_household_size": null,
+      "household_types": {
+        "single_person": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_age": {
+            "under_35": {
+              "count": 0,
+              "percentage": 0
+            },
+            "35_to_65": {
+              "count": 0,
+              "percentage": 0
+            },
+            "over_65": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "couples_without_children": {
+          "count": 0,
+          "percentage": 0
+        },
+        "couples_with_children": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_children": {
+            "with_1_child": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_2_children": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_3_plus_children": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "single_parent": {
+          "count": 0,
+          "percentage": 0
+        }
+      },
+      "household_evolution": {
+        "trend_single_person": null,
+        "trend_family": null,
+        "trend_average_size": null
+      }
+    },
+    "cultural_diversity": {
+      "nationality_groups": {
+        "belgian": {
+          "count": 12699,
+          "percentage": 93.67807612865153
+        },
+        "foreign": {
+          "count": 857,
+          "percentage": 6.321923871348481
+        }
+      }
+    }
+  },
+  "economic_indicators": {
+    "income_tax": {
+      "income_overview": {
+        "average_income": 45723.412147231094,
+        "median_income": 45636.72678381257,
+        "income_distribution": {
+          "low_income_pct": 25.0,
+          "middle_income_pct": 65.0,
+          "high_income_pct": 10.0
+        }
+      },
+      "tax_burden": {
+        "average_tax_rate": 26.293378150026577,
+        "municipal_tax_rate": 6.498853812386385
+      },
+      "income_sources": {
+        "professional_income_pct": 98.18891879357577,
+        "real_estate_income_pct": 1.4666943086982227,
+        "investment_income_pct": 0.2875186383264947,
+        "other_income_pct": 0.05686825939951796
+      }
+    },
+    "business_activity": {
+      "enterprise_overview": {
+        "total_enterprises": 0,
+        "net_creation": 0,
+        "creation_rate": 0,
+        "closure_rate": 0
+      },
+      "sectors": {},
+      "enterprise_size": {
+        "micro_enterprises_pct": 0,
+        "small_enterprises_pct": 0,
+        "medium_enterprises_pct": 0,
+        "large_enterprises_pct": 0
+      },
+      "foreign_investment": {
+        "foreign_enterprises_count": 0,
+        "foreign_investment_growth": "+0.0%"
+      }
+    },
+    "unemployment": {
+      "overall_rate": 0,
+      "trend_yoy": null,
+      "by_age_group": {
+        "under_25": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "25_to_50": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "over_50": {
+          "rate": 0.0,
+          "trend": null
+        }
+      }
+    }
+  },
+  "geographical_context": {
+    "mobility": {
+      "vehicle_ownership": {
+        "average_vehicles_per_household": 1,
+        "households_with_no_vehicle_pct": 0.0,
+        "households_with_multiple_vehicles_pct": 10.0
+      },
+      "vehicle_distribution": {
+        "by_sector": [
+          {
+            "sector_id": 102483,
+            "sector_name": "KOUDENBERG",
+            "vehicles_per_household": 1.66,
+            "comparison_to_average": 66.0
+          },
+          {
+            "sector_id": 102471,
+            "sector_name": "AUTOSTRADE-ZUID-VERSPR.BEW.(H)",
+            "vehicles_per_household": 1.65,
+            "comparison_to_average": 65.0
+          },
+          {
+            "sector_id": 102480,
+            "sector_name": "BLAKMEERS",
+            "vehicles_per_household": 1.64,
+            "comparison_to_average": 64.0
+          },
+          {
+            "sector_id": 102479,
+            "sector_name": "HEKELGEM VERSPREIDE BEW.-ZUID",
+            "vehicles_per_household": 1.55,
+            "comparison_to_average": 55.0
+          },
+          {
+            "sector_id": 102488,
+            "sector_name": "AUTOSTRADE-ZUID-VERSPR.BEW.(E)",
+            "vehicles_per_household": 1.46,
+            "comparison_to_average": 46.0
+          },
+          {
+            "sector_id": 102490,
+            "sector_name": "OUDE STWG.AALST-BRUSSEL-NOORD",
+            "vehicles_per_household": 1.45,
+            "comparison_to_average": 45.0
+          },
+          {
+            "sector_id": 102482,
+            "sector_name": "ESSENE-KERN",
+            "vehicles_per_household": 1.43,
+            "comparison_to_average": 43.0
+          },
+          {
+            "sector_id": 102484,
+            "sector_name": "ESSENE-VERSPREIDE BEWONING",
+            "vehicles_per_household": 1.42,
+            "comparison_to_average": 42.0
+          },
+          {
+            "sector_id": 102468,
+            "sector_name": "HEKELGEM VERSPREIDE BEW.-NOORD",
+            "vehicles_per_household": 1.37,
+            "comparison_to_average": 37.0
+          },
+          {
+            "sector_id": 102478,
+            "sector_name": "HEKELGEM-KERN-NOORD",
+            "vehicles_per_household": 1.34,
+            "comparison_to_average": 34.0
+          },
+          {
+            "sector_id": 102452,
+            "sector_name": "OUDE BAAN",
+            "vehicles_per_household": 1.31,
+            "comparison_to_average": 31.0
+          },
+          {
+            "sector_id": 102496,
+            "sector_name": "TERELST",
+            "vehicles_per_household": 1.31,
+            "comparison_to_average": 31.0
+          },
+          {
+            "sector_id": 102466,
+            "sector_name": "BOEKHOUT - MORITS",
+            "vehicles_per_household": 1.3,
+            "comparison_to_average": 30.0
+          },
+          {
+            "sector_id": 102492,
+            "sector_name": "TERALFENE-CENTRUM-OOST",
+            "vehicles_per_household": 1.27,
+            "comparison_to_average": 27.0
+          },
+          {
+            "sector_id": 102495,
+            "sector_name": "NIEUWE WIJK",
+            "vehicles_per_household": 1.26,
+            "comparison_to_average": 26.0
+          },
+          {
+            "sector_id": 102469,
+            "sector_name": "HEKELGEM-KERN-ZUID",
+            "vehicles_per_household": 1.22,
+            "comparison_to_average": 22.0
+          },
+          {
+            "sector_id": 102494,
+            "sector_name": "TERALFENE CENTRUM-WEST",
+            "vehicles_per_household": 1.2,
+            "comparison_to_average": 20.0
+          },
+          {
+            "sector_id": -1,
+            "sector_name": "Secteur statistique inconnu",
+            "vehicles_per_household": 0.0,
+            "comparison_to_average": -100.0
+          }
+        ]
+      }
+    },
+    "sectors": {
+      "statistical_sectors": {
+        "142193": {
+          "sector_id": 142193,
+          "cd_sector": "23105B19-",
+          "sector_name": "AUTOSTRADE-ZUID-VERSPR.BEW.(E)",
+          "sector_name_nl": "AUTOSTRADE-ZUID-VERSPR.BEW.(E)",
+          "area_km2": 1.4236
+        },
+        "142173": {
+          "sector_id": 142173,
+          "cd_sector": "23105A39-",
+          "sector_name": "AUTOSTRADE-ZUID-VERSPR.BEW.(H)",
+          "sector_name_nl": "AUTOSTRADE-ZUID-VERSPR.BEW.(H)",
+          "area_km2": 0.8462
+        },
+        "142185": {
+          "sector_id": 142185,
+          "cd_sector": "23105A210",
+          "sector_name": "BLAKMEERS",
+          "sector_name_nl": "BLAKMEERS",
+          "area_km2": 0.4754
+        },
+        "142169": {
+          "sector_id": 142169,
+          "cd_sector": "23105A012",
+          "sector_name": "BOEKHOUT - MORITS",
+          "sector_name_nl": "BOEKHOUT - MORITS",
+          "area_km2": 0.8535
+        },
+        "142187": {
+          "sector_id": 142187,
+          "cd_sector": "23105B00-",
+          "sector_name": "ESSENE-KERN",
+          "sector_name_nl": "ESSENE-KERN",
+          "area_km2": 0.5905
+        },
+        "142189": {
+          "sector_id": 142189,
+          "cd_sector": "23105B091",
+          "sector_name": "ESSENE-VERSPREIDE BEWONING",
+          "sector_name_nl": "ESSENE-VERSPREIDE BEWONING",
+          "area_km2": 3.6787
+        },
+        "142180": {
+          "sector_id": 142180,
+          "cd_sector": "23105A09-",
+          "sector_name": "HEKELGEM VERSPREIDE BEW.-NOORD",
+          "sector_name_nl": "HEKELGEM VERSPREIDE BEW.-NOORD",
+          "area_km2": 2.5064
+        },
+        "142184": {
+          "sector_id": 142184,
+          "cd_sector": "23105A191",
+          "sector_name": "HEKELGEM VERSPREIDE BEW.-ZUID",
+          "sector_name_nl": "HEKELGEM VERSPREIDE BEW.-ZUID",
+          "area_km2": 1.8253
+        },
+        "142179": {
+          "sector_id": 142179,
+          "cd_sector": "23105A001",
+          "sector_name": "HEKELGEM-KERN-NOORD",
+          "sector_name_nl": "HEKELGEM-KERN-NOORD",
+          "area_km2": 0.7726
+        },
+        "142181": {
+          "sector_id": 142181,
+          "cd_sector": "23105A10-",
+          "sector_name": "HEKELGEM-KERN-ZUID",
+          "sector_name_nl": "HEKELGEM-KERN-ZUID",
+          "area_km2": 0.5074
+        },
+        "142188": {
+          "sector_id": 142188,
+          "cd_sector": "23105B012",
+          "sector_name": "KOUDENBERG",
+          "sector_name_nl": "KOUDENBERG",
+          "area_km2": 0.3042
+        },
+        "142201": {
+          "sector_id": 142201,
+          "cd_sector": "23105C02-",
+          "sector_name": "NIEUWE WIJK",
+          "sector_name_nl": "NIEUWE WIJK",
+          "area_km2": 0.1421
+        },
+        "142182": {
+          "sector_id": 142182,
+          "cd_sector": "23105A112",
+          "sector_name": "OUDE BAAN",
+          "sector_name_nl": "OUDE BAAN",
+          "area_km2": 0.4162
+        },
+        "142196": {
+          "sector_id": 142196,
+          "cd_sector": "23105B29-",
+          "sector_name": "OUDE STWG.AALST-BRUSSEL-NOORD",
+          "sector_name_nl": "OUDE STWG.AALST-BRUSSEL-NOORD",
+          "area_km2": 1.2184
+        },
+        "142200": {
+          "sector_id": 142200,
+          "cd_sector": "23105C01-",
+          "sector_name": "TERALFENE CENTRUM-WEST",
+          "sector_name_nl": "TERALFENE CENTRUM-WEST",
+          "area_km2": 1.0059
+        },
+        "142198": {
+          "sector_id": 142198,
+          "cd_sector": "23105C001",
+          "sector_name": "TERALFENE-CENTRUM-OOST",
+          "sector_name_nl": "TERALFENE-CENTRUM-OOST",
+          "area_km2": 0.9286
+        },
+        "142202": {
+          "sector_id": 142202,
+          "cd_sector": "23105C032",
+          "sector_name": "TERELST",
+          "sector_name_nl": "TERELST",
+          "area_km2": 0.4268
+        }
+      }
+    }
+  },
+  "investment_analysis": {
+    "affordability_metrics": {
+      "price_to_income_ratio": 5.227081461689934,
+      "mortgage_affordability_index": 0.31783091953579634,
+      "ownership_accessibility_score": 52.66950362622244
+    },
+    "rental_market_potential": {
+      "estimated_rental_yield": 0.046000000000000006,
+      "rental_demand_index": 0.6,
+      "rental_growth_potential": "Moderate"
+    },
+    "target_demographic_analysis": {
+      "growing_segments": [
+        {
+          "segment": "Seniors (65+)",
+          "growth_rate": 2.0,
+          "housing_preferences": "Smaller, accessible units close to amenities"
+        }
+      ],
+      "declining_segments": []
+    },
+    "market_dynamics": {
+      "supply_demand_balance": "Undersupply",
+      "construction_vs_absorption_rate": 0.0,
+      "market_cycle_position": "Late growth phase (pre-correction)"
+    },
+    "risk_assessment": {
+      "price_volatility": "Low",
+      "liquidity_score": 60,
+      "oversupply_risk": "Low",
+      "economic_dependency_risk": "Low"
+    },
+    "comparative_ranking": {
+      "value_for_money_rank": 41,
+      "growth_potential_rank": 31,
+      "overall_investment_score": 66.0
+    }
+  }
+}

@@ -7,7 +7,7 @@
     "province": "Province de Liège",
     "region": "Région wallonne",
     "version": "1.0",
-    "generated_date": "2025-03-13",
+    "generated_date": "2025-03-14",
     "temporal_coverage": {
       "current_year": 2025,
       "historical_start": 2000,
@@ -116,44 +116,89 @@
     }
   },
   "building_development": {
-    "permits": {},
-    "construction_activity": {}
+    "permits": {
+      "summary": {
+        "total_permits_ytd": 0,
+        "trend_yoy": null,
+        "residential_ratio": 0
+      },
+      "counts": {
+        "residential": {
+          "new_construction": {
+            "buildings": 0,
+            "dwellings": 0,
+            "houses": 0,
+            "apartments": 0
+          },
+          "renovation": {
+            "buildings": 0,
+            "dwellings": 0
+          }
+        },
+        "non_residential": {
+          "new_construction": {
+            "buildings": 0
+          },
+          "renovation": {
+            "buildings": 0
+          }
+        }
+      },
+      "surface": {
+        "residential_new_construction_sqm": 0,
+        "avg_dwelling_size_sqm": 0,
+        "trend_yoy": null
+      },
+      "volume": {
+        "non_residential_new_construction_cubic_m": 0,
+        "trend_yoy": null
+      }
+    },
+    "construction_activity": {
+      "construction_intensity_index": 0.5,
+      "development_phase": "Stable",
+      "supply_pipeline": {
+        "residential_units_coming": 0.0,
+        "estimated_completion_timeframe": "18 months",
+        "impact_on_supply": "Low"
+      }
+    }
   },
   "demographics": {
     "population_overview": {
-      "total_population": 14531,
+      "total_population": 14514,
       "population_density": null,
       "population_trend": {
-        "one_year_growth": 0.0,
-        "five_year_growth": 0.0,
-        "forecast_growth": 0.0
+        "one_year_growth": 0.45681063122923593,
+        "five_year_growth": 1.461027612722824,
+        "forecast_growth": 0.29220552254456483
       }
     },
     "age_structure": {
-      "median_age": null,
+      "median_age": 41,
       "age_groups": {
         "under_18": {
-          "count": 527.4,
-          "percentage": 3.629481797536301,
-          "trend": "+0,0%"
+          "count": 3057,
+          "percentage": 21.062422488631665,
+          "trend": "+0,2%"
         },
         "18_to_35": {
-          "count": 3308.866666666666,
-          "percentage": 22.771087101140086,
-          "trend": "+0,0%"
+          "count": 3166,
+          "percentage": 21.813421524045747,
+          "trend": "-0,7%"
         },
         "36_to_65": {
-          "count": 5473.483333333333,
-          "percentage": 37.667630124102494,
-          "trend": "+0,0%"
+          "count": 5737,
+          "percentage": 39.52735290064765,
+          "trend": "-0,2%"
         },
         "over_65": {
-          "count": 1541.25,
-          "percentage": 10.60663409262955,
-          "trend": "+0,0%"
+          "count": 2554,
+          "percentage": 17.596803086674935,
+          "trend": "+1,2%"
         }
       },
-      "dependency_ratio": 0.23554629455669615
+      "dependency_ratio": 0.6302369987644614
     },
     "household_composition": {
       "total_households": 0,
@@ -213,16 +258,12 @@
     "cultural_diversity": {
       "nationality_groups": {
         "belgian": {
-          "count": 13879,
-          "percentage": 95.5130410845778
+          "count": 13888,
+          "percentage": 95.68692297092463
         },
-        "eu_non_belgian": {
-          "count": 0,
-          "percentage": 0.0
-        },
-        "non_eu": {
-          "count": 652,
-          "percentage": 4.486958915422202
+        "foreign": {
+          "count": 626,
+          "percentage": 4.313077029075376
         }
       }
     }
@@ -492,7 +533,232 @@
       }
     },
     "sectors": {
-      "statistical_sectors": {}
+      "statistical_sectors": {
+        "151027": {
+          "sector_id": 151027,
+          "cd_sector": "61003A00-",
+          "sector_name": "AMAY-CENTRE",
+          "sector_name_nl": "AMAY-CENTRE",
+          "area_km2": 0.4931
+        },
+        "151032": {
+          "sector_id": 151032,
+          "cd_sector": "61003A02-",
+          "sector_name": "AMAY-EST - RORIVE",
+          "sector_name_nl": "AMAY-EST - RORIVE",
+          "area_km2": 0.3898
+        },
+        "151050": {
+          "sector_id": 151050,
+          "cd_sector": "61003D07-",
+          "sector_name": "AMPSIN CARRIERES",
+          "sector_name_nl": "AMPSIN CARRIERES",
+          "area_km2": 0.5023
+        },
+        "150334": {
+          "sector_id": 150334,
+          "cd_sector": "61003D042",
+          "sector_name": "AMPSIN CIMETIERE",
+          "sector_name_nl": "AMPSIN CIMETIERE",
+          "area_km2": 0.2153
+        },
+        "151048": {
+          "sector_id": 151048,
+          "cd_sector": "61003D00-",
+          "sector_name": "AMPSIN-CENTRE",
+          "sector_name_nl": "AMPSIN-CENTRE",
+          "area_km2": 0.1682
+        },
+        "151049": {
+          "sector_id": 151049,
+          "cd_sector": "61003D01-",
+          "sector_name": "AMPSIN-EST - SOUS LES VIGNES",
+          "sector_name_nl": "AMPSIN-EST - SOUS LES VIGNES",
+          "area_km2": 0.1394
+        },
+        "149385": {
+          "sector_id": 149385,
+          "cd_sector": "61003D030",
+          "sector_name": "AMPSIN-OUEST - MONT LEVA",
+          "sector_name_nl": "AMPSIN-OUEST - MONT LEVA",
+          "area_km2": 0.1224
+        },
+        "151034": {
+          "sector_id": 151034,
+          "cd_sector": "61003D020",
+          "sector_name": "AMPSIN-SUD - MEUSE",
+          "sector_name_nl": "AMPSIN-SUD - MEUSE",
+          "area_km2": 1.0377
+        },
+        "151052": {
+          "sector_id": 151052,
+          "cd_sector": "61003D10-",
+          "sector_name": "BENDE",
+          "sector_name_nl": "BENDE",
+          "area_km2": 0.214
+        },
+        "151036": {
+          "sector_id": 151036,
+          "cd_sector": "61003A07-",
+          "sector_name": "CAMPAGNE D'AMAY - MEUSE",
+          "sector_name_nl": "CAMPAGNE D'AMAY - MEUSE",
+          "area_km2": 1.7158
+        },
+        "151058": {
+          "sector_id": 151058,
+          "cd_sector": "61003E0PN",
+          "sector_name": "CAMPAGNE DE JEHAY",
+          "sector_name_nl": "CAMPAGNE DE JEHAY",
+          "area_km2": 4.8364
+        },
+        "151039": {
+          "sector_id": 151039,
+          "cd_sector": "61003A122",
+          "sector_name": "CHENEUX - LA PACHE",
+          "sector_name_nl": "CHENEUX - LA PACHE",
+          "area_km2": 0.3828
+        },
+        "151042": {
+          "sector_id": 151042,
+          "cd_sector": "61003B00-",
+          "sector_name": "FLONE-CENTRE",
+          "sector_name_nl": "FLONE-CENTRE",
+          "area_km2": 0.2042
+        },
+        "151045": {
+          "sector_id": 151045,
+          "cd_sector": "61003B09-",
+          "sector_name": "FLONE-HABITATIONS DISPERSEES",
+          "sector_name_nl": "FLONE-HABITATIONS DISPERSEES",
+          "area_km2": 1.7051
+        },
+        "151043": {
+          "sector_id": 151043,
+          "cd_sector": "61003C022",
+          "sector_name": "FOND D'OXHE",
+          "sector_name_nl": "FOND D'OXHE",
+          "area_km2": 0.4206
+        },
+        "151028": {
+          "sector_id": 151028,
+          "cd_sector": "61003A01-",
+          "sector_name": "HAUTE FLONE",
+          "sector_name_nl": "HAUTE FLONE",
+          "area_km2": 0.2934
+        },
+        "151051": {
+          "sector_id": 151051,
+          "cd_sector": "61003D091",
+          "sector_name": "HINROTIA",
+          "sector_name_nl": "HINROTIA",
+          "area_km2": 0.4628
+        },
+        "151056": {
+          "sector_id": 151056,
+          "cd_sector": "61003E00-",
+          "sector_name": "JEHAY-CENTRE",
+          "sector_name_nl": "JEHAY-CENTRE",
+          "area_km2": 0.9129
+        },
+        "151029": {
+          "sector_id": 151029,
+          "cd_sector": "61003A04-",
+          "sector_name": "LA ROCHETTE",
+          "sector_name_nl": "LA ROCHETTE",
+          "area_km2": 0.4803
+        },
+        "151044": {
+          "sector_id": 151044,
+          "cd_sector": "61003C091",
+          "sector_name": "LES COMMUNES",
+          "sector_name_nl": "LES COMMUNES",
+          "area_km2": 3.8929
+        },
+        "147287": {
+          "sector_id": 147287,
+          "cd_sector": "61003D050",
+          "sector_name": "MIRLONDAINES",
+          "sector_name_nl": "MIRLONDAINES",
+          "area_km2": 0.231
+        },
+        "151030": {
+          "sector_id": 151030,
+          "cd_sector": "61003A050",
+          "sector_name": "MIRLONDAINES",
+          "sector_name_nl": "MIRLONDAINES",
+          "area_km2": 0.2993
+        },
+        "151047": {
+          "sector_id": 151047,
+          "cd_sector": "61003C01-",
+          "sector_name": "OMBRET - GRAND - ROUTE",
+          "sector_name_nl": "OMBRET - GRAND - ROUTE",
+          "area_km2": 0.3576
+        },
+        "151046": {
+          "sector_id": 151046,
+          "cd_sector": "61003C00-",
+          "sector_name": "OMBRET-CENTRE",
+          "sector_name_nl": "OMBRET-CENTRE",
+          "area_km2": 0.2389
+        },
+        "151040": {
+          "sector_id": 151040,
+          "cd_sector": "61003A18-",
+          "sector_name": "RICHEMONT",
+          "sector_name_nl": "RICHEMONT",
+          "area_km2": 0.9811
+        },
+        "151038": {
+          "sector_id": 151038,
+          "cd_sector": "61003A11-",
+          "sector_name": "ROUA - THIER PHILIPPART",
+          "sector_name_nl": "ROUA - THIER PHILIPPART",
+          "area_km2": 0.72
+        },
+        "151041": {
+          "sector_id": 151041,
+          "cd_sector": "61003A190",
+          "sector_name": "SAINT - LAMBERT",
+          "sector_name_nl": "SAINT - LAMBERT",
+          "area_km2": 2.2053
+        },
+        "151054": {
+          "sector_id": 151054,
+          "cd_sector": "61003D191",
+          "sector_name": "SART",
+          "sector_name_nl": "SART",
+          "area_km2": 2.1011
+        },
+        "151053": {
+          "sector_id": 151053,
+          "cd_sector": "61003D112",
+          "sector_name": "SARTAGE - AL BACHE",
+          "sector_name_nl": "SARTAGE - AL BACHE",
+          "area_km2": 0.3856
+        },
+        "151057": {
+          "sector_id": 151057,
+          "cd_sector": "61003E010",
+          "sector_name": "SAULE - GAILLARD",
+          "sector_name_nl": "SAULE - GAILLARD",
+          "area_km2": 0.33
+        },
+        "151037": {
+          "sector_id": 151037,
+          "cd_sector": "61003A101",
+          "sector_name": "VIAMONT",
+          "sector_name_nl": "VIAMONT",
+          "area_km2": 0.9221
+        },
+        "151033": {
+          "sector_id": 151033,
+          "cd_sector": "61003A03-",
+          "sector_name": "WEHAIRON",
+          "sector_name_nl": "WEHAIRON",
+          "area_km2": 0.3013
+        }
+      }
     }
   },
   "investment_analysis": {
@@ -517,14 +783,14 @@
       "declining_segments": []
     },
     "market_dynamics": {
-      "supply_demand_balance": "Balanced",
-      "construction_vs_absorption_rate": 1.0,
+      "supply_demand_balance": "Undersupply",
+      "construction_vs_absorption_rate": 0.0,
       "market_cycle_position": "Late growth phase (pre-correction)"
     },
     "risk_assessment": {
       "price_volatility": "Medium",
       "liquidity_score": 70,
-      "oversupply_risk": "Medium",
+      "oversupply_risk": "Low",
       "economic_dependency_risk": "Low"
     },
     "comparative_ranking": {

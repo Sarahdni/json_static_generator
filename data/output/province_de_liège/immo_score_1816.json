@@ -1,0 +1,1309 @@
+{
+  "metadata": {
+    "commune_id": 1816,
+    "commune_name": "Seraing",
+    "postal_code": "62096",
+    "district": null,
+    "province": "Province de Liège",
+    "region": "Région wallonne",
+    "version": "1.0",
+    "generated_date": "2025-03-14",
+    "temporal_coverage": {
+      "current_year": 2025,
+      "historical_start": 2000,
+      "range_years": 25
+    },
+    "data_period": {
+      "real_estate_data": {
+        "current": "2024-Q4",
+        "previous_year": "2023-Q4",
+        "five_year": "2019-Q4",
+        "ten_year": "2014-Q4",
+        "fifteen_year": "2009-Q4",
+        "since_2000": "2000-Q1 à 2024-Q4",
+        "historical_range": "2000-Q1 à 2024-Q4"
+      },
+      "economic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "demographic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "tax_data": {
+        "current": "2022",
+        "previous_year": "2021",
+        "five_year": "2017",
+        "ten_year": "2012",
+        "fifteen_year": "2007",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2022"
+      },
+      "construction_data": {
+        "current": "2024-Q1",
+        "previous_year": "2023-Q1",
+        "five_year": "2019-Q1",
+        "ten_year": "2014-Q1",
+        "fifteen_year": "2009-Q1",
+        "since_2000": "2000-Q1 à 2024-Q1",
+        "historical_range": "2000-Q1 à 2024-Q1"
+      }
+    }
+  },
+  "real_estate_market": {
+    "municipality_overview": {
+      "last_period": {
+        "total_transactions": 405,
+        "price_trends": {
+          "mean_price": 128781.84444444445,
+          "median_price": 120500.0,
+          "price_p10": 52900.0,
+          "price_p25": 78000.0,
+          "price_p75": 155000.0,
+          "price_p90": 189000.0
+        },
+        "total_surface_sqm": 107809.0,
+        "avg_surface_sqm": 266.19506172839505
+      },
+      "historical_trends": {
+        "year_over_year": {
+          "transaction_change_pct": -29.565217391304348,
+          "price_change_pct": 3.149145461099413
+        },
+        "five_year": {
+          "transaction_change_pct": -43.5933147632312,
+          "price_change_pct": 11.933055886816227
+        }
+      }
+    },
+    "by_property_type": {
+      "summary": {
+        "most_common_type": null,
+        "fastest_growing_segment": null,
+        "most_valuable_segment": null
+      },
+      "detailed_types": {}
+    },
+    "sector_analysis": {
+      "summary": {
+        "sectors_count": 0,
+        "price_disparity_index": null,
+        "hottest_sector": null,
+        "most_affordable_sector": null
+      },
+      "sectors": []
+    },
+    "building_stock": {
+      "total_buildings": 0,
+      "by_type": {},
+      "by_age": {},
+      "housing_units": {
+        "total_count": 0,
+        "units_per_building_avg": null,
+        "units_per_capita": null
+      }
+    }
+  },
+  "building_development": {
+    "permits": {
+      "summary": {
+        "total_permits_ytd": 0,
+        "trend_yoy": null,
+        "residential_ratio": 0
+      },
+      "counts": {
+        "residential": {
+          "new_construction": {
+            "buildings": 0,
+            "dwellings": 0,
+            "houses": 0,
+            "apartments": 0
+          },
+          "renovation": {
+            "buildings": 0,
+            "dwellings": 0
+          }
+        },
+        "non_residential": {
+          "new_construction": {
+            "buildings": 0
+          },
+          "renovation": {
+            "buildings": 0
+          }
+        }
+      },
+      "surface": {
+        "residential_new_construction_sqm": 0,
+        "avg_dwelling_size_sqm": 0,
+        "trend_yoy": null
+      },
+      "volume": {
+        "non_residential_new_construction_cubic_m": 0,
+        "trend_yoy": null
+      }
+    },
+    "construction_activity": {
+      "construction_intensity_index": 0.5,
+      "development_phase": "Stable",
+      "supply_pipeline": {
+        "residential_units_coming": 0.0,
+        "estimated_completion_timeframe": "18 months",
+        "impact_on_supply": "Low"
+      }
+    }
+  },
+  "demographics": {
+    "population_overview": {
+      "total_population": 64035,
+      "population_density": null,
+      "population_trend": {
+        "one_year_growth": 0.17050965178487626,
+        "five_year_growth": -0.36564493542866033,
+        "forecast_growth": -0.07312898708573207
+      }
+    },
+    "age_structure": {
+      "median_age": 40,
+      "age_groups": {
+        "under_18": {
+          "count": 14195,
+          "percentage": 22.167564613102208,
+          "trend": "-0,6%"
+        },
+        "18_to_35": {
+          "count": 14473,
+          "percentage": 22.601702194112594,
+          "trend": "+0,5%"
+        },
+        "36_to_65": {
+          "count": 24256,
+          "percentage": 37.87928476614352,
+          "trend": "-0,3%"
+        },
+        "over_65": {
+          "count": 11111,
+          "percentage": 17.35144842664168,
+          "trend": "+0,7%"
+        }
+      },
+      "dependency_ratio": 0.6534121717575977
+    },
+    "household_composition": {
+      "total_households": 0,
+      "average_household_size": null,
+      "household_types": {
+        "single_person": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_age": {
+            "under_35": {
+              "count": 0,
+              "percentage": 0
+            },
+            "35_to_65": {
+              "count": 0,
+              "percentage": 0
+            },
+            "over_65": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "couples_without_children": {
+          "count": 0,
+          "percentage": 0
+        },
+        "couples_with_children": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_children": {
+            "with_1_child": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_2_children": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_3_plus_children": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "single_parent": {
+          "count": 0,
+          "percentage": 0
+        }
+      },
+      "household_evolution": {
+        "trend_single_person": null,
+        "trend_family": null,
+        "trend_average_size": null
+      }
+    },
+    "cultural_diversity": {
+      "nationality_groups": {
+        "belgian": {
+          "count": 54072,
+          "percentage": 84.44132115249474
+        },
+        "foreign": {
+          "count": 9963,
+          "percentage": 15.55867884750527
+        }
+      }
+    }
+  },
+  "economic_indicators": {
+    "income_tax": {
+      "income_overview": {
+        "average_income": 28943.975650072498,
+        "median_income": 28856.29144380001,
+        "income_distribution": {
+          "low_income_pct": 25.0,
+          "middle_income_pct": 65.0,
+          "high_income_pct": 10.0
+        }
+      },
+      "tax_burden": {
+        "average_tax_rate": 18.542817686304616,
+        "municipal_tax_rate": 7.92268685639858
+      },
+      "income_sources": {
+        "professional_income_pct": 98.98740204519353,
+        "real_estate_income_pct": 0.8531253339246151,
+        "investment_income_pct": 0.07994336162319335,
+        "other_income_pct": 0.07952925925865947
+      }
+    },
+    "business_activity": {
+      "enterprise_overview": {
+        "total_enterprises": 0,
+        "net_creation": 0,
+        "creation_rate": 0,
+        "closure_rate": 0
+      },
+      "sectors": {},
+      "enterprise_size": {
+        "micro_enterprises_pct": 0,
+        "small_enterprises_pct": 0,
+        "medium_enterprises_pct": 0,
+        "large_enterprises_pct": 0
+      },
+      "foreign_investment": {
+        "foreign_enterprises_count": 0,
+        "foreign_investment_growth": "+0.0%"
+      }
+    },
+    "unemployment": {
+      "overall_rate": 0,
+      "trend_yoy": null,
+      "by_age_group": {
+        "under_25": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "25_to_50": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "over_50": {
+          "rate": 0.0,
+          "trend": null
+        }
+      }
+    }
+  },
+  "geographical_context": {
+    "mobility": {
+      "vehicle_ownership": {
+        "average_vehicles_per_household": 0,
+        "households_with_no_vehicle_pct": 0.0,
+        "households_with_multiple_vehicles_pct": 0.0
+      },
+      "vehicle_distribution": {
+        "by_sector": [
+          {
+            "sector_id": 112399,
+            "sector_name": "A L'INDUSTRIE",
+            "vehicles_per_household": 0.94,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112395,
+            "sector_name": "AIR PUR",
+            "vehicles_per_household": 1.29,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112386,
+            "sector_name": "BASSE-CHATQUEUE",
+            "vehicles_per_household": 0.95,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112420,
+            "sector_name": "BEAU SITE",
+            "vehicles_per_household": 1.01,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112378,
+            "sector_name": "BEAU-SEJOUR -VERRERIE",
+            "vehicles_per_household": 1.06,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 111962,
+            "sector_name": "BEAU-SEJOUR-PLAINEVAUX",
+            "vehicles_per_household": 0.88,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112142,
+            "sector_name": "BELLE-PIERRE",
+            "vehicles_per_household": 1.04,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112419,
+            "sector_name": "BIENS-COMMUNAUX",
+            "vehicles_per_household": 0.59,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112339,
+            "sector_name": "BIENS-COMMUNAUX WAUTERS",
+            "vehicles_per_household": 0.98,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 103878,
+            "sector_name": "BIENS-COMMUNAUX-CENTRE",
+            "vehicles_per_household": 0.94,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112370,
+            "sector_name": "BIENS-COMMUNAUX-GENDARMERIE",
+            "vehicles_per_household": 0.85,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112415,
+            "sector_name": "BIEZ DU MOULIN",
+            "vehicles_per_household": 0.95,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112393,
+            "sector_name": "BOIS DE L'ABBAYE",
+            "vehicles_per_household": 1.04,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112391,
+            "sector_name": "BOIS DE LA VECQUEE",
+            "vehicles_per_household": 1.21,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112405,
+            "sector_name": "BOIS DE MONT",
+            "vehicles_per_household": 1.02,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112423,
+            "sector_name": "BOIS DE SCLESSIN",
+            "vehicles_per_household": 1.27,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112385,
+            "sector_name": "BOIS DU VAL-SAINT-LAMBERT",
+            "vehicles_per_household": 1.47,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112412,
+            "sector_name": "BOIS SAINT-JEAN",
+            "vehicles_per_household": 1.1,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112425,
+            "sector_name": "BONCELLES-CENTRE",
+            "vehicles_per_household": 1.21,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112428,
+            "sector_name": "CARREFOUR NIC JANSSENS",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112422,
+            "sector_name": "CENSE ROUGE",
+            "vehicles_per_household": 1.38,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112404,
+            "sector_name": "CHANT DES OISEAUX",
+            "vehicles_per_household": 0.71,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112366,
+            "sector_name": "COCKERILL",
+            "vehicles_per_household": 0.56,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112389,
+            "sector_name": "COCKERILL EXTENSION",
+            "vehicles_per_household": 0.88,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112382,
+            "sector_name": "COUR DU VAL",
+            "vehicles_per_household": 0.99,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 111986,
+            "sector_name": "CROIX POITIEZ-EGLISE",
+            "vehicles_per_household": 1.08,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112421,
+            "sector_name": "FEMMELETTE",
+            "vehicles_per_household": 0.97,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112375,
+            "sector_name": "FOND DE SERAING",
+            "vehicles_per_household": 0.61,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112396,
+            "sector_name": "FORRIERE",
+            "vehicles_per_household": 1.19,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 111997,
+            "sector_name": "FREHISSES BAS",
+            "vehicles_per_household": 1.46,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112429,
+            "sector_name": "FREHISSES HAUT",
+            "vehicles_per_household": 1.52,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112400,
+            "sector_name": "GRAND VINAVE",
+            "vehicles_per_household": 0.64,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112416,
+            "sector_name": "HAUT-PRE",
+            "vehicles_per_household": 0.86,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112387,
+            "sector_name": "HAUTE-CHATQUEUE",
+            "vehicles_per_household": 1.16,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112398,
+            "sector_name": "JEMEPPE-CENTRE",
+            "vehicles_per_household": 0.69,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112406,
+            "sector_name": "KESSALES",
+            "vehicles_per_household": 0.67,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112354,
+            "sector_name": "L'ESPERANCE",
+            "vehicles_per_household": 0.52,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112383,
+            "sector_name": "LA BERGERIE BAS",
+            "vehicles_per_household": 0.57,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112381,
+            "sector_name": "LA BERGERIE-BAS",
+            "vehicles_per_household": 0.68,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112325,
+            "sector_name": "LA BOVERIE",
+            "vehicles_per_household": 1.01,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112376,
+            "sector_name": "LA TROQUE",
+            "vehicles_per_household": 0.72,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112304,
+            "sector_name": "LA VECQUEE",
+            "vehicles_per_household": 0.93,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112407,
+            "sector_name": "LAVEU",
+            "vehicles_per_household": 1.28,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112392,
+            "sector_name": "LE CORNILLON",
+            "vehicles_per_household": 1.17,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 111217,
+            "sector_name": "LE GROUPET",
+            "vehicles_per_household": 0.97,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112330,
+            "sector_name": "LES BEGUINES",
+            "vehicles_per_household": 0.88,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112427,
+            "sector_name": "LES GONHIS",
+            "vehicles_per_household": 1.12,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112390,
+            "sector_name": "LIBERTE-PLAINE DES SPORTS",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112004,
+            "sector_name": "LIZE EST",
+            "vehicles_per_household": 0.67,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112377,
+            "sector_name": "LIZE OUEST",
+            "vehicles_per_household": 0.88,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112413,
+            "sector_name": "MABOTTE",
+            "vehicles_per_household": 1.03,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112410,
+            "sector_name": "MAKETS",
+            "vehicles_per_household": 0.91,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112137,
+            "sector_name": "MARCHANDISE",
+            "vehicles_per_household": 1.74,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112000,
+            "sector_name": "MOLINAY",
+            "vehicles_per_household": 0.65,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112411,
+            "sector_name": "OUGREE NICOLAY",
+            "vehicles_per_household": 0.64,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112414,
+            "sector_name": "OUGREE-BAS",
+            "vehicles_per_household": 0.61,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 106338,
+            "sector_name": "OUGREE-BAS-INDUSTRIE",
+            "vehicles_per_household": 0.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112402,
+            "sector_name": "PAIRAI",
+            "vehicles_per_household": 0.75,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112397,
+            "sector_name": "PONT DE SERAING",
+            "vehicles_per_household": 0.49,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112388,
+            "sector_name": "PRE-SORAY",
+            "vehicles_per_household": 0.59,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 111975,
+            "sector_name": "QUARTIER DE L'EST",
+            "vehicles_per_household": 1.11,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112418,
+            "sector_name": "RENORY",
+            "vehicles_per_household": 0.83,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112346,
+            "sector_name": "RUE DE TILFF-NORD",
+            "vehicles_per_household": 0.92,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112426,
+            "sector_name": "SART-HAGUET",
+            "vehicles_per_household": 1.2,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112401,
+            "sector_name": "SUALEM",
+            "vehicles_per_household": 0.83,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": -1,
+            "sector_name": "Secteur statistique inconnu",
+            "vehicles_per_household": 0.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112409,
+            "sector_name": "TOUTE VOIE",
+            "vehicles_per_household": 1.25,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112403,
+            "sector_name": "TROU DU MOULIN",
+            "vehicles_per_household": 1.46,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112380,
+            "sector_name": "VAL-POTET",
+            "vehicles_per_household": 0.66,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112379,
+            "sector_name": "VAL-SAINT-LAMBERT",
+            "vehicles_per_household": 1.02,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112394,
+            "sector_name": "WAHAIN",
+            "vehicles_per_household": 1.09,
+            "comparison_to_average": null
+          }
+        ]
+      }
+    },
+    "sectors": {
+      "statistical_sectors": {
+        "152101": {
+          "sector_id": 152101,
+          "cd_sector": "62096B011",
+          "sector_name": "A L'INDUSTRIE",
+          "sector_name_nl": "A L'INDUSTRIE",
+          "area_km2": 0.3054
+        },
+        "152098": {
+          "sector_id": 152098,
+          "cd_sector": "62096A710",
+          "sector_name": "AIR PUR",
+          "sector_name_nl": "AIR PUR",
+          "area_km2": 0.2525
+        },
+        "152082": {
+          "sector_id": 152082,
+          "cd_sector": "62096A301",
+          "sector_name": "BASSE-CHATQUEUE",
+          "sector_name_nl": "BASSE-CHATQUEUE",
+          "area_km2": 0.6768
+        },
+        "152116": {
+          "sector_id": 152116,
+          "cd_sector": "62096C110",
+          "sector_name": "BEAU SITE",
+          "sector_name_nl": "BEAU SITE",
+          "area_km2": 0.5236
+        },
+        "151976": {
+          "sector_id": 151976,
+          "cd_sector": "62096A532",
+          "sector_name": "BEAU-SEJOUR -VERRERIE",
+          "sector_name_nl": "BEAU-SEJOUR -VERRERIE",
+          "area_km2": 0.1617
+        },
+        "152091": {
+          "sector_id": 152091,
+          "cd_sector": "62096A533",
+          "sector_name": "BEAU-SEJOUR-PLAINEVAUX",
+          "sector_name_nl": "BEAU-SEJOUR-PLAINEVAUX",
+          "area_km2": 0.3134
+        },
+        "146791": {
+          "sector_id": 146791,
+          "cd_sector": "62096A410",
+          "sector_name": "BELLE-PIERRE",
+          "sector_name_nl": "BELLE-PIERRE",
+          "area_km2": 0.1309
+        },
+        "152115": {
+          "sector_id": 152115,
+          "cd_sector": "62096C101",
+          "sector_name": "BIENS-COMMUNAUX",
+          "sector_name_nl": "BIENS-COMMUNAUX",
+          "area_km2": 0.5076
+        },
+        "152090": {
+          "sector_id": 152090,
+          "cd_sector": "62096A511",
+          "sector_name": "BIENS-COMMUNAUX WAUTERS",
+          "sector_name_nl": "BIENS-COMMUNAUX WAUTERS",
+          "area_km2": 0.2219
+        },
+        "152089": {
+          "sector_id": 152089,
+          "cd_sector": "62096A501",
+          "sector_name": "BIENS-COMMUNAUX-CENTRE",
+          "sector_name_nl": "BIENS-COMMUNAUX-CENTRE",
+          "area_km2": 0.175
+        },
+        "151965": {
+          "sector_id": 151965,
+          "cd_sector": "62096A521",
+          "sector_name": "BIENS-COMMUNAUX-GENDARMERIE",
+          "sector_name_nl": "BIENS-COMMUNAUX-GENDARMERIE",
+          "area_km2": 0.283
+        },
+        "151715": {
+          "sector_id": 151715,
+          "cd_sector": "62096C020",
+          "sector_name": "BIEZ DU MOULIN",
+          "sector_name_nl": "BIEZ DU MOULIN",
+          "area_km2": 0.2517
+        },
+        "152096": {
+          "sector_id": 152096,
+          "cd_sector": "62096A700",
+          "sector_name": "BOIS DE L'ABBAYE",
+          "sector_name_nl": "BOIS DE L'ABBAYE",
+          "area_km2": 0.6315
+        },
+        "152093": {
+          "sector_id": 152093,
+          "cd_sector": "62096A591",
+          "sector_name": "BOIS DE LA VECQUEE",
+          "sector_name_nl": "BOIS DE LA VECQUEE",
+          "area_km2": 8.3912
+        },
+        "152105": {
+          "sector_id": 152105,
+          "cd_sector": "62096B212",
+          "sector_name": "BOIS DE MONT",
+          "sector_name_nl": "BOIS DE MONT",
+          "area_km2": 0.204
+        },
+        "152123": {
+          "sector_id": 152123,
+          "cd_sector": "62096C591",
+          "sector_name": "BOIS DE SCLESSIN",
+          "sector_name_nl": "BOIS DE SCLESSIN",
+          "area_km2": 1.9647
+        },
+        "152080": {
+          "sector_id": 152080,
+          "cd_sector": "62096A281",
+          "sector_name": "BOIS DU VAL-SAINT-LAMBERT",
+          "sector_name_nl": "BOIS DU VAL-SAINT-LAMBERT",
+          "area_km2": 0.6946
+        },
+        "152118": {
+          "sector_id": 152118,
+          "cd_sector": "62096C142",
+          "sector_name": "BOIS SAINT-JEAN",
+          "sector_name_nl": "BOIS SAINT-JEAN",
+          "area_km2": 0.2909
+        },
+        "152124": {
+          "sector_id": 152124,
+          "cd_sector": "62096D00-",
+          "sector_name": "BONCELLES-CENTRE",
+          "sector_name_nl": "BONCELLES-CENTRE",
+          "area_km2": 0.183
+        },
+        "152126": {
+          "sector_id": 152126,
+          "cd_sector": "62096D032",
+          "sector_name": "CARREFOUR NIC JANSSENS",
+          "sector_name_nl": "CARREFOUR NIC JANSSENS",
+          "area_km2": 0.1964
+        },
+        "152119": {
+          "sector_id": 152119,
+          "cd_sector": "62096C501",
+          "sector_name": "CENSE ROUGE",
+          "sector_name_nl": "CENSE ROUGE",
+          "area_km2": 0.0898
+        },
+        "152104": {
+          "sector_id": 152104,
+          "cd_sector": "62096B201",
+          "sector_name": "CHANT DES OISEAUX",
+          "sector_name_nl": "CHANT DES OISEAUX",
+          "area_km2": 0.4607
+        },
+        "152063": {
+          "sector_id": 152063,
+          "cd_sector": "62096A07-",
+          "sector_name": "COCKERILL",
+          "sector_name_nl": "COCKERILL",
+          "area_km2": 1.3286
+        },
+        "152084": {
+          "sector_id": 152084,
+          "cd_sector": "62096A372",
+          "sector_name": "COCKERILL EXTENSION",
+          "sector_name_nl": "COCKERILL EXTENSION",
+          "area_km2": 0.3816
+        },
+        "152076": {
+          "sector_id": 152076,
+          "cd_sector": "62096A232",
+          "sector_name": "COUR DU VAL",
+          "sector_name_nl": "COUR DU VAL",
+          "area_km2": 0.2681
+        },
+        "152125": {
+          "sector_id": 152125,
+          "cd_sector": "62096D01-",
+          "sector_name": "CROIX POITIEZ-EGLISE",
+          "sector_name_nl": "CROIX POITIEZ-EGLISE",
+          "area_km2": 0.1264
+        },
+        "152117": {
+          "sector_id": 152117,
+          "cd_sector": "62096C122",
+          "sector_name": "FEMMELETTE",
+          "sector_name_nl": "FEMMELETTE",
+          "area_km2": 0.2795
+        },
+        "152070": {
+          "sector_id": 152070,
+          "cd_sector": "62096A000",
+          "sector_name": "FOND DE SERAING",
+          "sector_name_nl": "FOND DE SERAING",
+          "area_km2": 0.4824
+        },
+        "152099": {
+          "sector_id": 152099,
+          "cd_sector": "62096A714",
+          "sector_name": "FORRIERE",
+          "sector_name_nl": "FORRIERE",
+          "area_km2": 0.0883
+        },
+        "152128": {
+          "sector_id": 152128,
+          "cd_sector": "62096D042",
+          "sector_name": "FREHISSES BAS",
+          "sector_name_nl": "FREHISSES BAS",
+          "area_km2": 0.1791
+        },
+        "152127": {
+          "sector_id": 152127,
+          "cd_sector": "62096D04-",
+          "sector_name": "FREHISSES HAUT",
+          "sector_name_nl": "FREHISSES HAUT",
+          "area_km2": 0.7118
+        },
+        "152081": {
+          "sector_id": 152081,
+          "cd_sector": "62096B022",
+          "sector_name": "GRAND VINAVE",
+          "sector_name_nl": "GRAND VINAVE",
+          "area_km2": 0.2274
+        },
+        "152109": {
+          "sector_id": 152109,
+          "cd_sector": "62096C031",
+          "sector_name": "HAUT-PRE",
+          "sector_name_nl": "HAUT-PRE",
+          "area_km2": 0.3564
+        },
+        "152083": {
+          "sector_id": 152083,
+          "cd_sector": "62096A311",
+          "sector_name": "HAUTE-CHATQUEUE",
+          "sector_name_nl": "HAUTE-CHATQUEUE",
+          "area_km2": 0.4112
+        },
+        "152100": {
+          "sector_id": 152100,
+          "cd_sector": "62096B001",
+          "sector_name": "JEMEPPE-CENTRE",
+          "sector_name_nl": "JEMEPPE-CENTRE",
+          "area_km2": 0.3274
+        },
+        "152106": {
+          "sector_id": 152106,
+          "cd_sector": "62096B273",
+          "sector_name": "KESSALES",
+          "sector_name_nl": "KESSALES",
+          "area_km2": 0.2463
+        },
+        "149924": {
+          "sector_id": 149924,
+          "cd_sector": "62096A172",
+          "sector_name": "L'ESPERANCE",
+          "sector_name_nl": "L'ESPERANCE",
+          "area_km2": 0.3619
+        },
+        "152077": {
+          "sector_id": 152077,
+          "cd_sector": "62096A242",
+          "sector_name": "LA BERGERIE BAS",
+          "sector_name_nl": "LA BERGERIE BAS",
+          "area_km2": 0.1813
+        },
+        "150964": {
+          "sector_id": 150964,
+          "cd_sector": "62096A221",
+          "sector_name": "LA BERGERIE-BAS",
+          "sector_name_nl": "LA BERGERIE-BAS",
+          "area_km2": 0.2039
+        },
+        "152086": {
+          "sector_id": 152086,
+          "cd_sector": "62096A431",
+          "sector_name": "LA BOVERIE",
+          "sector_name_nl": "LA BOVERIE",
+          "area_km2": 0.2382
+        },
+        "152071": {
+          "sector_id": 152071,
+          "cd_sector": "62096A020",
+          "sector_name": "LA TROQUE",
+          "sector_name_nl": "LA TROQUE",
+          "area_km2": 0.7544
+        },
+        "152085": {
+          "sector_id": 152085,
+          "cd_sector": "62096A420",
+          "sector_name": "LA VECQUEE",
+          "sector_name_nl": "LA VECQUEE",
+          "area_km2": 0.1878
+        },
+        "152107": {
+          "sector_id": 152107,
+          "cd_sector": "62096B290",
+          "sector_name": "LAVEU",
+          "sector_name_nl": "LAVEU",
+          "area_km2": 0.385
+        },
+        "152095": {
+          "sector_id": 152095,
+          "cd_sector": "62096A690",
+          "sector_name": "LE CORNILLON",
+          "sector_name_nl": "LE CORNILLON",
+          "area_km2": 1.0226
+        },
+        "152088": {
+          "sector_id": 152088,
+          "cd_sector": "62096A453",
+          "sector_name": "LE GROUPET",
+          "sector_name_nl": "LE GROUPET",
+          "area_km2": 0.188
+        },
+        "152078": {
+          "sector_id": 152078,
+          "cd_sector": "62096A272",
+          "sector_name": "LE MANY",
+          "sector_name_nl": "LE MANY",
+          "area_km2": 0.3359
+        },
+        "152073": {
+          "sector_id": 152073,
+          "cd_sector": "62096A131",
+          "sector_name": "LES BEGUINES",
+          "sector_name_nl": "LES BEGUINES",
+          "area_km2": 0.2026
+        },
+        "152122": {
+          "sector_id": 152122,
+          "cd_sector": "62096D03-",
+          "sector_name": "LES GONHIS",
+          "sector_name_nl": "LES GONHIS",
+          "area_km2": 0.5804
+        },
+        "152092": {
+          "sector_id": 152092,
+          "cd_sector": "62096A552",
+          "sector_name": "LIBERTE-PLAINE DES SPORTS",
+          "sector_name_nl": "LIBERTE-PLAINE DES SPORTS",
+          "area_km2": 0.3148
+        },
+        "152061": {
+          "sector_id": 152061,
+          "cd_sector": "62096A100",
+          "sector_name": "LIZE EST",
+          "sector_name_nl": "LIZE EST",
+          "area_km2": 0.3606
+        },
+        "152072": {
+          "sector_id": 152072,
+          "cd_sector": "62096A11-",
+          "sector_name": "LIZE OUEST",
+          "sector_name_nl": "LIZE OUEST",
+          "area_km2": 0.3872
+        },
+        "152112": {
+          "sector_id": 152112,
+          "cd_sector": "62096B51-",
+          "sector_name": "MABOTTE",
+          "sector_name_nl": "MABOTTE",
+          "area_km2": 0.4631
+        },
+        "152110": {
+          "sector_id": 152110,
+          "cd_sector": "62096B40-",
+          "sector_name": "MAKETS",
+          "sector_name_nl": "MAKETS",
+          "area_km2": 0.3876
+        },
+        "152079": {
+          "sector_id": 152079,
+          "cd_sector": "62096A392",
+          "sector_name": "MARCHANDISE",
+          "sector_name_nl": "MARCHANDISE",
+          "area_km2": 0.3993
+        },
+        "152047": {
+          "sector_id": 152047,
+          "cd_sector": "62096A121",
+          "sector_name": "MOLINAY",
+          "sector_name_nl": "MOLINAY",
+          "area_km2": 0.3591
+        },
+        "151936": {
+          "sector_id": 151936,
+          "cd_sector": "62096C042",
+          "sector_name": "OUGREE NICOLAY",
+          "sector_name_nl": "OUGREE NICOLAY",
+          "area_km2": 0.1993
+        },
+        "152113": {
+          "sector_id": 152113,
+          "cd_sector": "62096C000",
+          "sector_name": "OUGREE-BAS",
+          "sector_name_nl": "OUGREE-BAS",
+          "area_km2": 0.175
+        },
+        "146686": {
+          "sector_id": 146686,
+          "cd_sector": "62096C373",
+          "sector_name": "OUGREE-BAS-INDUSTRIE",
+          "sector_name_nl": "OUGREE-BAS-INDUSTRIE",
+          "area_km2": 0.1407
+        },
+        "152102": {
+          "sector_id": 152102,
+          "cd_sector": "62096B072",
+          "sector_name": "PAIRAI",
+          "sector_name_nl": "PAIRAI",
+          "area_km2": 0.3307
+        },
+        "152103": {
+          "sector_id": 152103,
+          "cd_sector": "62096B10-",
+          "sector_name": "PONT DE SERAING",
+          "sector_name_nl": "PONT DE SERAING",
+          "area_km2": 0.2077
+        },
+        "152087": {
+          "sector_id": 152087,
+          "cd_sector": "62096A442",
+          "sector_name": "PRE-SORAY",
+          "sector_name_nl": "PRE-SORAY",
+          "area_km2": 0.1254
+        },
+        "146879": {
+          "sector_id": 146879,
+          "cd_sector": "62096A542",
+          "sector_name": "QUARTIER DE L'EST",
+          "sector_name_nl": "QUARTIER DE L'EST",
+          "area_km2": 0.2375
+        },
+        "152114": {
+          "sector_id": 152114,
+          "cd_sector": "62096C070",
+          "sector_name": "RENORY",
+          "sector_name_nl": "RENORY",
+          "area_km2": 0.693
+        },
+        "152094": {
+          "sector_id": 152094,
+          "cd_sector": "62096A61-",
+          "sector_name": "RUE DE TILFF-NORD",
+          "sector_name_nl": "RUE DE TILFF-NORD",
+          "area_km2": 0.0697
+        },
+        "152120": {
+          "sector_id": 152120,
+          "cd_sector": "62096D021",
+          "sector_name": "SART-HAGUET",
+          "sector_name_nl": "SART-HAGUET",
+          "area_km2": 0.7341
+        },
+        "151696": {
+          "sector_id": 151696,
+          "cd_sector": "62096B033",
+          "sector_name": "SUALEM",
+          "sector_name_nl": "SUALEM",
+          "area_km2": 0.1325
+        },
+        "152108": {
+          "sector_id": 152108,
+          "cd_sector": "62096B31-",
+          "sector_name": "TOUTE VOIE",
+          "sector_name_nl": "TOUTE VOIE",
+          "area_km2": 0.7104
+        },
+        "152130": {
+          "sector_id": 152130,
+          "cd_sector": "62096D051",
+          "sector_name": "TROU DU MOULIN",
+          "sector_name_nl": "TROU DU MOULIN",
+          "area_km2": 1.087
+        },
+        "152075": {
+          "sector_id": 152075,
+          "cd_sector": "62096A210",
+          "sector_name": "VAL-POTET",
+          "sector_name_nl": "VAL-POTET",
+          "area_km2": 0.2519
+        },
+        "152074": {
+          "sector_id": 152074,
+          "cd_sector": "62096A201",
+          "sector_name": "VAL-SAINT-LAMBERT",
+          "sector_name_nl": "VAL-SAINT-LAMBERT",
+          "area_km2": 0.4452
+        },
+        "152097": {
+          "sector_id": 152097,
+          "cd_sector": "62096A703",
+          "sector_name": "WAHAIN",
+          "sector_name_nl": "WAHAIN",
+          "area_km2": 0.0674
+        }
+      }
+    }
+  },
+  "investment_analysis": {
+    "affordability_metrics": {
+      "price_to_income_ratio": 4.163215221599946,
+      "mortgage_affordability_index": 0.4566725771717315,
+      "ownership_accessibility_score": 67.79796609246975
+    },
+    "rental_market_potential": {
+      "estimated_rental_yield": 0.044000000000000004,
+      "rental_demand_index": 0.4,
+      "rental_growth_potential": "Moderate"
+    },
+    "target_demographic_analysis": {
+      "growing_segments": [
+        {
+          "segment": "Seniors (65+)",
+          "growth_rate": 2.0,
+          "housing_preferences": "Smaller, accessible units close to amenities"
+        }
+      ],
+      "declining_segments": []
+    },
+    "market_dynamics": {
+      "supply_demand_balance": "Undersupply",
+      "construction_vs_absorption_rate": 0.0,
+      "market_cycle_position": "Late growth phase (pre-correction)"
+    },
+    "risk_assessment": {
+      "price_volatility": "Low",
+      "liquidity_score": 60,
+      "oversupply_risk": "Low",
+      "economic_dependency_risk": "Low"
+    },
+    "comparative_ranking": {
+      "value_for_money_rank": 31,
+      "growth_potential_rank": 51,
+      "overall_investment_score": 58.0
+    }
+  }
+}

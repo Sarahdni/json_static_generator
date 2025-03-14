@@ -1,0 +1,672 @@
+{
+  "metadata": {
+    "commune_id": 1843,
+    "commune_name": "Spa",
+    "postal_code": "63072",
+    "district": null,
+    "province": "Province inconnue",
+    "region": "Région inconnue",
+    "version": "1.0",
+    "generated_date": "2025-03-14",
+    "temporal_coverage": {
+      "current_year": 2025,
+      "historical_start": 2000,
+      "range_years": 25
+    },
+    "data_period": {
+      "real_estate_data": {
+        "current": "2024-Q4",
+        "previous_year": "2023-Q4",
+        "five_year": "2019-Q4",
+        "ten_year": "2014-Q4",
+        "fifteen_year": "2009-Q4",
+        "since_2000": "2000-Q1 à 2024-Q4",
+        "historical_range": "2000-Q1 à 2024-Q4"
+      },
+      "economic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "demographic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "tax_data": {
+        "current": "2022",
+        "previous_year": "2021",
+        "five_year": "2017",
+        "ten_year": "2012",
+        "fifteen_year": "2007",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2022"
+      },
+      "construction_data": {
+        "current": "2024-Q1",
+        "previous_year": "2023-Q1",
+        "five_year": "2019-Q1",
+        "ten_year": "2014-Q1",
+        "fifteen_year": "2009-Q1",
+        "since_2000": "2000-Q1 à 2024-Q1",
+        "historical_range": "2000-Q1 à 2024-Q1"
+      }
+    }
+  },
+  "real_estate_market": {
+    "municipality_overview": {
+      "last_period": {
+        "total_transactions": 98,
+        "price_trends": {
+          "mean_price": 209275.9693877551,
+          "median_price": 190000.0,
+          "price_p10": 85000.0,
+          "price_p25": 130000.0,
+          "price_p75": 236000.0,
+          "price_p90": 283500.0
+        },
+        "total_surface_sqm": 45194.0,
+        "avg_surface_sqm": 461.16326530612247
+      },
+      "historical_trends": {
+        "year_over_year": {
+          "transaction_change_pct": -10.909090909090908,
+          "price_change_pct": -2.46157150255553
+        },
+        "five_year": {
+          "transaction_change_pct": -13.274336283185843,
+          "price_change_pct": 5.9337976557277505
+        }
+      }
+    },
+    "by_property_type": {
+      "summary": {
+        "most_common_type": null,
+        "fastest_growing_segment": null,
+        "most_valuable_segment": null
+      },
+      "detailed_types": {}
+    },
+    "sector_analysis": {
+      "summary": {
+        "sectors_count": 0,
+        "price_disparity_index": null,
+        "hottest_sector": null,
+        "most_affordable_sector": null
+      },
+      "sectors": []
+    },
+    "building_stock": {
+      "total_buildings": 0,
+      "by_type": {},
+      "by_age": {},
+      "housing_units": {
+        "total_count": 0,
+        "units_per_building_avg": null,
+        "units_per_capita": null
+      }
+    }
+  },
+  "building_development": {
+    "permits": {
+      "summary": {
+        "total_permits_ytd": 0,
+        "trend_yoy": null,
+        "residential_ratio": 0
+      },
+      "counts": {
+        "residential": {
+          "new_construction": {
+            "buildings": 0,
+            "dwellings": 0,
+            "houses": 0,
+            "apartments": 0
+          },
+          "renovation": {
+            "buildings": 0,
+            "dwellings": 0
+          }
+        },
+        "non_residential": {
+          "new_construction": {
+            "buildings": 0
+          },
+          "renovation": {
+            "buildings": 0
+          }
+        }
+      },
+      "surface": {
+        "residential_new_construction_sqm": 0,
+        "avg_dwelling_size_sqm": 0,
+        "trend_yoy": null
+      },
+      "volume": {
+        "non_residential_new_construction_cubic_m": 0,
+        "trend_yoy": null
+      }
+    },
+    "construction_activity": {
+      "construction_intensity_index": 0.5,
+      "development_phase": "Stable",
+      "supply_pipeline": {
+        "residential_units_coming": 0.0,
+        "estimated_completion_timeframe": "18 months",
+        "impact_on_supply": "Low"
+      }
+    }
+  },
+  "demographics": {
+    "population_overview": {
+      "total_population": 9890,
+      "population_density": null,
+      "population_trend": {
+        "one_year_growth": -1.1197760447910419,
+        "five_year_growth": -4.702254769705146,
+        "forecast_growth": -0.9404509539410292
+      }
+    },
+    "age_structure": {
+      "median_age": 48,
+      "age_groups": {
+        "under_18": {
+          "count": 1649,
+          "percentage": 16.673407482305358,
+          "trend": "+0,5%"
+        },
+        "18_to_35": {
+          "count": 2013,
+          "percentage": 20.353892821031344,
+          "trend": "-2,6%"
+        },
+        "36_to_65": {
+          "count": 3695,
+          "percentage": 37.360970677451974,
+          "trend": "-1,1%"
+        },
+        "over_65": {
+          "count": 2533,
+          "percentage": 25.611729019211328,
+          "trend": "+3,5%"
+        }
+      },
+      "dependency_ratio": 0.732655921513665
+    },
+    "household_composition": {
+      "total_households": 0,
+      "average_household_size": null,
+      "household_types": {
+        "single_person": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_age": {
+            "under_35": {
+              "count": 0,
+              "percentage": 0
+            },
+            "35_to_65": {
+              "count": 0,
+              "percentage": 0
+            },
+            "over_65": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "couples_without_children": {
+          "count": 0,
+          "percentage": 0
+        },
+        "couples_with_children": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_children": {
+            "with_1_child": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_2_children": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_3_plus_children": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "single_parent": {
+          "count": 0,
+          "percentage": 0
+        }
+      },
+      "household_evolution": {
+        "trend_single_person": null,
+        "trend_family": null,
+        "trend_average_size": null
+      }
+    },
+    "cultural_diversity": {
+      "nationality_groups": {
+        "belgian": {
+          "count": 9287,
+          "percentage": 93.90293225480283
+        },
+        "foreign": {
+          "count": 603,
+          "percentage": 6.097067745197169
+        }
+      }
+    }
+  },
+  "economic_indicators": {
+    "income_tax": {
+      "income_overview": {
+        "average_income": 32570.48214876033,
+        "median_income": 32480.320798378296,
+        "income_distribution": {
+          "low_income_pct": 25.0,
+          "middle_income_pct": 65.0,
+          "high_income_pct": 10.0
+        }
+      },
+      "tax_burden": {
+        "average_tax_rate": 20.78555489241388,
+        "municipal_tax_rate": 7.008263611448224
+      },
+      "income_sources": {
+        "professional_income_pct": 98.01035427981436,
+        "real_estate_income_pct": 1.6028761230413011,
+        "investment_income_pct": 0.276899317248699,
+        "other_income_pct": 0.10987027989564085
+      }
+    },
+    "business_activity": {
+      "enterprise_overview": {
+        "total_enterprises": 0,
+        "net_creation": 0,
+        "creation_rate": 0,
+        "closure_rate": 0
+      },
+      "sectors": {},
+      "enterprise_size": {
+        "micro_enterprises_pct": 0,
+        "small_enterprises_pct": 0,
+        "medium_enterprises_pct": 0,
+        "large_enterprises_pct": 0
+      },
+      "foreign_investment": {
+        "foreign_enterprises_count": 0,
+        "foreign_investment_growth": "+0.0%"
+      }
+    },
+    "unemployment": {
+      "overall_rate": 0,
+      "trend_yoy": null,
+      "by_age_group": {
+        "under_25": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "25_to_50": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "over_50": {
+          "rate": 0.0,
+          "trend": null
+        }
+      }
+    }
+  },
+  "geographical_context": {
+    "mobility": {
+      "vehicle_ownership": {
+        "average_vehicles_per_household": 0,
+        "households_with_no_vehicle_pct": 0.0,
+        "households_with_multiple_vehicles_pct": 0.0
+      },
+      "vehicle_distribution": {
+        "by_sector": [
+          {
+            "sector_id": 113311,
+            "sector_name": "AERODROME-MALCHAMPS",
+            "vehicles_per_household": 1.17,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113318,
+            "sector_name": "BALMORAL - LAC WARFS",
+            "vehicles_per_household": 1.02,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113323,
+            "sector_name": "BOIS DE LA LONGUE HEID - BOIS DE DANS LE SART",
+            "vehicles_per_household": 1.27,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113305,
+            "sector_name": "BOIS DES VIEILLES FAGNES",
+            "vehicles_per_household": 1.33,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113312,
+            "sector_name": "CREPPE-CENTRE",
+            "vehicles_per_household": 1.44,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113319,
+            "sector_name": "FORET",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113314,
+            "sector_name": "HOCTAISART-BARISART-HAVETTE",
+            "vehicles_per_household": 1.25,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113300,
+            "sector_name": "LA PLATTE - SOUS-BOIS",
+            "vehicles_per_household": 1.3,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113308,
+            "sector_name": "LE NEUBOIS",
+            "vehicles_per_household": 1.54,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112633,
+            "sector_name": "LES BIOLLES-BOIS DE PLEIN FAY FOND DE CREPPE",
+            "vehicles_per_household": 1.36,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113304,
+            "sector_name": "MONTAGNE D'ANNETTE LUBIN",
+            "vehicles_per_household": 1.45,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113307,
+            "sector_name": "NIVEZE",
+            "vehicles_per_household": 1.47,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 112610,
+            "sector_name": "ROUTE DE CREPPE",
+            "vehicles_per_household": 1.4,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113302,
+            "sector_name": "SPA MONOPOLE - CASERNE",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113299,
+            "sector_name": "SPA-CENTRE",
+            "vehicles_per_household": 0.6,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113295,
+            "sector_name": "SPA-CENTRE EST",
+            "vehicles_per_household": 1.19,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113301,
+            "sector_name": "SPA-CENTRE SUD OUEST",
+            "vehicles_per_household": 1.39,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113322,
+            "sector_name": "STATION GERONSTERE",
+            "vehicles_per_household": 0.85,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": -1,
+            "sector_name": "Secteur statistique inconnu",
+            "vehicles_per_household": 0.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113317,
+            "sector_name": "VAL DE TOLIFA",
+            "vehicles_per_household": 0.92,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113313,
+            "sector_name": "WAYAI AVAL",
+            "vehicles_per_household": 0.93,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 113321,
+            "sector_name": "WINAMPLANCHE",
+            "vehicles_per_household": 1.19,
+            "comparison_to_average": null
+          }
+        ]
+      }
+    },
+    "sectors": {
+      "statistical_sectors": {
+        "153026": {
+          "sector_id": 153026,
+          "cd_sector": "63072A191",
+          "sector_name": "AERODROME-MALCHAMPS",
+          "sector_name_nl": "AERODROME-MALCHAMPS",
+          "area_km2": 3.2429
+        },
+        "153034": {
+          "sector_id": 153034,
+          "cd_sector": "63072A694",
+          "sector_name": "BALMORAL - LAC WARFS",
+          "sector_name_nl": "BALMORAL - LAC WARFS",
+          "area_km2": 0.6568
+        },
+        "153040": {
+          "sector_id": 153040,
+          "cd_sector": "63072A689",
+          "sector_name": "BOIS DE LA LONGUE HEID - BOIS DE DANS LE SART",
+          "sector_name_nl": "BOIS DE LA LONGUE HEID - BOIS DE DANS LE SART",
+          "area_km2": 1.4521
+        },
+        "153022": {
+          "sector_id": 153022,
+          "cd_sector": "63072A182",
+          "sector_name": "BOIS DES VIEILLES FAGNES",
+          "sector_name_nl": "BOIS DES VIEILLES FAGNES",
+          "area_km2": 1.1794
+        },
+        "153027": {
+          "sector_id": 153027,
+          "cd_sector": "63072A200",
+          "sector_name": "CREPPE-CENTRE",
+          "sector_name_nl": "CREPPE-CENTRE",
+          "area_km2": 0.318
+        },
+        "153037": {
+          "sector_id": 153037,
+          "cd_sector": "63072A59-",
+          "sector_name": "FORET",
+          "sector_name_nl": "FORET",
+          "area_km2": 13.1079
+        },
+        "153030": {
+          "sector_id": 153030,
+          "cd_sector": "63072A511",
+          "sector_name": "HOCTAISART-BARISART-HAVETTE",
+          "sector_name_nl": "HOCTAISART-BARISART-HAVETTE",
+          "area_km2": 2.1389
+        },
+        "153018": {
+          "sector_id": 153018,
+          "cd_sector": "63072A02-",
+          "sector_name": "LA PLATTE - SOUS-BOIS",
+          "sector_name_nl": "LA PLATTE - SOUS-BOIS",
+          "area_km2": 1.364
+        },
+        "153024": {
+          "sector_id": 153024,
+          "cd_sector": "63072A112",
+          "sector_name": "LE NEUBOIS",
+          "sector_name_nl": "LE NEUBOIS",
+          "area_km2": 0.6003
+        },
+        "152144": {
+          "sector_id": 152144,
+          "cd_sector": "63072A290",
+          "sector_name": "LES BIOLLES-BOIS DE PLEIN FAY FOND DE CREPPE",
+          "sector_name_nl": "LES BIOLLES-BOIS DE PLEIN FAY FOND DE CREPPE",
+          "area_km2": 9.4828
+        },
+        "153031": {
+          "sector_id": 153031,
+          "cd_sector": "63072A389",
+          "sector_name": "MARTEAU - SPALOUMONT SUD",
+          "sector_name_nl": "MARTEAU - SPALOUMONT SUD",
+          "area_km2": 0.5803
+        },
+        "153020": {
+          "sector_id": 153020,
+          "cd_sector": "63072A08-",
+          "sector_name": "MONTAGNE D'ANNETTE LUBIN",
+          "sector_name_nl": "MONTAGNE D'ANNETTE LUBIN",
+          "area_km2": 0.7689
+        },
+        "153023": {
+          "sector_id": 153023,
+          "cd_sector": "63072A100",
+          "sector_name": "NIVEZE",
+          "sector_name_nl": "NIVEZE",
+          "area_km2": 0.8516
+        },
+        "152139": {
+          "sector_id": 152139,
+          "cd_sector": "63072A212",
+          "sector_name": "ROUTE DE CREPPE",
+          "sector_name_nl": "ROUTE DE CREPPE",
+          "area_km2": 0.2844
+        },
+        "152886": {
+          "sector_id": 152886,
+          "cd_sector": "63072A05-",
+          "sector_name": "SPA MONOPOLE - CASERNE",
+          "sector_name_nl": "SPA MONOPOLE - CASERNE",
+          "area_km2": 0.4208
+        },
+        "153016": {
+          "sector_id": 153016,
+          "cd_sector": "63072A00-",
+          "sector_name": "SPA-CENTRE",
+          "sector_name_nl": "SPA-CENTRE",
+          "area_km2": 0.5678
+        },
+        "153017": {
+          "sector_id": 153017,
+          "cd_sector": "63072A01-",
+          "sector_name": "SPA-CENTRE EST",
+          "sector_name_nl": "SPA-CENTRE EST",
+          "area_km2": 0.5598
+        },
+        "153019": {
+          "sector_id": 153019,
+          "cd_sector": "63072A04-",
+          "sector_name": "SPA-CENTRE SUD OUEST",
+          "sector_name_nl": "SPA-CENTRE SUD OUEST",
+          "area_km2": 0.2352
+        },
+        "153039": {
+          "sector_id": 153039,
+          "cd_sector": "63072A50-",
+          "sector_name": "STATION GERONSTERE",
+          "sector_name_nl": "STATION GERONSTERE",
+          "area_km2": 0.2646
+        },
+        "153033": {
+          "sector_id": 153033,
+          "cd_sector": "63072A39-",
+          "sector_name": "VAL DE TOLIFA",
+          "sector_name_nl": "VAL DE TOLIFA",
+          "area_km2": 0.3105
+        },
+        "153029": {
+          "sector_id": 153029,
+          "cd_sector": "63072A30-",
+          "sector_name": "WAYAI AVAL",
+          "sector_name_nl": "WAYAI AVAL",
+          "area_km2": 0.3014
+        },
+        "153038": {
+          "sector_id": 153038,
+          "cd_sector": "63072A499",
+          "sector_name": "WINAMPLANCHE",
+          "sector_name_nl": "WINAMPLANCHE",
+          "area_km2": 1.1613
+        }
+      }
+    }
+  },
+  "investment_analysis": {
+    "affordability_metrics": {
+      "price_to_income_ratio": 5.833502836470341,
+      "mortgage_affordability_index": 0.23868887542576556,
+      "ownership_accessibility_score": 44.04602948879756
+    },
+    "rental_market_potential": {
+      "estimated_rental_yield": 0.044000000000000004,
+      "rental_demand_index": 0.4,
+      "rental_growth_potential": "Moderate"
+    },
+    "target_demographic_analysis": {
+      "growing_segments": [
+        {
+          "segment": "Seniors (65+)",
+          "growth_rate": 2.0,
+          "housing_preferences": "Smaller, accessible units close to amenities"
+        }
+      ],
+      "declining_segments": []
+    },
+    "market_dynamics": {
+      "supply_demand_balance": "Balanced",
+      "construction_vs_absorption_rate": 1.0,
+      "market_cycle_position": "Slowdown phase"
+    },
+    "risk_assessment": {
+      "price_volatility": "Medium",
+      "liquidity_score": 50,
+      "oversupply_risk": "Low",
+      "economic_dependency_risk": "Low"
+    },
+    "comparative_ranking": {
+      "value_for_money_rank": 41,
+      "growth_potential_rank": 71,
+      "overall_investment_score": 42.0
+    }
+  }
+}

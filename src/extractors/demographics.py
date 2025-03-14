@@ -263,17 +263,19 @@ class DemographicsExtractor(BaseExtractor):
             FROM commune_info
         """
         
+        params = {'commune_id': int(commune_id)}
+        
         try:
-            result = self.execute_query(query, {'commune_id': commune_id})
+            result = self.execute_query(query, params)
             if not result or len(result) == 0 or result[0]['region_id'] is None:
                 # Si la première requête échoue, essayer avec la méthode de fallback
-                result = self.execute_query(fallback_query, {'commune_id': commune_id})
-                
+                result = self.execute_query(fallback_query, {'commune_id': int(commune_id)})  # Aussi convertir en int ici
+                    
             return result[0]['region_id'] if result and len(result) > 0 else None
-            
+                
         except Exception as e:
             logger.error(f"Erreur lors de la détermination de la région: {str(e)}")
-            
+                
             # En cas d'échec, utiliser une correspondance simplifiée basée sur le premier chiffre de l'ID
             if str(commune_id).startswith('1'):
                 return '2061'  # Région wallonne

@@ -1,0 +1,848 @@
+{
+  "metadata": {
+    "commune_id": 1408,
+    "commune_name": "Auderghem",
+    "postal_code": "21002",
+    "district": null,
+    "province": "Zone administrative de Bruxelles-Capitale",
+    "region": "Région de Bruxelles-Capitale",
+    "version": "1.0",
+    "generated_date": "2025-03-14",
+    "temporal_coverage": {
+      "current_year": 2025,
+      "historical_start": 2000,
+      "range_years": 25
+    },
+    "data_period": {
+      "real_estate_data": {
+        "current": "2024-Q4",
+        "previous_year": "2023-Q4",
+        "five_year": "2019-Q4",
+        "ten_year": "2014-Q4",
+        "fifteen_year": "2009-Q4",
+        "since_2000": "2000-Q1 à 2024-Q4",
+        "historical_range": "2000-Q1 à 2024-Q4"
+      },
+      "economic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "demographic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "tax_data": {
+        "current": "2022",
+        "previous_year": "2021",
+        "five_year": "2017",
+        "ten_year": "2012",
+        "fifteen_year": "2007",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2022"
+      },
+      "construction_data": {
+        "current": "2024-Q1",
+        "previous_year": "2023-Q1",
+        "five_year": "2019-Q1",
+        "ten_year": "2014-Q1",
+        "fifteen_year": "2009-Q1",
+        "since_2000": "2000-Q1 à 2024-Q1",
+        "historical_range": "2000-Q1 à 2024-Q1"
+      }
+    }
+  },
+  "real_estate_market": {
+    "municipality_overview": {
+      "last_period": {
+        "total_transactions": 359,
+        "price_trends": {
+          "mean_price": 347567.4568245125,
+          "median_price": 250000.0,
+          "price_p10": 147000.0,
+          "price_p25": 185000.0,
+          "price_p75": 335000.0,
+          "price_p90": 505965.0
+        },
+        "total_surface_sqm": 29290.0,
+        "avg_surface_sqm": 81.58774373259052
+      },
+      "historical_trends": {
+        "year_over_year": {
+          "transaction_change_pct": 3.1609195402298855,
+          "price_change_pct": 4.6608611553962005
+        },
+        "five_year": {
+          "transaction_change_pct": -6.510416666666667,
+          "price_change_pct": 14.898888228633203
+        }
+      }
+    },
+    "by_property_type": {
+      "summary": {
+        "most_common_type": null,
+        "fastest_growing_segment": null,
+        "most_valuable_segment": null
+      },
+      "detailed_types": {}
+    },
+    "sector_analysis": {
+      "summary": {
+        "sectors_count": 0,
+        "price_disparity_index": null,
+        "hottest_sector": null,
+        "most_affordable_sector": null
+      },
+      "sectors": []
+    },
+    "building_stock": {
+      "total_buildings": 0,
+      "by_type": {},
+      "by_age": {},
+      "housing_units": {
+        "total_count": 0,
+        "units_per_building_avg": null,
+        "units_per_capita": null
+      }
+    }
+  },
+  "building_development": {
+    "permits": {
+      "summary": {
+        "total_permits_ytd": 0,
+        "trend_yoy": null,
+        "residential_ratio": 0
+      },
+      "counts": {
+        "residential": {
+          "new_construction": {
+            "buildings": 0,
+            "dwellings": 0,
+            "houses": 0,
+            "apartments": 0
+          },
+          "renovation": {
+            "buildings": 0,
+            "dwellings": 0
+          }
+        },
+        "non_residential": {
+          "new_construction": {
+            "buildings": 0
+          },
+          "renovation": {
+            "buildings": 0
+          }
+        }
+      },
+      "surface": {
+        "residential_new_construction_sqm": 0,
+        "avg_dwelling_size_sqm": 0,
+        "trend_yoy": null
+      },
+      "volume": {
+        "non_residential_new_construction_cubic_m": 0,
+        "trend_yoy": null
+      }
+    },
+    "construction_activity": {
+      "construction_intensity_index": 0.5,
+      "development_phase": "Stable",
+      "supply_pipeline": {
+        "residential_units_coming": 0.0,
+        "estimated_completion_timeframe": "18 months",
+        "impact_on_supply": "Low"
+      }
+    }
+  },
+  "demographics": {
+    "population_overview": {
+      "total_population": 35346,
+      "population_density": null,
+      "population_trend": {
+        "one_year_growth": 1.0289830217801408,
+        "five_year_growth": 4.759928867812685,
+        "forecast_growth": 0.951985773562537
+      }
+    },
+    "age_structure": {
+      "median_age": 38,
+      "age_groups": {
+        "under_18": {
+          "count": 7512,
+          "percentage": 21.252758445085725,
+          "trend": "-0,4%"
+        },
+        "18_to_35": {
+          "count": 8755,
+          "percentage": 24.769422282577942,
+          "trend": "+0,3%"
+        },
+        "36_to_65": {
+          "count": 13616,
+          "percentage": 38.52203926894132,
+          "trend": "-0,2%"
+        },
+        "over_65": {
+          "count": 5463,
+          "percentage": 15.45578000339501,
+          "trend": "+0,6%"
+        }
+      },
+      "dependency_ratio": 0.579991953868848
+    },
+    "household_composition": {
+      "total_households": 0,
+      "average_household_size": null,
+      "household_types": {
+        "single_person": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_age": {
+            "under_35": {
+              "count": 0,
+              "percentage": 0
+            },
+            "35_to_65": {
+              "count": 0,
+              "percentage": 0
+            },
+            "over_65": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "couples_without_children": {
+          "count": 0,
+          "percentage": 0
+        },
+        "couples_with_children": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_children": {
+            "with_1_child": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_2_children": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_3_plus_children": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "single_parent": {
+          "count": 0,
+          "percentage": 0
+        }
+      },
+      "household_evolution": {
+        "trend_single_person": null,
+        "trend_family": null,
+        "trend_average_size": null
+      }
+    },
+    "cultural_diversity": {
+      "nationality_groups": {
+        "belgian": {
+          "count": 23974,
+          "percentage": 67.8266281898942
+        },
+        "foreign": {
+          "count": 11372,
+          "percentage": 32.17337181010581
+        }
+      }
+    }
+  },
+  "economic_indicators": {
+    "income_tax": {
+      "income_overview": {
+        "average_income": 42831.96103972588,
+        "median_income": 42739.22440089945,
+        "income_distribution": {
+          "low_income_pct": 25.0,
+          "middle_income_pct": 65.0,
+          "high_income_pct": 10.0
+        }
+      },
+      "tax_burden": {
+        "average_tax_rate": 28.24128278394285,
+        "municipal_tax_rate": 5.642352706980754
+      },
+      "income_sources": {
+        "professional_income_pct": 96.34713696286877,
+        "real_estate_income_pct": 2.448466876533127,
+        "investment_income_pct": 1.0623653103140018,
+        "other_income_pct": 0.14203085028410448
+      }
+    },
+    "business_activity": {
+      "enterprise_overview": {
+        "total_enterprises": 0,
+        "net_creation": 0,
+        "creation_rate": 0,
+        "closure_rate": 0
+      },
+      "sectors": {},
+      "enterprise_size": {
+        "micro_enterprises_pct": 0,
+        "small_enterprises_pct": 0,
+        "medium_enterprises_pct": 0,
+        "large_enterprises_pct": 0
+      },
+      "foreign_investment": {
+        "foreign_enterprises_count": 0,
+        "foreign_investment_growth": "+0.0%"
+      }
+    },
+    "unemployment": {
+      "overall_rate": 0,
+      "trend_yoy": null,
+      "by_age_group": {
+        "under_25": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "25_to_50": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "over_50": {
+          "rate": 0.0,
+          "trend": null
+        }
+      }
+    }
+  },
+  "geographical_context": {
+    "mobility": {
+      "vehicle_ownership": {
+        "average_vehicles_per_household": 0,
+        "households_with_no_vehicle_pct": 0.0,
+        "households_with_multiple_vehicles_pct": 0.0
+      },
+      "vehicle_distribution": {
+        "by_sector": [
+          {
+            "sector_id": 101308,
+            "sector_name": "AMITIE (PLACE DE L')",
+            "vehicles_per_household": 0.65,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101306,
+            "sector_name": "AVENUE DE BROUCKERE",
+            "vehicles_per_household": 0.66,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101312,
+            "sector_name": "AVENUE IS.GERARD",
+            "vehicles_per_household": 1.5,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100039,
+            "sector_name": "AVENUE SCHALLER",
+            "vehicles_per_household": 1.15,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99773,
+            "sector_name": "BEAULIEU",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101304,
+            "sector_name": "CANARIS (AVENUE DES)",
+            "vehicles_per_household": 0.93,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101297,
+            "sector_name": "CENTRE - NORD",
+            "vehicles_per_household": 0.8,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101293,
+            "sector_name": "CENTRE COMMERCIAL",
+            "vehicles_per_household": 0.67,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101299,
+            "sector_name": "CENTRE-SUD",
+            "vehicles_per_household": 0.88,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101294,
+            "sector_name": "CHANT D'OISEAUX",
+            "vehicles_per_household": 1.22,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101310,
+            "sector_name": "CHEMIN DE FER",
+            "vehicles_per_household": 0.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101302,
+            "sector_name": "FORET DE SOIGNES",
+            "vehicles_per_household": 1.56,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100187,
+            "sector_name": "INVALIDES (BOULEVARD DES)",
+            "vehicles_per_household": 0.78,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101291,
+            "sector_name": "LAMMERENDRIES",
+            "vehicles_per_household": 0.74,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100110,
+            "sector_name": "LEBON",
+            "vehicles_per_household": 0.64,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100065,
+            "sector_name": "PARC DES PRINCES",
+            "vehicles_per_household": 1.26,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99783,
+            "sector_name": "PECHERIES",
+            "vehicles_per_household": 0.68,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101311,
+            "sector_name": "PUTDAAL",
+            "vehicles_per_household": 1.25,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101309,
+            "sector_name": "QUARTIER INDUSTRIE",
+            "vehicles_per_household": 0.6,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101301,
+            "sector_name": "ROUGE CLOITRE",
+            "vehicles_per_household": 0.75,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100032,
+            "sector_name": "SACRE-COEUR",
+            "vehicles_per_household": 0.94,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101303,
+            "sector_name": "SAINT-JULIEN",
+            "vehicles_per_household": 0.69,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101298,
+            "sector_name": "SAINTE-ANNE",
+            "vehicles_per_household": 0.88,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101280,
+            "sector_name": "SOUVERAIN (BLV DU)- BUILDINGS",
+            "vehicles_per_household": 0.58,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101313,
+            "sector_name": "SOUVERAIN (BOULEVARD DU) NORD",
+            "vehicles_per_household": 0.74,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": -1,
+            "sector_name": "Secteur statistique inconnu",
+            "vehicles_per_household": 0.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101300,
+            "sector_name": "TEN REUKEN",
+            "vehicles_per_household": 1.17,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101305,
+            "sector_name": "TH. BALIS (PLACE)",
+            "vehicles_per_household": 0.79,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100023,
+            "sector_name": "TRANSVAAL",
+            "vehicles_per_household": 0.69,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101307,
+            "sector_name": "TRIOMPHE (BOULEVARD DU)",
+            "vehicles_per_household": 0.48,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 99005,
+            "sector_name": "VAL DUC",
+            "vehicles_per_household": 0.96,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100153,
+            "sector_name": "VAL DUCHESSE",
+            "vehicles_per_household": 3.0,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101292,
+            "sector_name": "VIGNETTE",
+            "vehicles_per_household": 0.78,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 101283,
+            "sector_name": "WATERMAEL (CHAUSSEE DE)",
+            "vehicles_per_household": 0.8,
+            "comparison_to_average": null
+          },
+          {
+            "sector_id": 100168,
+            "sector_name": "WOLUWE PARC",
+            "vehicles_per_household": 2.0,
+            "comparison_to_average": null
+          }
+        ]
+      }
+    },
+    "sectors": {
+      "statistical_sectors": {
+        "141041": {
+          "sector_id": 141041,
+          "cd_sector": "21002A311",
+          "sector_name": "AMITIE (PLACE DE L')",
+          "sector_name_nl": "VRIENDSCHAPSLAAN",
+          "area_km2": 0.0747
+        },
+        "138609": {
+          "sector_id": 138609,
+          "cd_sector": "21002A24-",
+          "sector_name": "AVENUE DE BROUCKERE",
+          "sector_name_nl": "DE BROUCKERELAAN",
+          "area_km2": 0.0869
+        },
+        "158278": {
+          "sector_id": 158278,
+          "cd_sector": "21002A422",
+          "sector_name": "AVENUE IS.GERARD",
+          "sector_name_nl": "IS. GERARDLAAN",
+          "area_km2": 0.0721
+        },
+        "138815": {
+          "sector_id": 138815,
+          "cd_sector": "21002A12-",
+          "sector_name": "AVENUE SCHALLER",
+          "sector_name_nl": "SCHALLERLAAN",
+          "area_km2": 0.3697
+        },
+        "139241": {
+          "sector_id": 139241,
+          "cd_sector": "21002A52-",
+          "sector_name": "BEAULIEU",
+          "sector_name_nl": "BEAULIEU",
+          "area_km2": 0.1504
+        },
+        "139140": {
+          "sector_id": 139140,
+          "cd_sector": "21002A22-",
+          "sector_name": "CANARIS (AVENUE DES)",
+          "sector_name_nl": "KANARIELAAN",
+          "area_km2": 0.0976
+        },
+        "141030": {
+          "sector_id": 141030,
+          "cd_sector": "21002A00-",
+          "sector_name": "CENTRE - NORD",
+          "sector_name_nl": "CENTRUM-NOORD",
+          "area_km2": 0.1348
+        },
+        "141026": {
+          "sector_id": 141026,
+          "cd_sector": "21002A072",
+          "sector_name": "CENTRE COMMERCIAL",
+          "sector_name_nl": "HANDELSCENTRUM",
+          "area_km2": 0.1019
+        },
+        "141032": {
+          "sector_id": 141032,
+          "cd_sector": "21002A02-",
+          "sector_name": "CENTRE-SUD",
+          "sector_name_nl": "CENTRUM-ZUID",
+          "area_km2": 0.1784
+        },
+        "141046": {
+          "sector_id": 141046,
+          "cd_sector": "21002A441",
+          "sector_name": "CHANT D'OISEAUX",
+          "sector_name_nl": "VOGELZANG",
+          "area_km2": 0.2387
+        },
+        "141043": {
+          "sector_id": 141043,
+          "cd_sector": "21002A39-",
+          "sector_name": "CHEMIN DE FER",
+          "sector_name_nl": "SPOORWEG",
+          "area_km2": 0.1606
+        },
+        "138613": {
+          "sector_id": 138613,
+          "cd_sector": "21002A572",
+          "sector_name": "DEPOT METRO",
+          "sector_name_nl": "METRO DEPOT",
+          "area_km2": 0.0936
+        },
+        "141035": {
+          "sector_id": 141035,
+          "cd_sector": "21002A190",
+          "sector_name": "FORET DE SOIGNES",
+          "sector_name_nl": "ZONIENWOUD",
+          "area_km2": 2.7947
+        },
+        "139200": {
+          "sector_id": 139200,
+          "cd_sector": "21002A511",
+          "sector_name": "INVALIDES (BOULEVARD DES)",
+          "sector_name_nl": "INVALIDENLAAN",
+          "area_km2": 0.2078
+        },
+        "141024": {
+          "sector_id": 141024,
+          "cd_sector": "21002A030",
+          "sector_name": "LAMMERENDRIES",
+          "sector_name_nl": "LAMMERENDRIES",
+          "area_km2": 0.1981
+        },
+        "141037": {
+          "sector_id": 141037,
+          "cd_sector": "21002A21-",
+          "sector_name": "LEBON",
+          "sector_name_nl": "LEBON",
+          "area_km2": 0.1758
+        },
+        "138816": {
+          "sector_id": 138816,
+          "cd_sector": "21002A130",
+          "sector_name": "PARC DES PRINCES",
+          "sector_name_nl": "PRINSENPARK",
+          "area_km2": 0.2976
+        },
+        "139257": {
+          "sector_id": 139257,
+          "cd_sector": "21002A53-",
+          "sector_name": "PECHERIES",
+          "sector_name_nl": "VISSERIJEN",
+          "area_km2": 0.0622
+        },
+        "141044": {
+          "sector_id": 141044,
+          "cd_sector": "21002A411",
+          "sector_name": "PUTDAAL",
+          "sector_name_nl": "PUTDAAL",
+          "area_km2": 0.2539
+        },
+        "141042": {
+          "sector_id": 141042,
+          "cd_sector": "21002A372",
+          "sector_name": "QUARTIER INDUSTRIE",
+          "sector_name_nl": "INDUSTRIEWIJK",
+          "area_km2": 0.0648
+        },
+        "141034": {
+          "sector_id": 141034,
+          "cd_sector": "21002A18-",
+          "sector_name": "ROUGE CLOITRE",
+          "sector_name_nl": "ROOD KLOOSTER",
+          "area_km2": 0.907
+        },
+        "138814": {
+          "sector_id": 138814,
+          "cd_sector": "21002A11-",
+          "sector_name": "SACRE-COEUR",
+          "sector_name_nl": "HEILIG-HART",
+          "area_km2": 0.122
+        },
+        "141036": {
+          "sector_id": 141036,
+          "cd_sector": "21002A20-",
+          "sector_name": "SAINT-JULIEN",
+          "sector_name_nl": "SINT-JULIAAN",
+          "area_km2": 0.1052
+        },
+        "141031": {
+          "sector_id": 141031,
+          "cd_sector": "21002A01-",
+          "sector_name": "SAINTE-ANNE",
+          "sector_name_nl": "SINT-ANNA",
+          "area_km2": 0.1253
+        },
+        "139123": {
+          "sector_id": 139123,
+          "cd_sector": "21002A15-",
+          "sector_name": "SOUVERAIN (BLV DU)- BUILDINGS",
+          "sector_name_nl": "VORSTLAAN - FLATGEBOUWEN",
+          "area_km2": 0.0194
+        },
+        "158244": {
+          "sector_id": 158244,
+          "cd_sector": "21002A43-",
+          "sector_name": "SOUVERAIN (BOULEVARD DU) NORD",
+          "sector_name_nl": "VORSTLAAN-NORD",
+          "area_km2": 0.1855
+        },
+        "139118": {
+          "sector_id": 139118,
+          "cd_sector": "21002A14-",
+          "sector_name": "TEN REUKEN",
+          "sector_name_nl": "TEN REUKEN",
+          "area_km2": 0.1287
+        },
+        "141038": {
+          "sector_id": 141038,
+          "cd_sector": "21002A23-",
+          "sector_name": "TH. BALIS (PLACE)",
+          "sector_name_nl": "TH. BALIS PLEIN",
+          "area_km2": 0.1036
+        },
+        "141033": {
+          "sector_id": 141033,
+          "cd_sector": "21002A10-",
+          "sector_name": "TRANSVAAL",
+          "sector_name_nl": "TRANSVAAL",
+          "area_km2": 0.2917
+        },
+        "141040": {
+          "sector_id": 141040,
+          "cd_sector": "21002A30-",
+          "sector_name": "TRIOMPHE (BOULEVARD DU)",
+          "sector_name_nl": "TRIOMFLAAN",
+          "area_km2": 0.1246
+        },
+        "138588": {
+          "sector_id": 138588,
+          "cd_sector": "21002A091",
+          "sector_name": "TROIS COULEURS",
+          "sector_name_nl": "DRIEKLEUREN",
+          "area_km2": 0.2927
+        },
+        "139160": {
+          "sector_id": 139160,
+          "cd_sector": "21002A45-",
+          "sector_name": "VAL DUC",
+          "sector_name_nl": "HERTOGENDAL",
+          "area_km2": 0.1169
+        },
+        "139189": {
+          "sector_id": 139189,
+          "cd_sector": "21002A482",
+          "sector_name": "VAL DUCHESSE",
+          "sector_name_nl": "HERTOGINNENDAL",
+          "area_km2": 0.2811
+        },
+        "141025": {
+          "sector_id": 141025,
+          "cd_sector": "21002A041",
+          "sector_name": "VIGNETTE",
+          "sector_name_nl": "KLEINE WIJNGAARD",
+          "area_km2": 0.0787
+        },
+        "138610": {
+          "sector_id": 138610,
+          "cd_sector": "21002A25-",
+          "sector_name": "WATERMAEL (CHAUSSEE DE)",
+          "sector_name_nl": "WATERMAALSE STEENWEG",
+          "area_km2": 0.1464
+        },
+        "139197": {
+          "sector_id": 139197,
+          "cd_sector": "21002A492",
+          "sector_name": "WOLUWE PARC",
+          "sector_name_nl": "WOLUWE PARK",
+          "area_km2": 0.1229
+        }
+      }
+    }
+  },
+  "investment_analysis": {
+    "affordability_metrics": {
+      "price_to_income_ratio": 5.836762873596412,
+      "mortgage_affordability_index": 0.2382634187833026,
+      "ownership_accessibility_score": 43.999670888964395
+    },
+    "rental_market_potential": {
+      "estimated_rental_yield": 0.046000000000000006,
+      "rental_demand_index": 0.6,
+      "rental_growth_potential": "Moderate"
+    },
+    "target_demographic_analysis": {
+      "growing_segments": [
+        {
+          "segment": "Seniors (65+)",
+          "growth_rate": 2.0,
+          "housing_preferences": "Smaller, accessible units close to amenities"
+        }
+      ],
+      "declining_segments": []
+    },
+    "market_dynamics": {
+      "supply_demand_balance": "Undersupply",
+      "construction_vs_absorption_rate": 0.0,
+      "market_cycle_position": "Mid-growth phase"
+    },
+    "risk_assessment": {
+      "price_volatility": "Low",
+      "liquidity_score": 70,
+      "oversupply_risk": "Low",
+      "economic_dependency_risk": "Low"
+    },
+    "comparative_ranking": {
+      "value_for_money_rank": 41,
+      "growth_potential_rank": 31,
+      "overall_investment_score": 66.0
+    }
+  }
+}

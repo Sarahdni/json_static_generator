@@ -1,0 +1,808 @@
+{
+  "metadata": {
+    "commune_id": 1801,
+    "commune_name": "Ans",
+    "postal_code": "62003",
+    "district": null,
+    "province": "Province de Liège",
+    "region": "Région wallonne",
+    "version": "1.0",
+    "generated_date": "2025-03-14",
+    "temporal_coverage": {
+      "current_year": 2025,
+      "historical_start": 2000,
+      "range_years": 25
+    },
+    "data_period": {
+      "real_estate_data": {
+        "current": "2024-Q4",
+        "previous_year": "2023-Q4",
+        "five_year": "2019-Q4",
+        "ten_year": "2014-Q4",
+        "fifteen_year": "2009-Q4",
+        "since_2000": "2000-Q1 à 2024-Q4",
+        "historical_range": "2000-Q1 à 2024-Q4"
+      },
+      "economic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "demographic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "tax_data": {
+        "current": "2022",
+        "previous_year": "2021",
+        "five_year": "2017",
+        "ten_year": "2012",
+        "fifteen_year": "2007",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2022"
+      },
+      "construction_data": {
+        "current": "2024-Q1",
+        "previous_year": "2023-Q1",
+        "five_year": "2019-Q1",
+        "ten_year": "2014-Q1",
+        "fifteen_year": "2009-Q1",
+        "since_2000": "2000-Q1 à 2024-Q1",
+        "historical_range": "2000-Q1 à 2024-Q1"
+      }
+    }
+  },
+  "real_estate_market": {
+    "municipality_overview": {
+      "last_period": {
+        "total_transactions": 158,
+        "price_trends": {
+          "mean_price": 150557.6329113924,
+          "median_price": 145000.0,
+          "price_p10": 85000.0,
+          "price_p25": 125000.0,
+          "price_p75": 180000.0,
+          "price_p90": 235000.0
+        },
+        "total_surface_sqm": 42996.73,
+        "avg_surface_sqm": 272.13120253164556
+      },
+      "historical_trends": {
+        "year_over_year": {
+          "transaction_change_pct": -30.396475770925107,
+          "price_change_pct": -3.0813330136623724
+        },
+        "five_year": {
+          "transaction_change_pct": -42.124542124542124,
+          "price_change_pct": 1.1492636292684677
+        }
+      }
+    },
+    "by_property_type": {
+      "summary": {
+        "most_common_type": null,
+        "fastest_growing_segment": null,
+        "most_valuable_segment": null
+      },
+      "detailed_types": {}
+    },
+    "sector_analysis": {
+      "summary": {
+        "sectors_count": 0,
+        "price_disparity_index": null,
+        "hottest_sector": null,
+        "most_affordable_sector": null
+      },
+      "sectors": []
+    },
+    "building_stock": {
+      "total_buildings": 0,
+      "by_type": {},
+      "by_age": {},
+      "housing_units": {
+        "total_count": 0,
+        "units_per_building_avg": null,
+        "units_per_capita": null
+      }
+    }
+  },
+  "building_development": {
+    "permits": {
+      "summary": {
+        "total_permits_ytd": 0,
+        "trend_yoy": null,
+        "residential_ratio": 0
+      },
+      "counts": {
+        "residential": {
+          "new_construction": {
+            "buildings": 0,
+            "dwellings": 0,
+            "houses": 0,
+            "apartments": 0
+          },
+          "renovation": {
+            "buildings": 0,
+            "dwellings": 0
+          }
+        },
+        "non_residential": {
+          "new_construction": {
+            "buildings": 0
+          },
+          "renovation": {
+            "buildings": 0
+          }
+        }
+      },
+      "surface": {
+        "residential_new_construction_sqm": 0,
+        "avg_dwelling_size_sqm": 0,
+        "trend_yoy": null
+      },
+      "volume": {
+        "non_residential_new_construction_cubic_m": 0,
+        "trend_yoy": null
+      }
+    },
+    "construction_activity": {
+      "construction_intensity_index": 0.5,
+      "development_phase": "Stable",
+      "supply_pipeline": {
+        "residential_units_coming": 0.0,
+        "estimated_completion_timeframe": "18 months",
+        "impact_on_supply": "Low"
+      }
+    }
+  },
+  "demographics": {
+    "population_overview": {
+      "total_population": 28764,
+      "population_density": null,
+      "population_trend": {
+        "one_year_growth": 0.48558951965065505,
+        "five_year_growth": 1.8627381542602166,
+        "forecast_growth": 0.37254763085204334
+      }
+    },
+    "age_structure": {
+      "median_age": 42,
+      "age_groups": {
+        "under_18": {
+          "count": 6019,
+          "percentage": 20.925462383534974,
+          "trend": "-0,2%"
+        },
+        "18_to_35": {
+          "count": 6071,
+          "percentage": 21.106243916006118,
+          "trend": "+0,5%"
+        },
+        "36_to_65": {
+          "count": 10863,
+          "percentage": 37.765957446808514,
+          "trend": "-0,8%"
+        },
+        "over_65": {
+          "count": 5811,
+          "percentage": 20.202336253650397,
+          "trend": "+1,2%"
+        }
+      },
+      "dependency_ratio": 0.6985945435219086
+    },
+    "household_composition": {
+      "total_households": 0,
+      "average_household_size": null,
+      "household_types": {
+        "single_person": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_age": {
+            "under_35": {
+              "count": 0,
+              "percentage": 0
+            },
+            "35_to_65": {
+              "count": 0,
+              "percentage": 0
+            },
+            "over_65": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "couples_without_children": {
+          "count": 0,
+          "percentage": 0
+        },
+        "couples_with_children": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_children": {
+            "with_1_child": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_2_children": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_3_plus_children": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "single_parent": {
+          "count": 0,
+          "percentage": 0
+        }
+      },
+      "household_evolution": {
+        "trend_single_person": null,
+        "trend_family": null,
+        "trend_average_size": null
+      }
+    },
+    "cultural_diversity": {
+      "nationality_groups": {
+        "belgian": {
+          "count": 25243,
+          "percentage": 87.75900431094423
+        },
+        "foreign": {
+          "count": 3521,
+          "percentage": 12.240995689055763
+        }
+      }
+    }
+  },
+  "economic_indicators": {
+    "income_tax": {
+      "income_overview": {
+        "average_income": 32614.869411660253,
+        "median_income": 32536.772686593667,
+        "income_distribution": {
+          "low_income_pct": 25.0,
+          "middle_income_pct": 65.0,
+          "high_income_pct": 10.0
+        }
+      },
+      "tax_burden": {
+        "average_tax_rate": 20.73757385724702,
+        "municipal_tax_rate": 7.85724624198541
+      },
+      "income_sources": {
+        "professional_income_pct": 98.67831480081914,
+        "real_estate_income_pct": 1.1632833750341054,
+        "investment_income_pct": 0.1076179621777396,
+        "other_income_pct": 0.05078386196901346
+      }
+    },
+    "business_activity": {
+      "enterprise_overview": {
+        "total_enterprises": 0,
+        "net_creation": 0,
+        "creation_rate": 0,
+        "closure_rate": 0
+      },
+      "sectors": {},
+      "enterprise_size": {
+        "micro_enterprises_pct": 0,
+        "small_enterprises_pct": 0,
+        "medium_enterprises_pct": 0,
+        "large_enterprises_pct": 0
+      },
+      "foreign_investment": {
+        "foreign_enterprises_count": 0,
+        "foreign_investment_growth": "+0.0%"
+      }
+    },
+    "unemployment": {
+      "overall_rate": 0,
+      "trend_yoy": null,
+      "by_age_group": {
+        "under_25": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "25_to_50": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "over_50": {
+          "rate": 0.0,
+          "trend": null
+        }
+      }
+    }
+  },
+  "geographical_context": {
+    "mobility": {
+      "vehicle_ownership": {
+        "average_vehicles_per_household": 1,
+        "households_with_no_vehicle_pct": 0.0,
+        "households_with_multiple_vehicles_pct": 10.0
+      },
+      "vehicle_distribution": {
+        "by_sector": [
+          {
+            "sector_id": 111787,
+            "sector_name": "TUMULUS",
+            "vehicles_per_household": 2.0,
+            "comparison_to_average": 100.0
+          },
+          {
+            "sector_id": 111783,
+            "sector_name": "WAROUX",
+            "vehicles_per_household": 1.65,
+            "comparison_to_average": 65.0
+          },
+          {
+            "sector_id": 111778,
+            "sector_name": "WAROUX",
+            "vehicles_per_household": 1.59,
+            "comparison_to_average": 59.0
+          },
+          {
+            "sector_id": 111760,
+            "sector_name": "BONNE-FORTUNE",
+            "vehicles_per_household": 1.5,
+            "comparison_to_average": 50.0
+          },
+          {
+            "sector_id": 111779,
+            "sector_name": "AL TRAPPE",
+            "vehicles_per_household": 1.37,
+            "comparison_to_average": 37.0
+          },
+          {
+            "sector_id": 111782,
+            "sector_name": "BOURDON",
+            "vehicles_per_household": 1.34,
+            "comparison_to_average": 34.0
+          },
+          {
+            "sector_id": 111781,
+            "sector_name": "XHENDREMAEL",
+            "vehicles_per_household": 1.34,
+            "comparison_to_average": 34.0
+          },
+          {
+            "sector_id": 111738,
+            "sector_name": "BOLSEE",
+            "vehicles_per_household": 1.28,
+            "comparison_to_average": 28.0
+          },
+          {
+            "sector_id": 111758,
+            "sector_name": "HOMBROU",
+            "vehicles_per_household": 1.23,
+            "comparison_to_average": 23.0
+          },
+          {
+            "sector_id": 111773,
+            "sector_name": "FORT DE LONCIN",
+            "vehicles_per_household": 1.19,
+            "comparison_to_average": 19.0
+          },
+          {
+            "sector_id": 111780,
+            "sector_name": "BOLZEE",
+            "vehicles_per_household": 1.17,
+            "comparison_to_average": 17.0
+          },
+          {
+            "sector_id": 111774,
+            "sector_name": "ALLEUR-CENTRE",
+            "vehicles_per_household": 1.16,
+            "comparison_to_average": 16.0
+          },
+          {
+            "sector_id": 111791,
+            "sector_name": "VICINAL",
+            "vehicles_per_household": 1.15,
+            "comparison_to_average": 15.0
+          },
+          {
+            "sector_id": 111772,
+            "sector_name": "LONCIN AUTOROUTES",
+            "vehicles_per_household": 1.12,
+            "comparison_to_average": 12.0
+          },
+          {
+            "sector_id": 111784,
+            "sector_name": "ALLEUR - HAUT",
+            "vehicles_per_household": 1.11,
+            "comparison_to_average": 11.0
+          },
+          {
+            "sector_id": 111759,
+            "sector_name": "EN STER",
+            "vehicles_per_household": 1.09,
+            "comparison_to_average": 9.0
+          },
+          {
+            "sector_id": 111761,
+            "sector_name": "PLATEAU",
+            "vehicles_per_household": 1.04,
+            "comparison_to_average": 4.0
+          },
+          {
+            "sector_id": 111755,
+            "sector_name": "HAUT-DOUY",
+            "vehicles_per_household": 1.01,
+            "comparison_to_average": 1.0
+          },
+          {
+            "sector_id": 111767,
+            "sector_name": "LONCIN-CENTRE",
+            "vehicles_per_household": 0.99,
+            "comparison_to_average": -1.0
+          },
+          {
+            "sector_id": 111754,
+            "sector_name": "BEAUJONC-ANS",
+            "vehicles_per_household": 0.97,
+            "comparison_to_average": -3.0
+          },
+          {
+            "sector_id": 111762,
+            "sector_name": "PLATEAU-NORD",
+            "vehicles_per_household": 0.97,
+            "comparison_to_average": -3.0
+          },
+          {
+            "sector_id": 102835,
+            "sector_name": "PLATEAU-OURY",
+            "vehicles_per_household": 0.97,
+            "comparison_to_average": -3.0
+          },
+          {
+            "sector_id": 111765,
+            "sector_name": "CHARBONNAGE DES FRANCAIS",
+            "vehicles_per_household": 0.96,
+            "comparison_to_average": -4.0
+          },
+          {
+            "sector_id": 111747,
+            "sector_name": "WAROUX",
+            "vehicles_per_household": 0.94,
+            "comparison_to_average": -6.0
+          },
+          {
+            "sector_id": 111775,
+            "sector_name": "ALLEUR-BAS",
+            "vehicles_per_household": 0.85,
+            "comparison_to_average": -15.0
+          },
+          {
+            "sector_id": 111757,
+            "sector_name": "MONTEGNEE",
+            "vehicles_per_household": 0.83,
+            "comparison_to_average": -17.0
+          },
+          {
+            "sector_id": 111753,
+            "sector_name": "ANS-CENTRE",
+            "vehicles_per_household": 0.82,
+            "comparison_to_average": -18.0
+          },
+          {
+            "sector_id": 111768,
+            "sector_name": "LONCIN-CENTRE-NORD",
+            "vehicles_per_household": 0.79,
+            "comparison_to_average": -21.0
+          },
+          {
+            "sector_id": 111769,
+            "sector_name": "LONCIN-CENTRE-SUD - CH. DE FER",
+            "vehicles_per_household": 0.78,
+            "comparison_to_average": -22.0
+          },
+          {
+            "sector_id": 111785,
+            "sector_name": "ALLEUR-CHAUSSEE",
+            "vehicles_per_household": 0.73,
+            "comparison_to_average": -27.0
+          },
+          {
+            "sector_id": 111766,
+            "sector_name": "ANS - GARE",
+            "vehicles_per_household": 0.72,
+            "comparison_to_average": -28.0
+          },
+          {
+            "sector_id": 111756,
+            "sector_name": "MOLINVAUX-LA-TONNE",
+            "vehicles_per_household": 0.66,
+            "comparison_to_average": -34.0
+          },
+          {
+            "sector_id": -1,
+            "sector_name": "Secteur statistique inconnu",
+            "vehicles_per_household": 0.2,
+            "comparison_to_average": -80.0
+          }
+        ]
+      }
+    },
+    "sectors": {
+      "statistical_sectors": {
+        "151460": {
+          "sector_id": 151460,
+          "cd_sector": "62003C0MN",
+          "sector_name": "AL TRAPPE",
+          "sector_name_nl": "AL TRAPPE",
+          "area_km2": 1.1991
+        },
+        "151465": {
+          "sector_id": 151465,
+          "cd_sector": "62003C10-",
+          "sector_name": "ALLEUR - HAUT",
+          "sector_name_nl": "ALLEUR - HAUT",
+          "area_km2": 0.4713
+        },
+        "151457": {
+          "sector_id": 151457,
+          "cd_sector": "62003C010",
+          "sector_name": "ALLEUR-BAS",
+          "sector_name_nl": "ALLEUR-BAS",
+          "area_km2": 0.1895
+        },
+        "151456": {
+          "sector_id": 151456,
+          "cd_sector": "62003C001",
+          "sector_name": "ALLEUR-CENTRE",
+          "sector_name_nl": "ALLEUR-CENTRE",
+          "area_km2": 0.9332
+        },
+        "151466": {
+          "sector_id": 151466,
+          "cd_sector": "62003C11-",
+          "sector_name": "ALLEUR-CHAUSSEE",
+          "sector_name_nl": "ALLEUR-CHAUSSEE",
+          "area_km2": 0.0409
+        },
+        "150268": {
+          "sector_id": 150268,
+          "cd_sector": "62003A50-",
+          "sector_name": "ANS - GARE",
+          "sector_name_nl": "ANS - GARE",
+          "area_km2": 0.2335
+        },
+        "151442": {
+          "sector_id": 151442,
+          "cd_sector": "62003A001",
+          "sector_name": "ANS-CENTRE",
+          "sector_name_nl": "ANS-CENTRE",
+          "area_km2": 0.4774
+        },
+        "151416": {
+          "sector_id": 151416,
+          "cd_sector": "62003A101",
+          "sector_name": "BEAUJONC-ANS",
+          "sector_name_nl": "BEAUJONC-ANS",
+          "area_km2": 0.103
+        },
+        "151451": {
+          "sector_id": 151451,
+          "cd_sector": "62003A41-",
+          "sector_name": "BOLSEE",
+          "sector_name_nl": "BOLSEE",
+          "area_km2": 0.8304
+        },
+        "151461": {
+          "sector_id": 151461,
+          "cd_sector": "62003C200",
+          "sector_name": "BOLZEE",
+          "sector_name_nl": "BOLZEE",
+          "area_km2": 0.3327
+        },
+        "151448": {
+          "sector_id": 151448,
+          "cd_sector": "62003A37-",
+          "sector_name": "BONNE-FORTUNE",
+          "sector_name_nl": "BONNE-FORTUNE",
+          "area_km2": 0.4463
+        },
+        "151358": {
+          "sector_id": 151358,
+          "cd_sector": "62003D012",
+          "sector_name": "BOURDON",
+          "sector_name_nl": "BOURDON",
+          "area_km2": 0.36
+        },
+        "151446": {
+          "sector_id": 151446,
+          "cd_sector": "62003A4AN",
+          "sector_name": "CHARBONNAGE DES FRANCAIS",
+          "sector_name_nl": "CHARBONNAGE DES FRANCAIS",
+          "area_km2": 0.5822
+        },
+        "151445": {
+          "sector_id": 151445,
+          "cd_sector": "62003A2AN",
+          "sector_name": "EN STER",
+          "sector_name_nl": "EN STER",
+          "area_km2": 0.3252
+        },
+        "151455": {
+          "sector_id": 151455,
+          "cd_sector": "62003B11-",
+          "sector_name": "FORT DE LONCIN",
+          "sector_name_nl": "FORT DE LONCIN",
+          "area_km2": 0.5862
+        },
+        "151426": {
+          "sector_id": 151426,
+          "cd_sector": "62003A201",
+          "sector_name": "HAUT-DOUY",
+          "sector_name_nl": "HAUT-DOUY",
+          "area_km2": 0.463
+        },
+        "151458": {
+          "sector_id": 151458,
+          "cd_sector": "62003C022",
+          "sector_name": "HOMBROU",
+          "sector_name_nl": "HOMBROU",
+          "area_km2": 0.4293
+        },
+        "151454": {
+          "sector_id": 151454,
+          "cd_sector": "62003B090",
+          "sector_name": "LONCIN AUTOROUTES",
+          "sector_name_nl": "LONCIN AUTOROUTES",
+          "area_km2": 1.0644
+        },
+        "150395": {
+          "sector_id": 150395,
+          "cd_sector": "62003B00-",
+          "sector_name": "LONCIN-CENTRE",
+          "sector_name_nl": "LONCIN-CENTRE",
+          "area_km2": 0.3243
+        },
+        "150399": {
+          "sector_id": 150399,
+          "cd_sector": "62003B01-",
+          "sector_name": "LONCIN-CENTRE-NORD",
+          "sector_name_nl": "LONCIN-CENTRE-NORD",
+          "area_km2": 0.1472
+        },
+        "151404": {
+          "sector_id": 151404,
+          "cd_sector": "62003B02-",
+          "sector_name": "LONCIN-CENTRE-SUD - CH. DE FER",
+          "sector_name_nl": "LONCIN-CENTRE-SUD - CH. DE FER",
+          "area_km2": 0.2201
+        },
+        "151443": {
+          "sector_id": 151443,
+          "cd_sector": "62003A211",
+          "sector_name": "MOLINVAUX-LA-TONNE",
+          "sector_name_nl": "MOLINVAUX-LA-TONNE",
+          "area_km2": 0.2175
+        },
+        "151444": {
+          "sector_id": 151444,
+          "cd_sector": "62003A221",
+          "sector_name": "MONTEGNEE",
+          "sector_name_nl": "MONTEGNEE",
+          "area_km2": 0.1939
+        },
+        "151449": {
+          "sector_id": 151449,
+          "cd_sector": "62003A40-",
+          "sector_name": "PLATEAU",
+          "sector_name_nl": "PLATEAU",
+          "area_km2": 0.4342
+        },
+        "151450": {
+          "sector_id": 151450,
+          "cd_sector": "62003A402",
+          "sector_name": "PLATEAU-NORD",
+          "sector_name_nl": "PLATEAU-NORD",
+          "area_km2": 0.2791
+        },
+        "151452": {
+          "sector_id": 151452,
+          "cd_sector": "62003A42-",
+          "sector_name": "PLATEAU-OURY",
+          "sector_name_nl": "PLATEAU-OURY",
+          "area_km2": 0.2168
+        },
+        "151470": {
+          "sector_id": 151470,
+          "cd_sector": "62003D392",
+          "sector_name": "TUMULUS",
+          "sector_name_nl": "TUMULUS",
+          "area_km2": 0.9281
+        },
+        "151468": {
+          "sector_id": 151468,
+          "cd_sector": "62003D091",
+          "sector_name": "VICINAL",
+          "sector_name_nl": "VICINAL",
+          "area_km2": 5.6901
+        },
+        "151464": {
+          "sector_id": 151464,
+          "cd_sector": "62003C0PA",
+          "sector_name": "WAROUX",
+          "sector_name_nl": "WAROUX",
+          "area_km2": 3.7609
+        },
+        "151436": {
+          "sector_id": 151436,
+          "cd_sector": "62003A022",
+          "sector_name": "WAROUX",
+          "sector_name_nl": "WAROUX",
+          "area_km2": 0.1139
+        },
+        "151459": {
+          "sector_id": 151459,
+          "cd_sector": "62003C0AA",
+          "sector_name": "WAROUX",
+          "sector_name_nl": "WAROUX",
+          "area_km2": 1.1531
+        },
+        "151462": {
+          "sector_id": 151462,
+          "cd_sector": "62003D00-",
+          "sector_name": "XHENDREMAEL",
+          "sector_name_nl": "XHENDREMAEL",
+          "area_km2": 0.5998
+        }
+      }
+    }
+  },
+  "investment_analysis": {
+    "affordability_metrics": {
+      "price_to_income_ratio": 4.4458249447462315,
+      "mortgage_affordability_index": 0.4197901186942973,
+      "ownership_accessibility_score": 63.77918024505581
+    },
+    "rental_market_potential": {
+      "estimated_rental_yield": 0.045000000000000005,
+      "rental_demand_index": 0.5,
+      "rental_growth_potential": "Moderate"
+    },
+    "target_demographic_analysis": {
+      "growing_segments": [
+        {
+          "segment": "Seniors (65+)",
+          "growth_rate": 2.0,
+          "housing_preferences": "Smaller, accessible units close to amenities"
+        }
+      ],
+      "declining_segments": []
+    },
+    "market_dynamics": {
+      "supply_demand_balance": "Undersupply",
+      "construction_vs_absorption_rate": 0.0,
+      "market_cycle_position": "Slowdown phase"
+    },
+    "risk_assessment": {
+      "price_volatility": "Medium",
+      "liquidity_score": 60,
+      "oversupply_risk": "Low",
+      "economic_dependency_risk": "Low"
+    },
+    "comparative_ranking": {
+      "value_for_money_rank": 31,
+      "growth_potential_rank": 61,
+      "overall_investment_score": 52.0
+    }
+  }
+}

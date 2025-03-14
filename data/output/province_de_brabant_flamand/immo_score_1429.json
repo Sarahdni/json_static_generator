@@ -1,0 +1,1185 @@
+{
+  "metadata": {
+    "commune_id": 1429,
+    "commune_name": "Dilbeek",
+    "postal_code": "23016",
+    "district": null,
+    "province": "Province de Brabant flamand",
+    "region": "Région flamande",
+    "version": "1.0",
+    "generated_date": "2025-03-14",
+    "temporal_coverage": {
+      "current_year": 2025,
+      "historical_start": 2000,
+      "range_years": 25
+    },
+    "data_period": {
+      "real_estate_data": {
+        "current": "2024-Q4",
+        "previous_year": "2023-Q4",
+        "five_year": "2019-Q4",
+        "ten_year": "2014-Q4",
+        "fifteen_year": "2009-Q4",
+        "since_2000": "2000-Q1 à 2024-Q4",
+        "historical_range": "2000-Q1 à 2024-Q4"
+      },
+      "economic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "demographic_data": {
+        "current": "2023",
+        "previous_year": "2022",
+        "five_year": "2018",
+        "ten_year": "2013",
+        "fifteen_year": "2008",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2023"
+      },
+      "tax_data": {
+        "current": "2022",
+        "previous_year": "2021",
+        "five_year": "2017",
+        "ten_year": "2012",
+        "fifteen_year": "2007",
+        "since_2000": "2000",
+        "historical_range": "2000 à 2022"
+      },
+      "construction_data": {
+        "current": "2024-Q1",
+        "previous_year": "2023-Q1",
+        "five_year": "2019-Q1",
+        "ten_year": "2014-Q1",
+        "fifteen_year": "2009-Q1",
+        "since_2000": "2000-Q1 à 2024-Q1",
+        "historical_range": "2000-Q1 à 2024-Q1"
+      }
+    }
+  },
+  "real_estate_market": {
+    "municipality_overview": {
+      "last_period": {
+        "total_transactions": 429,
+        "price_trends": {
+          "mean_price": 322947.9184149184,
+          "median_price": 287000.0,
+          "price_p10": 205000.0,
+          "price_p25": 249000.0,
+          "price_p75": 348000.0,
+          "price_p90": 419000.0
+        },
+        "total_surface_sqm": 202815.0,
+        "avg_surface_sqm": 472.76223776223776
+      },
+      "historical_trends": {
+        "year_over_year": {
+          "transaction_change_pct": -9.49367088607595,
+          "price_change_pct": 8.23193569735883
+        },
+        "five_year": {
+          "transaction_change_pct": -11.180124223602485,
+          "price_change_pct": 23.09826885974235
+        }
+      }
+    },
+    "by_property_type": {
+      "summary": {
+        "most_common_type": null,
+        "fastest_growing_segment": null,
+        "most_valuable_segment": null
+      },
+      "detailed_types": {}
+    },
+    "sector_analysis": {
+      "summary": {
+        "sectors_count": 0,
+        "price_disparity_index": null,
+        "hottest_sector": null,
+        "most_affordable_sector": null
+      },
+      "sectors": []
+    },
+    "building_stock": {
+      "total_buildings": 0,
+      "by_type": {},
+      "by_age": {},
+      "housing_units": {
+        "total_count": 0,
+        "units_per_building_avg": null,
+        "units_per_capita": null
+      }
+    }
+  },
+  "building_development": {
+    "permits": {
+      "summary": {
+        "total_permits_ytd": 0,
+        "trend_yoy": null,
+        "residential_ratio": 0
+      },
+      "counts": {
+        "residential": {
+          "new_construction": {
+            "buildings": 0,
+            "dwellings": 0,
+            "houses": 0,
+            "apartments": 0
+          },
+          "renovation": {
+            "buildings": 0,
+            "dwellings": 0
+          }
+        },
+        "non_residential": {
+          "new_construction": {
+            "buildings": 0
+          },
+          "renovation": {
+            "buildings": 0
+          }
+        }
+      },
+      "surface": {
+        "residential_new_construction_sqm": 0,
+        "avg_dwelling_size_sqm": 0,
+        "trend_yoy": null
+      },
+      "volume": {
+        "non_residential_new_construction_cubic_m": 0,
+        "trend_yoy": null
+      }
+    },
+    "construction_activity": {
+      "construction_intensity_index": 0.5,
+      "development_phase": "Stable",
+      "supply_pipeline": {
+        "residential_units_coming": 0.0,
+        "estimated_completion_timeframe": "18 months",
+        "impact_on_supply": "Low"
+      }
+    }
+  },
+  "demographics": {
+    "population_overview": {
+      "total_population": 44650,
+      "population_density": null,
+      "population_trend": {
+        "one_year_growth": 1.258646105000567,
+        "five_year_growth": 5.222227459112975,
+        "forecast_growth": 1.0444454918225952
+      }
+    },
+    "age_structure": {
+      "median_age": 42,
+      "age_groups": {
+        "under_18": {
+          "count": 9681,
+          "percentage": 21.681970884658455,
+          "trend": "+0,9%"
+        },
+        "18_to_35": {
+          "count": 9060,
+          "percentage": 20.29115341545353,
+          "trend": "-0,2%"
+        },
+        "36_to_65": {
+          "count": 17207,
+          "percentage": 38.53751399776036,
+          "trend": "-0,6%"
+        },
+        "over_65": {
+          "count": 8702,
+          "percentage": 19.48936170212766,
+          "trend": "+0,5%"
+        }
+      },
+      "dependency_ratio": 0.6998515247268435
+    },
+    "household_composition": {
+      "total_households": 0,
+      "average_household_size": null,
+      "household_types": {
+        "single_person": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_age": {
+            "under_35": {
+              "count": 0,
+              "percentage": 0
+            },
+            "35_to_65": {
+              "count": 0,
+              "percentage": 0
+            },
+            "over_65": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "couples_without_children": {
+          "count": 0,
+          "percentage": 0
+        },
+        "couples_with_children": {
+          "count": 0,
+          "percentage": 0,
+          "breakdown_by_children": {
+            "with_1_child": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_2_children": {
+              "count": 0,
+              "percentage": 0
+            },
+            "with_3_plus_children": {
+              "count": 0,
+              "percentage": 0
+            }
+          }
+        },
+        "single_parent": {
+          "count": 0,
+          "percentage": 0
+        }
+      },
+      "household_evolution": {
+        "trend_single_person": null,
+        "trend_family": null,
+        "trend_average_size": null
+      }
+    },
+    "cultural_diversity": {
+      "nationality_groups": {
+        "belgian": {
+          "count": 39515,
+          "percentage": 88.49944008958566
+        },
+        "foreign": {
+          "count": 5135,
+          "percentage": 11.500559910414333
+        }
+      }
+    }
+  },
+  "economic_indicators": {
+    "income_tax": {
+      "income_overview": {
+        "average_income": 43981.714846961,
+        "median_income": 43899.6301061176,
+        "income_distribution": {
+          "low_income_pct": 25.0,
+          "middle_income_pct": 65.0,
+          "high_income_pct": 10.0
+        }
+      },
+      "tax_burden": {
+        "average_tax_rate": 26.441997465861395,
+        "municipal_tax_rate": 6.418079208228394
+      },
+      "income_sources": {
+        "professional_income_pct": 97.13054706980833,
+        "real_estate_income_pct": 2.2850312099146657,
+        "investment_income_pct": 0.48716589792321724,
+        "other_income_pct": 0.09725582235379018
+      }
+    },
+    "business_activity": {
+      "enterprise_overview": {
+        "total_enterprises": 0,
+        "net_creation": 0,
+        "creation_rate": 0,
+        "closure_rate": 0
+      },
+      "sectors": {},
+      "enterprise_size": {
+        "micro_enterprises_pct": 0,
+        "small_enterprises_pct": 0,
+        "medium_enterprises_pct": 0,
+        "large_enterprises_pct": 0
+      },
+      "foreign_investment": {
+        "foreign_enterprises_count": 0,
+        "foreign_investment_growth": "+0.0%"
+      }
+    },
+    "unemployment": {
+      "overall_rate": 0,
+      "trend_yoy": null,
+      "by_age_group": {
+        "under_25": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "25_to_50": {
+          "rate": 0.0,
+          "trend": null
+        },
+        "over_50": {
+          "rate": 0.0,
+          "trend": null
+        }
+      }
+    }
+  },
+  "geographical_context": {
+    "mobility": {
+      "vehicle_ownership": {
+        "average_vehicles_per_household": 1,
+        "households_with_no_vehicle_pct": 0.0,
+        "households_with_multiple_vehicles_pct": 10.0
+      },
+      "vehicle_distribution": {
+        "by_sector": [
+          {
+            "sector_id": 101719,
+            "sector_name": "AUTOSTRADE-NOORD-NIEUWE MOLEN- VERSPREIDE BEWONING",
+            "vehicles_per_household": 1.8,
+            "comparison_to_average": 80.0
+          },
+          {
+            "sector_id": 101733,
+            "sector_name": "HOOGVELD",
+            "vehicles_per_household": 1.75,
+            "comparison_to_average": 75.0
+          },
+          {
+            "sector_id": 101748,
+            "sector_name": "DREEF - DRIJB",
+            "vehicles_per_household": 1.65,
+            "comparison_to_average": 65.0
+          },
+          {
+            "sector_id": 101744,
+            "sector_name": "ITTERBEEK VERSPREIDE BEWONING",
+            "vehicles_per_household": 1.57,
+            "comparison_to_average": 57.0
+          },
+          {
+            "sector_id": 99865,
+            "sector_name": "IJSBOS",
+            "vehicles_per_household": 1.55,
+            "comparison_to_average": 55.0
+          },
+          {
+            "sector_id": 101721,
+            "sector_name": "KOEIVIJVER-VERSPREIDE BEWONING",
+            "vehicles_per_household": 1.54,
+            "comparison_to_average": 54.0
+          },
+          {
+            "sector_id": 101766,
+            "sector_name": "PERSONAATVELD",
+            "vehicles_per_household": 1.54,
+            "comparison_to_average": 54.0
+          },
+          {
+            "sector_id": 101745,
+            "sector_name": "SINT-GERTRUDIS-PEDE",
+            "vehicles_per_household": 1.54,
+            "comparison_to_average": 54.0
+          },
+          {
+            "sector_id": 118640,
+            "sector_name": "WOLSEM KASTEEL",
+            "vehicles_per_household": 1.51,
+            "comparison_to_average": 51.0
+          },
+          {
+            "sector_id": 101729,
+            "sector_name": "SINT-WIVINA",
+            "vehicles_per_household": 1.5,
+            "comparison_to_average": 50.0
+          },
+          {
+            "sector_id": 101759,
+            "sector_name": "ZIBBEEK",
+            "vehicles_per_household": 1.49,
+            "comparison_to_average": 49.0
+          },
+          {
+            "sector_id": 101694,
+            "sector_name": "BUNDER",
+            "vehicles_per_household": 1.46,
+            "comparison_to_average": 46.0
+          },
+          {
+            "sector_id": 99003,
+            "sector_name": "WOLSEMVELD",
+            "vehicles_per_household": 1.45,
+            "comparison_to_average": 45.0
+          },
+          {
+            "sector_id": 101758,
+            "sector_name": "SINT-GERTRUDIS-PEDE - VERSPREIDE BEWONING NOORD",
+            "vehicles_per_household": 1.44,
+            "comparison_to_average": 44.0
+          },
+          {
+            "sector_id": 101716,
+            "sector_name": "AUTOSTRADE-ZUID-VERSPR. BEW.",
+            "vehicles_per_household": 1.43,
+            "comparison_to_average": 43.0
+          },
+          {
+            "sector_id": 101742,
+            "sector_name": "MELKSTAL",
+            "vehicles_per_household": 1.43,
+            "comparison_to_average": 43.0
+          },
+          {
+            "sector_id": 101753,
+            "sector_name": "ZIERBEEK - PLANKENVELD",
+            "vehicles_per_household": 1.43,
+            "comparison_to_average": 43.0
+          },
+          {
+            "sector_id": 101731,
+            "sector_name": "KLOOSTERSEKTOR",
+            "vehicles_per_household": 1.42,
+            "comparison_to_average": 42.0
+          },
+          {
+            "sector_id": 101762,
+            "sector_name": "ZUIENHOEK",
+            "vehicles_per_household": 1.42,
+            "comparison_to_average": 42.0
+          },
+          {
+            "sector_id": 101746,
+            "sector_name": "DE NACHTEGAAL",
+            "vehicles_per_household": 1.41,
+            "comparison_to_average": 41.0
+          },
+          {
+            "sector_id": 101699,
+            "sector_name": "SINT-ANNA-PEDE",
+            "vehicles_per_household": 1.41,
+            "comparison_to_average": 41.0
+          },
+          {
+            "sector_id": 101760,
+            "sector_name": "SINT-MARTENS-BODEGEM-CENTRUM",
+            "vehicles_per_household": 1.41,
+            "comparison_to_average": 41.0
+          },
+          {
+            "sector_id": 101763,
+            "sector_name": "DRIEHOFVELDEN",
+            "vehicles_per_household": 1.4,
+            "comparison_to_average": 40.0
+          },
+          {
+            "sector_id": 101722,
+            "sector_name": "BEGIJNENBORRE",
+            "vehicles_per_household": 1.38,
+            "comparison_to_average": 38.0
+          },
+          {
+            "sector_id": 101715,
+            "sector_name": "DILBEEK-VERSPREIDE BEWONING",
+            "vehicles_per_household": 1.37,
+            "comparison_to_average": 37.0
+          },
+          {
+            "sector_id": 101725,
+            "sector_name": "KATTEBROEK",
+            "vehicles_per_household": 1.37,
+            "comparison_to_average": 37.0
+          },
+          {
+            "sector_id": 101755,
+            "sector_name": "SINT-GERTRUDIS-PEDE-KERN",
+            "vehicles_per_household": 1.35,
+            "comparison_to_average": 35.0
+          },
+          {
+            "sector_id": 101724,
+            "sector_name": "WOLSEM-VERSPREIDE BEWONING",
+            "vehicles_per_household": 1.35,
+            "comparison_to_average": 35.0
+          },
+          {
+            "sector_id": 101736,
+            "sector_name": "GROOT-BIJGAARDEN -VERSPR. BEW.",
+            "vehicles_per_household": 1.34,
+            "comparison_to_average": 34.0
+          },
+          {
+            "sector_id": 101754,
+            "sector_name": "SCHEPDAAL VERSPREIDE BEWONING",
+            "vehicles_per_household": 1.34,
+            "comparison_to_average": 34.0
+          },
+          {
+            "sector_id": 101747,
+            "sector_name": "BETTENDRIES",
+            "vehicles_per_household": 1.32,
+            "comparison_to_average": 32.0
+          },
+          {
+            "sector_id": 99830,
+            "sector_name": "STICHELGAT",
+            "vehicles_per_household": 1.32,
+            "comparison_to_average": 32.0
+          },
+          {
+            "sector_id": 101727,
+            "sector_name": "ELEGEM",
+            "vehicles_per_household": 1.31,
+            "comparison_to_average": 31.0
+          },
+          {
+            "sector_id": 101767,
+            "sector_name": "OOSTHOEK",
+            "vehicles_per_household": 1.3,
+            "comparison_to_average": 30.0
+          },
+          {
+            "sector_id": 101735,
+            "sector_name": "OVERVELD - SCHORENBOSCH",
+            "vehicles_per_household": 1.29,
+            "comparison_to_average": 29.0
+          },
+          {
+            "sector_id": 101756,
+            "sector_name": "SINT-GERTRUDIS-PEDE-LAARBEEK - VERSPREIDE BEWONING",
+            "vehicles_per_household": 1.28,
+            "comparison_to_average": 28.0
+          },
+          {
+            "sector_id": 101769,
+            "sector_name": "SUIKERENBERG",
+            "vehicles_per_household": 1.26,
+            "comparison_to_average": 26.0
+          },
+          {
+            "sector_id": 101739,
+            "sector_name": "GULDEN KASTEEL",
+            "vehicles_per_household": 1.25,
+            "comparison_to_average": 25.0
+          },
+          {
+            "sector_id": 101761,
+            "sector_name": "WESTHOEK",
+            "vehicles_per_household": 1.25,
+            "comparison_to_average": 25.0
+          },
+          {
+            "sector_id": 101717,
+            "sector_name": "MOORTEBEEK - PALOKE",
+            "vehicles_per_household": 1.23,
+            "comparison_to_average": 23.0
+          },
+          {
+            "sector_id": 101749,
+            "sector_name": "GODVEERDEGEM",
+            "vehicles_per_household": 1.22,
+            "comparison_to_average": 22.0
+          },
+          {
+            "sector_id": 101728,
+            "sector_name": "SINT ULRIKS-KAPELLE-KERN",
+            "vehicles_per_household": 1.2,
+            "comparison_to_average": 20.0
+          },
+          {
+            "sector_id": 101718,
+            "sector_name": "KAUDENAARDE",
+            "vehicles_per_household": 1.19,
+            "comparison_to_average": 19.0
+          },
+          {
+            "sector_id": 101732,
+            "sector_name": "WIVINAWIJK",
+            "vehicles_per_household": 1.19,
+            "comparison_to_average": 19.0
+          },
+          {
+            "sector_id": 101704,
+            "sector_name": "KLUIZENBOS",
+            "vehicles_per_household": 1.18,
+            "comparison_to_average": 18.0
+          },
+          {
+            "sector_id": 101711,
+            "sector_name": "SCHEPDAAL-CENTRUM",
+            "vehicles_per_household": 1.18,
+            "comparison_to_average": 18.0
+          },
+          {
+            "sector_id": 101751,
+            "sector_name": "WOLSEM",
+            "vehicles_per_household": 1.18,
+            "comparison_to_average": 18.0
+          },
+          {
+            "sector_id": 101750,
+            "sector_name": "LOVELD",
+            "vehicles_per_household": 1.12,
+            "comparison_to_average": 12.0
+          },
+          {
+            "sector_id": 101738,
+            "sector_name": "ITTERBEEK - KERN",
+            "vehicles_per_household": 1.11,
+            "comparison_to_average": 11.0
+          },
+          {
+            "sector_id": 101723,
+            "sector_name": "WOLSEM-KERN",
+            "vehicles_per_household": 1.09,
+            "comparison_to_average": 9.0
+          },
+          {
+            "sector_id": 101726,
+            "sector_name": "KASTERLINDEN",
+            "vehicles_per_household": 1.08,
+            "comparison_to_average": 8.0
+          },
+          {
+            "sector_id": 101671,
+            "sector_name": "DILBEEK-CENTRUM",
+            "vehicles_per_household": 1.07,
+            "comparison_to_average": 7.0
+          },
+          {
+            "sector_id": 101703,
+            "sector_name": "BROEKWIJK",
+            "vehicles_per_household": 1.06,
+            "comparison_to_average": 6.0
+          },
+          {
+            "sector_id": 101714,
+            "sector_name": "ITTERBEEKSEBAAN",
+            "vehicles_per_household": 1.04,
+            "comparison_to_average": 4.0
+          },
+          {
+            "sector_id": 99410,
+            "sector_name": "GROOT-BIJGAARDEN-CENTRUM",
+            "vehicles_per_household": 1.03,
+            "comparison_to_average": 3.0
+          },
+          {
+            "sector_id": 101720,
+            "sector_name": "KOEIVIJVER-CENTRUM",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": 0.0
+          },
+          {
+            "sector_id": 101730,
+            "sector_name": "STATIONSWIJK",
+            "vehicles_per_household": 1.0,
+            "comparison_to_average": 0.0
+          },
+          {
+            "sector_id": 99040,
+            "sector_name": "SINT-ANTONIUS",
+            "vehicles_per_household": 0.99,
+            "comparison_to_average": -1.0
+          },
+          {
+            "sector_id": 101741,
+            "sector_name": "INDUSTRIEWIJK - RONDPUNT",
+            "vehicles_per_household": 0.95,
+            "comparison_to_average": -5.0
+          },
+          {
+            "sector_id": 101734,
+            "sector_name": "RODENBERG",
+            "vehicles_per_household": 0.87,
+            "comparison_to_average": -13.0
+          },
+          {
+            "sector_id": 101737,
+            "sector_name": "H.FAMILIE",
+            "vehicles_per_household": 0.79,
+            "comparison_to_average": -21.0
+          },
+          {
+            "sector_id": -1,
+            "sector_name": "Secteur statistique inconnu",
+            "vehicles_per_household": 0.13,
+            "comparison_to_average": -87.0
+          }
+        ]
+      }
+    },
+    "sectors": {
+      "statistical_sectors": {
+        "141463": {
+          "sector_id": 141463,
+          "cd_sector": "23016B09-",
+          "sector_name": "AUTOSTRADE-NOORD-NIEUWE MOLEN- VERSPREIDE BEWONING",
+          "sector_name_nl": "AUTOSTRADE-NOORD-NIEUWE MOLEN- VERSPREIDE BEWONING",
+          "area_km2": 1.6293
+        },
+        "141462": {
+          "sector_id": 141462,
+          "cd_sector": "23016B081",
+          "sector_name": "AUTOSTRADE-ZUID-VERSPR. BEW.",
+          "sector_name_nl": "AUTOSTRADE-ZUID-VERSPR. BEW.",
+          "area_km2": 2.9932
+        },
+        "141456": {
+          "sector_id": 141456,
+          "cd_sector": "23016A402",
+          "sector_name": "BEGIJNENBORRE",
+          "sector_name_nl": "BEGIJNENBORRE",
+          "area_km2": 0.7502
+        },
+        "141477": {
+          "sector_id": 141477,
+          "cd_sector": "23016D211",
+          "sector_name": "BETTENDRIES",
+          "sector_name_nl": "BETTENDRIES",
+          "area_km2": 1.0521
+        },
+        "141427": {
+          "sector_id": 141427,
+          "cd_sector": "23016A011",
+          "sector_name": "BROEKWIJK",
+          "sector_name_nl": "BROEKWIJK",
+          "area_km2": 0.5703
+        },
+        "141433": {
+          "sector_id": 141433,
+          "cd_sector": "23016A022",
+          "sector_name": "BUNDER",
+          "sector_name_nl": "BUNDER",
+          "area_km2": 0.3684
+        },
+        "141476": {
+          "sector_id": 141476,
+          "cd_sector": "23016D19-",
+          "sector_name": "DE NACHTEGAAL",
+          "sector_name_nl": "DE NACHTEGAAL",
+          "area_km2": 1.0377
+        },
+        "141431": {
+          "sector_id": 141431,
+          "cd_sector": "23016A001",
+          "sector_name": "DILBEEK-CENTRUM",
+          "sector_name_nl": "DILBEEK-CENTRUM",
+          "area_km2": 1.1812
+        },
+        "141443": {
+          "sector_id": 141443,
+          "cd_sector": "23016A091",
+          "sector_name": "DILBEEK-VERSPREIDE BEWONING",
+          "sector_name_nl": "DILBEEK-VERSPREIDE BEWONING",
+          "area_km2": 1.6558
+        },
+        "141481": {
+          "sector_id": 141481,
+          "cd_sector": "23016E022",
+          "sector_name": "DREEF - DRIJB",
+          "sector_name_nl": "DREEF - DRIJB",
+          "area_km2": 0.2659
+        },
+        "141491": {
+          "sector_id": 141491,
+          "cd_sector": "23016F032",
+          "sector_name": "DRIEHOFVELDEN",
+          "sector_name_nl": "DRIEHOFVELDEN",
+          "area_km2": 0.2273
+        },
+        "141460": {
+          "sector_id": 141460,
+          "cd_sector": "23016A713",
+          "sector_name": "ELEGEM",
+          "sector_name_nl": "ELEGEM",
+          "area_km2": 0.2565
+        },
+        "141483": {
+          "sector_id": 141483,
+          "cd_sector": "23016E033",
+          "sector_name": "GODVEERDEGEM",
+          "sector_name_nl": "GODVEERDEGEM",
+          "area_km2": 0.1915
+        },
+        "141466": {
+          "sector_id": 141466,
+          "cd_sector": "23016C091",
+          "sector_name": "GROOT-BIJGAARDEN -VERSPR. BEW.",
+          "sector_name_nl": "GROOT-BIJGAARDEN -VERSPR. BEW.",
+          "area_km2": 1.3206
+        },
+        "141465": {
+          "sector_id": 141465,
+          "cd_sector": "23016C00-",
+          "sector_name": "GROOT-BIJGAARDEN-CENTRUM",
+          "sector_name_nl": "GROOT-BIJGAARDEN-CENTRUM",
+          "area_km2": 0.3134
+        },
+        "141472": {
+          "sector_id": 141472,
+          "cd_sector": "23016D012",
+          "sector_name": "GULDEN KASTEEL",
+          "sector_name_nl": "GULDEN KASTEEL",
+          "area_km2": 0.3567
+        },
+        "141432": {
+          "sector_id": 141432,
+          "cd_sector": "23016C10-",
+          "sector_name": "H.FAMILIE",
+          "sector_name_nl": "H.FAMILIE",
+          "area_km2": 0.085
+        },
+        "141453": {
+          "sector_id": 141453,
+          "cd_sector": "23016C042",
+          "sector_name": "HOOGVELD",
+          "sector_name_nl": "HOOGVELD",
+          "area_km2": 0.2316
+        },
+        "141478": {
+          "sector_id": 141478,
+          "cd_sector": "23016D222",
+          "sector_name": "IJSBOS",
+          "sector_name_nl": "IJSBOS",
+          "area_km2": 0.3241
+        },
+        "141470": {
+          "sector_id": 141470,
+          "cd_sector": "23016C170",
+          "sector_name": "INDUSTRIEWIJK - RONDPUNT",
+          "sector_name_nl": "INDUSTRIEWIJK - RONDPUNT",
+          "area_km2": 0.9127
+        },
+        "141439": {
+          "sector_id": 141439,
+          "cd_sector": "23016D00-",
+          "sector_name": "ITTERBEEK - KERN",
+          "sector_name_nl": "ITTERBEEK - KERN",
+          "area_km2": 0.2871
+        },
+        "141473": {
+          "sector_id": 141473,
+          "cd_sector": "23016D091",
+          "sector_name": "ITTERBEEK VERSPREIDE BEWONING",
+          "sector_name_nl": "ITTERBEEK VERSPREIDE BEWONING",
+          "area_km2": 0.2155
+        },
+        "141441": {
+          "sector_id": 141441,
+          "cd_sector": "23016A032",
+          "sector_name": "ITTERBEEKSEBAAN",
+          "sector_name_nl": "ITTERBEEKSEBAAN",
+          "area_km2": 0.458
+        },
+        "141459": {
+          "sector_id": 141459,
+          "cd_sector": "23016A691",
+          "sector_name": "KASTERLINDEN",
+          "sector_name_nl": "KASTERLINDEN",
+          "area_km2": 0.1564
+        },
+        "141448": {
+          "sector_id": 141448,
+          "cd_sector": "23016A682",
+          "sector_name": "KATTEBROEK",
+          "sector_name_nl": "KATTEBROEK",
+          "area_km2": 0.4378
+        },
+        "141449": {
+          "sector_id": 141449,
+          "cd_sector": "23016A20-",
+          "sector_name": "KAUDENAARDE",
+          "sector_name_nl": "KAUDENAARDE",
+          "area_km2": 0.8537
+        },
+        "141468": {
+          "sector_id": 141468,
+          "cd_sector": "23016C02-",
+          "sector_name": "KLOOSTERSEKTOR",
+          "sector_name_nl": "KLOOSTERSEKTOR",
+          "area_km2": 0.4347
+        },
+        "141442": {
+          "sector_id": 141442,
+          "cd_sector": "23016A491",
+          "sector_name": "KLUIZENBOS",
+          "sector_name_nl": "KLUIZENBOS",
+          "area_km2": 0.6311
+        },
+        "141454": {
+          "sector_id": 141454,
+          "cd_sector": "23016A302",
+          "sector_name": "KOEIVIJVER-CENTRUM",
+          "sector_name_nl": "KOEIVIJVER-CENTRUM",
+          "area_km2": 0.7066
+        },
+        "141455": {
+          "sector_id": 141455,
+          "cd_sector": "23016A391",
+          "sector_name": "KOEIVIJVER-VERSPREIDE BEWONING",
+          "sector_name_nl": "KOEIVIJVER-VERSPREIDE BEWONING",
+          "area_km2": 0.65
+        },
+        "141484": {
+          "sector_id": 141484,
+          "cd_sector": "23016E042",
+          "sector_name": "LOVELD",
+          "sector_name_nl": "LOVELD",
+          "area_km2": 0.2878
+        },
+        "141471": {
+          "sector_id": 141471,
+          "cd_sector": "23016C19-",
+          "sector_name": "MELKSTAL",
+          "sector_name_nl": "MELKSTAL",
+          "area_km2": 0.3723
+        },
+        "141445": {
+          "sector_id": 141445,
+          "cd_sector": "23016A110",
+          "sector_name": "MOORTEBEEK - PALOKE",
+          "sector_name_nl": "MOORTEBEEK - PALOKE",
+          "area_km2": 0.5086
+        },
+        "141493": {
+          "sector_id": 141493,
+          "cd_sector": "23016F091",
+          "sector_name": "OOSTHOEK",
+          "sector_name_nl": "OOSTHOEK",
+          "area_km2": 0.7389
+        },
+        "141444": {
+          "sector_id": 141444,
+          "cd_sector": "23016E01-",
+          "sector_name": "OVERVELD - SCHORENBOSCH",
+          "sector_name_nl": "OVERVELD - SCHORENBOSCH",
+          "area_km2": 0.4267
+        },
+        "141492": {
+          "sector_id": 141492,
+          "cd_sector": "23016F081",
+          "sector_name": "PERSONAATVELD",
+          "sector_name_nl": "PERSONAATVELD",
+          "area_km2": 3.0393
+        },
+        "141458": {
+          "sector_id": 141458,
+          "cd_sector": "23016C053",
+          "sector_name": "RODENBERG",
+          "sector_name_nl": "RODENBERG",
+          "area_km2": 0.2158
+        },
+        "141486": {
+          "sector_id": 141486,
+          "cd_sector": "23016E091",
+          "sector_name": "SCHEPDAAL VERSPREIDE BEWONING",
+          "sector_name_nl": "SCHEPDAAL VERSPREIDE BEWONING",
+          "area_km2": 2.2001
+        },
+        "141480": {
+          "sector_id": 141480,
+          "cd_sector": "23016E00-",
+          "sector_name": "SCHEPDAAL-CENTRUM",
+          "sector_name_nl": "SCHEPDAAL-CENTRUM",
+          "area_km2": 0.5109
+        },
+        "141461": {
+          "sector_id": 141461,
+          "cd_sector": "23016B00-",
+          "sector_name": "SINT ULRIKS-KAPELLE-KERN",
+          "sector_name_nl": "SINT ULRIKS-KAPELLE-KERN",
+          "area_km2": 0.1869
+        },
+        "141479": {
+          "sector_id": 141479,
+          "cd_sector": "23016D281",
+          "sector_name": "SINT-ANNA-PEDE",
+          "sector_name_nl": "SINT-ANNA-PEDE",
+          "area_km2": 1.0073
+        },
+        "141450": {
+          "sector_id": 141450,
+          "cd_sector": "23016A212",
+          "sector_name": "SINT-ANTONIUS",
+          "sector_name_nl": "SINT-ANTONIUS",
+          "area_km2": 0.2118
+        },
+        "141474": {
+          "sector_id": 141474,
+          "cd_sector": "23016D182",
+          "sector_name": "SINT-GERTRUDIS-PEDE",
+          "sector_name_nl": "SINT-GERTRUDIS-PEDE",
+          "area_km2": 1.1357
+        },
+        "141489": {
+          "sector_id": 141489,
+          "cd_sector": "23016E191",
+          "sector_name": "SINT-GERTRUDIS-PEDE - VERSPREIDE BEWONING NOORD",
+          "sector_name_nl": "SINT-GERTRUDIS-PEDE - VERSPREIDE BEWONING NOORD",
+          "area_km2": 0.6299
+        },
+        "141487": {
+          "sector_id": 141487,
+          "cd_sector": "23016E10-",
+          "sector_name": "SINT-GERTRUDIS-PEDE-KERN",
+          "sector_name_nl": "SINT-GERTRUDIS-PEDE-KERN",
+          "area_km2": 0.1741
+        },
+        "141488": {
+          "sector_id": 141488,
+          "cd_sector": "23016E18-",
+          "sector_name": "SINT-GERTRUDIS-PEDE-LAARBEEK - VERSPREIDE BEWONING",
+          "sector_name_nl": "SINT-GERTRUDIS-PEDE-LAARBEEK - VERSPREIDE BEWONING",
+          "area_km2": 0.4535
+        },
+        "141485": {
+          "sector_id": 141485,
+          "cd_sector": "23016F00-",
+          "sector_name": "SINT-MARTENS-BODEGEM-CENTRUM",
+          "sector_name_nl": "SINT-MARTENS-BODEGEM-CENTRUM",
+          "area_km2": 0.0655
+        },
+        "141464": {
+          "sector_id": 141464,
+          "cd_sector": "23016B112",
+          "sector_name": "SINT-WIVINA",
+          "sector_name_nl": "SINT-WIVINA",
+          "area_km2": 0.0825
+        },
+        "141467": {
+          "sector_id": 141467,
+          "cd_sector": "23016C010",
+          "sector_name": "STATIONSWIJK",
+          "sector_name_nl": "STATIONSWIJK",
+          "area_km2": 0.6453
+        },
+        "158289": {
+          "sector_id": 158289,
+          "cd_sector": "23016C210",
+          "sector_name": "STICHELGAT",
+          "sector_name_nl": "STICHELGAT",
+          "area_km2": 0.7844
+        },
+        "138805": {
+          "sector_id": 138805,
+          "cd_sector": "23016F290",
+          "sector_name": "SUIKERENBERG",
+          "sector_name_nl": "SUIKERENBERG",
+          "area_km2": 0.588
+        },
+        "138766": {
+          "sector_id": 138766,
+          "cd_sector": "23016F010",
+          "sector_name": "WESTHOEK",
+          "sector_name_nl": "WESTHOEK",
+          "area_km2": 0.2646
+        },
+        "141469": {
+          "sector_id": 141469,
+          "cd_sector": "23016C03-",
+          "sector_name": "WIVINAWIJK",
+          "sector_name_nl": "WIVINAWIJK",
+          "area_km2": 0.3707
+        },
+        "138804": {
+          "sector_id": 138804,
+          "cd_sector": "23016F19-",
+          "sector_name": "WOLSEM",
+          "sector_name_nl": "WOLSEM",
+          "area_km2": 0.4703
+        },
+        "141451": {
+          "sector_id": 141451,
+          "cd_sector": "23016A583",
+          "sector_name": "WOLSEM KASTEEL",
+          "sector_name_nl": "WOLSEM KASTEEL",
+          "area_km2": 0.3162
+        },
+        "141446": {
+          "sector_id": 141446,
+          "cd_sector": "23016A500",
+          "sector_name": "WOLSEM-KERN",
+          "sector_name_nl": "WOLSEM-KERN",
+          "area_km2": 0.4458
+        },
+        "141452": {
+          "sector_id": 141452,
+          "cd_sector": "23016A591",
+          "sector_name": "WOLSEM-VERSPREIDE BEWONING",
+          "sector_name_nl": "WOLSEM-VERSPREIDE BEWONING",
+          "area_km2": 0.6992
+        },
+        "141447": {
+          "sector_id": 141447,
+          "cd_sector": "23016A512",
+          "sector_name": "WOLSEMVELD",
+          "sector_name_nl": "WOLSEMVELD",
+          "area_km2": 0.5751
+        },
+        "141482": {
+          "sector_id": 141482,
+          "cd_sector": "23016E29-",
+          "sector_name": "ZIBBEEK",
+          "sector_name_nl": "ZIBBEEK",
+          "area_km2": 1.1916
+        },
+        "141475": {
+          "sector_id": 141475,
+          "cd_sector": "23016E08-",
+          "sector_name": "ZIERBEEK - PLANKENVELD",
+          "sector_name_nl": "ZIERBEEK - PLANKENVELD",
+          "area_km2": 1.9847
+        },
+        "158290": {
+          "sector_id": 158290,
+          "cd_sector": "23016F022",
+          "sector_name": "ZUIENHOEK",
+          "sector_name_nl": "ZUIENHOEK",
+          "area_km2": 0.3401
+        }
+      }
+    }
+  },
+  "investment_analysis": {
+    "affordability_metrics": {
+      "price_to_income_ratio": 6.52543906026963,
+      "mortgage_affordability_index": 0.14838657174281722,
+      "ownership_accessibility_score": 34.20651132728602
+    },
+    "rental_market_potential": {
+      "estimated_rental_yield": 0.04800000000000001,
+      "rental_demand_index": 0.7,
+      "rental_growth_potential": "Good"
+    },
+    "target_demographic_analysis": {
+      "growing_segments": [
+        {
+          "segment": "Seniors (65+)",
+          "growth_rate": 2.0,
+          "housing_preferences": "Smaller, accessible units close to amenities"
+        }
+      ],
+      "declining_segments": []
+    },
+    "market_dynamics": {
+      "supply_demand_balance": "Undersupply",
+      "construction_vs_absorption_rate": 0.0,
+      "market_cycle_position": "Late growth phase (pre-correction)"
+    },
+    "risk_assessment": {
+      "price_volatility": "Medium",
+      "liquidity_score": 65,
+      "oversupply_risk": "Low",
+      "economic_dependency_risk": "Low"
+    },
+    "comparative_ranking": {
+      "value_for_money_rank": 51,
+      "growth_potential_rank": 21,
+      "overall_investment_score": 68.0
+    }
+  }
+}
