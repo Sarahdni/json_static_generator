@@ -607,14 +607,16 @@ class EconomicsExtractor(BaseExtractor):
                 return {}
             
             # Récupération des données actuelles
-            current_data = self.extract_business_data_for_period(commune_id, date_id)
+            # Convertir commune_id en entier avant de l'utiliser
+            current_data = self.extract_business_data_for_period(int(commune_id), date_id)
             
             # Récupération des données de l'année précédente pour les comparaisons
             previous_year = str(int(self.data_period) - 1)
             previous_year_date_id = self.get_date_id(session, previous_year, 'year')
             previous_year_data = {}
             if previous_year_date_id:
-                previous_year_data = self.extract_business_data_for_period(commune_id, previous_year_date_id)
+                # Convertir également ici
+                previous_year_data = self.extract_business_data_for_period(int(commune_id), previous_year_date_id)
         
         # Construction du résultat avec les données actuelles et historiques
         result = {
@@ -623,11 +625,12 @@ class EconomicsExtractor(BaseExtractor):
         }
         
         self.log_extraction_end(f"activité économique (commune {commune_id})", 
-                              len(current_data.keys()))
+                            len(current_data.keys()))
         
         return result
-    
-    def extract_business_data_for_period(self, commune_id: str, date_id: int) -> Dict[str, Any]:
+           
+    def extract_business_data_for_period(self, commune_id: int, date_id: int) -> Dict[str, Any]:
+
         """
         Extrait les données d'activité économique pour une période spécifique.
         
